@@ -1,0 +1,74 @@
+<mat-toolbar class="mat-primary" *ngIf="menu==0">
+  <mat-toolbar-row >
+    <span>
+      <a routerLink="/">Papp</a>
+
+    </span>
+  <button  *ngIf="userIsAuthenticated"  id="menu"  mat-button [matMenuTriggerFor]="selections">Menu</button>
+  <mat-menu  #selections="matMenu">
+    <button mat-menu-item  [matMenuTriggerFor]="Aggelies">Ads</button>
+    <button mat-menu-item routerLink="/messages" >Messages</button>
+    <button mat-menu-item *ngIf="isAdmin==='1'" [matMenuTriggerFor]="Users">Users</button>
+  </mat-menu>
+
+  <mat-menu #Aggelies='matMenu'>
+    <button mat-menu-item  routerLink="/show">Manage</button>
+    <button mat-menu-item routerLink="/create">Add new</button>
+  </mat-menu>
+
+  <mat-menu #Users="matMenu">
+    <button mat-menu-item routerLink="/users">Manage</button>
+    <button mat-menu-item routerLink="/signup">Add new</button>
+  </mat-menu>
+  <span class="spacer"></span>
+  <ul>
+  <li id="user" *ngIf="userIsAuthenticated">{{currentUser}}</li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button  routerLink="/login" >Login</a>
+    </li>
+    <li *ngIf="userIsAuthenticated"  >
+      <a mat-button (click)="onLogout()">Logout</a>
+    </li>
+
+  </ul>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<div id="wraper" *ngIf="menu==1" class="menu1">
+  <mat-sidenav class="mat-sidenav-left" mode="side" opened class="example-sidenav" >
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          Papp
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <mat-nav-list  >
+            <a class="links" *ngIf="!userIsAuthenticated"mat-list-item  routerLink="/login" >Login</a>
+            <div *ngIf="userIsAuthenticated">
+                <a class="links" mat-list-item routerLink="/" routerLinkActive="active-list-item">Dashboard</a>
+                <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item">Messages</a>
+                <mat-expansion-panel color="primary"[class.mat-elevation-z0]="true" dense>
+                    <mat-expansion-panel-header>
+                        Ads
+                    </mat-expansion-panel-header>
+                    <mat-nav-list class="menu-items" dense>
+                        <a mat-list-item routerLink="/show">Manage</a>
+                        <a mat-list-item routerLink="/create">Add new</a>
+                    </mat-nav-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="isAdmin==='1'" [class.mat-elevation-z0]="true" dense>
+                    <mat-expansion-panel-header>
+                        Users
+                    </mat-expansion-panel-header>
+                    <mat-nav-list class="menu-items" dense>
+                        <a mat-list-item routerLink="/users">Manage</a>
+                        <a mat-list-item routerLink="/signup">Add new</a>
+                    </mat-nav-list>
+              </mat-expansion-panel>
+          </div>
+          <a  class="links" *ngIf="userIsAuthenticated" mat-list-item (click)="onLogout()">Logout</a>
+      </mat-nav-list>
+
+  </mat-sidenav>
+
+</div>

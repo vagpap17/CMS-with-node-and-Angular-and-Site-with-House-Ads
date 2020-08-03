@@ -1,0 +1,33 @@
+h2{
+  margin-left:50%;
+  margin-right:50%
+}
+p{
+  margin-left:40%;
+  margin-right:40%;
+}
+mat-card{
+  margin-right:25%;
+  margin-left:25%
+}
+
+form{
+  margin-right:25%;
+  margin-left:25%;
+  width:100%
+}
+
+
+/* form button{
+  background-color: black;
+  color:white
+} */
+
+
+mat-card,mat-form-field {
+  width: 50%;
+}
+
+mat-spinner {
+  margin: auto;
+}

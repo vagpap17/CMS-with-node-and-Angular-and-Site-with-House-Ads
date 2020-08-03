@@ -1,0 +1,19 @@
+#content{
+  margin-left:20%
+}
+table{
+  width:50% ;
+}
+#id{
+  width:20px;
+}
+#username{
+  padding-left:20px;
+  width:100px;
+}
+#privileges{
+  width:50px;
+}
+#actions{
+  width:20px;
+}

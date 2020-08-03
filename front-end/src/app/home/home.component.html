@@ -1,0 +1,129 @@
+
+
+    <div id="marketing" >
+      <div class="container">
+
+        <h1>Site Title</h1>
+        Marketing Messages
+      </div>
+    </div>
+    <div id="search" class="col-md-12 pb-3">
+      <h1 id="stitle">Search for properties:</h1>
+      <div class="row">
+        <div id="searchForm"class="row  col-md-8">
+
+        <a id="house"class=" mb-0 col-md-6 " (click)="houseMode()">Residences</a>
+        <a id="commercial"class=" mb-0 col-md-6 ml-0 float-right" (click)="comMode()" >Commercial</a>
+
+        <form [formGroup]="form" id="formHouse"*ngIf="!mode" class="col-md-12" (submit)="searchHouse(form.value)">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >State</label>
+              <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
+                <option value="null"></option>
+                <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label >Location</label>
+              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
+                <option value="null"></option>
+                <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Type</label>
+              <select class="form-control" formControlName="adtype" >
+                <option value="null"></option>
+                <option value="sell">sell</option>
+                <option value="rent">rent</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputZip">Min price</label>
+              <input type="text" class="form-control" formControlName="minprice">
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputZip">Max price</label>
+              <input type="text" class="form-control" formControlName="maxprice">
+            </div>
+            <div class="form-group col-md-6">
+              <label>Bednumber</label>
+              <input type="range" class="custom-range" min="0" max="3" formControlName="bednum"  >
+            </div>
+            <div class="form-group col-md-6">
+              <label>Bathnumber</label>
+              <input type="range" class="custom-range" min="0" max="3" formControlName="bathnum" >
+            </div>
+          </div>
+          <button type="submit" class="btn btn-dark mb-2">Search</button>
+
+        </form>
+        <form id="formCom"*ngIf="mode" [formGroup]="formC" class="col-md-12" (submit)="searchHouse(formC.value)">
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label >State</label>
+              <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
+                <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label >Location</label>
+              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
+                <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="exampleFormControlSelect1">Type</label>
+              <select class="form-control" >
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputZip">Min price</label>
+              <input type="text" class="form-control" >
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputZip">Max price</label>
+              <input type="text" class="form-control" >
+            </div>
+
+
+          </div>
+          <button type="submit" class="btn btn-dark mb-2">Search</button>
+
+        </form>
+      </div>
+      <!-- <div id="results"class="col-md-6 ml-4 ">
+        <div class="card"></div>
+      </div> -->
+      </div>
+    </div>
+    <div id="topads" class="col-md-12 container mt-5 mb-5">
+
+
+        <div class="container">
+          <h1>Our stars</h1>
+          <div class="row ">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let star of stars;let i=index">
+              <div class="card" [routerLink]="['/show',stars[i].post_id]">
+                <img class="card-img-top" [src]="stars[i].photoname" alt="Card image cap">
+                <div class="card-body">
+
+                  <h5 class="card-title">{{stars[i].title}}</h5>
+
+                  <p class="card-text">{{stars[i].state}},{{stars[i].location}}</p>
+
+                  <button class="card-link" type="button"[routerLink]="['/ads/show',stars[i].post_id]" class="btn-dark btn">See More</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div id="services" class="col-md-12 container">
+
+        <h1>Services</h1>
+
+    </div>
+
+

@@ -1,0 +1,39 @@
+div{
+  margin-top:20px;
+  height:100%;
+
+}
+#welcome{
+  width:40%;
+  height:150px;
+  display:inline-block;
+}
+#statistics{
+  position: absolute;
+  width:20%;
+  display:inline-block;
+  height:150px;
+  margin-left:20px;
+
+}
+#user{
+  font-weight: bold;
+}
+
+#styling{
+  margin-top:20px;
+  width:30%;
+}
+button{
+  margin-left:20px;
+}
+#custSum{
+  text-decoration: none;
+  color:black;
+}
+#custSum:hover{
+  color:#6c706d
+}
+#map {
+  height: 100%;
+}

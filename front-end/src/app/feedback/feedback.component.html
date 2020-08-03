@@ -1,0 +1,139 @@
+
+<div *ngIf="found==true && submitted==true">
+  <h1>Thank you for your information!</h1>
+</div>
+<div *ngIf="found==false">
+  <h1>Page not found</h1>
+</div>
+<div *ngIf="found==true && submitted!=true">
+  <form [formGroup]="form" (submit)="submit()">
+    <div class="form-group">
+
+      <h3 >likeAdNum:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="likeAdNum" formControlName="likeAdNum" class="custom-control-input" value="1">
+        <label class="custom-control-label" for="customRadioInline1">1</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" name="likeAdNum" formControlName="likeAdNum" class="custom-control-input" value="2">
+        <label class="custom-control-label" for="customRadioInline2">2</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline3" name="likeAdNum" formControlName="likeAdNum" class="custom-control-input" value="3">
+        <label class="custom-control-label" for="customRadioInline3">3</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline4" name="likeAdNum" formControlName="likeAdNum" class="custom-control-input" value="4">
+        <label class="custom-control-label" for="customRadioInline4">4</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline9" name="likeAdNum" formControlName="likeAdNum" class="custom-control-input" value="5">
+        <label class="custom-control-label" for="customRadioInline9">5</label>
+      </div>
+
+      <h3 >wSeen:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline5" name="wSeen" formControlName="wSeen" class="custom-control-input" value="SM">
+        <label class="custom-control-label" for="customRadioInline5">Social Media</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline6" name="wSeen" formControlName="wSeen" class="custom-control-input" value="ads">
+        <label class="custom-control-label" for="customRadioInline6">Ads</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline7" name="wSeen" formControlName="wSeen" class="custom-control-input" value="other">
+        <label class="custom-control-label" for="customRadioInline7">Other advertising sites</label>
+      </div>
+      <h3 >Ad rating:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline10" name="aRating" formControlName="aRating" class="custom-control-input" value="1">
+        <label class="custom-control-label" for="customRadioInline10">1</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline11" name="aRating" formControlName="aRating" class="custom-control-input" value="2">
+        <label class="custom-control-label" for="customRadioInline11">2</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline12" name="aRating" formControlName="aRating" class="custom-control-input" value="3">
+        <label class="custom-control-label" for="customRadioInline12">3</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline13" name="aRating" formControlName="aRating" class="custom-control-input" value="4">
+        <label class="custom-control-label" for="customRadioInline13">4</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline14" name="aRating" formControlName="aRating" class="custom-control-input" value="5">
+        <label class="custom-control-label" for="customRadioInline14">5</label>
+      </div>
+      <h3 >likeSiteNum:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline15" name="likeSiteNum" formControlName="likeSiteNum" class="custom-control-input" value="1">
+        <label class="custom-control-label" for="customRadioInline15">1</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline16" name="likeSiteNum" formControlName="likeSiteNum" class="custom-control-input" value="2">
+        <label class="custom-control-label" for="customRadioInline16">2</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline17" name="likeSiteNum" formControlName="likeSiteNum" class="custom-control-input" value="3">
+        <label class="custom-control-label" for="customRadioInline17">3</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline18" name="likeSiteNum" formControlName="likeSiteNum" class="custom-control-input" value="4">
+        <label class="custom-control-label" for="customRadioInline18">4</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline19" name="likeSiteNum" formControlName="likeSiteNum" class="custom-control-input" value="5">
+        <label class="custom-control-label" for="customRadioInline19">5</label>
+      </div>
+      <h3 >useAgain:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline20" name="useAgain" formControlName="useAgain" class="custom-control-input" value="1">
+        <label class="custom-control-label" for="customRadioInline20">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline21" name="useAgain" formControlName="useAgain" class="custom-control-input" value="0">
+        <label class="custom-control-label" for="customRadioInline21">No</label>
+      </div>
+      <h3 >satisfiedNum:</h3>
+      <br>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline22" name="satisfiedNum" formControlName="satisfiedNum" class="custom-control-input" value="1">
+        <label class="custom-control-label" for="customRadioInline22">1</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline23" name="satisfiedNum" formControlName="satisfiedNum" class="custom-control-input" value="2">
+        <label class="custom-control-label" for="customRadioInline23">2</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline24" name="satisfiedNum" formControlName="satisfiedNum" class="custom-control-input" value="3">
+        <label class="custom-control-label" for="customRadioInline24">3</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline25" name="satisfiedNum" formControlName="satisfiedNum" class="custom-control-input" value="4">
+        <label class="custom-control-label" for="customRadioInline25">4</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline26" name="satisfiedNum" formControlName="satisfiedNum" class="custom-control-input" value="5">
+        <label class="custom-control-label" for="customRadioInline26">5</label>
+      </div>
+
+
+
+  </div>
+
+
+
+  <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+
+  </form>
+
+</div>
+
+
+

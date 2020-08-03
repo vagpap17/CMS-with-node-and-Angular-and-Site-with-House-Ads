@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row col-md-9">
+
+
+    <div class="card mb-3 col-md-12 pl-0"  *ngFor="let ad of ads;let i=index">
+      <div class="row no-gutters">
+        <div class="col-md-3">
+          <img [src]="ads[i].photoname" class="card-img" alt="...">
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <h2 class="card-title">{{ads[i].state}},{{ads[i].location}},{{ads[i].area}} sq m, <span *ngIf="ads[i].adtype==='sell'">{{ads[i].price}} <b>€</b></span><span *ngIf="ads[i].adtype==='rent'">{{ads[i].price}} <b>€/month</b></span><span class="ml-2 badge badge-pill ">{{ads[i].adtype}}</span></h2>
+
+
+            <p class="card-text crop">{{ads[i].description}}</p>
+            <button type="button"[routerLink]="['/ads/show',ads[i].post_id]" class="btn-dark btn">See More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,35 @@
+table,mat-paginator {
+  width: 100%
+}
+#create{
+  margin-bottom:20px;
+  background-color:white;
+}
+#edit{
+  text-decoration: none;
+  padding-left:0;
+  color:black
+}
+#edit:hover{
+  color:#6c706d
+}
+#edit:visited{
+  color:black
+}
+#edit:visited:hover{
+  color:#6c706d
+}
+.edit{
+  width:10px;
+  padding:0;
+
+}
+
+.dateadded{
+  width:100px;
+  margin:20px;
+}
+.type{
+  width:100px;
+  margin:20px;
+}

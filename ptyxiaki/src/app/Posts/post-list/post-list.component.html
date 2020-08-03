@@ -1,0 +1,56 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+  <button id="create"  mat-stroked-button routerLink="/create" type="button" >Add new Post</button>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="search" placeholder="Filter">
+  </mat-form-field>
+  <button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" matTooltip="Filter">
+    <mat-icon>search</mat-icon>
+  </button>
+<table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef class="edit">  </th>
+  <td mat-cell *matCellDef="let element" ><span class="material-icons"><a id="edit"*ngIf="privileges==='1'||currentUser===element.addedBy"  [routerLink]="['/edit',element.id]" >edit</a></span><br>
+</td>
+  </ng-container>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef class="edit"> id. </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Title">
+    <th mat-header-cell *matHeaderCellDef class="dateadded">  Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="addedBy">
+    <th mat-header-cell *matHeaderCellDef class="dateadded">  addedBy </th>
+    <td mat-cell *matCellDef="let element"> {{element.addedBy}}</td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef class="type"> Type</th>
+    <td mat-cell *matCellDef="let element"> {{element.btype}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="DateAdded">
+    <th mat-header-cell *matHeaderCellDef class="dateadded"> DateAdded </th>
+    <td mat-cell *matCellDef="let element" > {{element.dateAdded}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef class="edit"> Actions </th>
+  <td mat-cell *matCellDef="let element"> <button *ngIf="privileges==='1'||currentUser===element.addedBy"mat-button color='primary' (click)="openDialog(element.id)">Delete</button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+
+
+

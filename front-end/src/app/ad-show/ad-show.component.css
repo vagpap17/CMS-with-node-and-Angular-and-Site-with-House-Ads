@@ -1,0 +1,65 @@
+
+#carousel{
+  float:left;
+  margin-right:10px;
+}
+.carousel-item {
+  width:100%;
+  height:100%
+}
+.table1{
+  background-color: #ededed;
+}
+
+
+.table1 td{
+  border-bottom:2px solid #dbdbdb;
+
+}
+
+
+#desc{
+
+
+  margin-top:20px;
+  width:100%
+}
+
+#contact{
+  margin-top:30px;
+
+}
+.card{
+  background-color: #edf1f2;
+  position: fixed;
+
+}
+input{
+  background-color: #dce2e3;
+  border-color: #d0d7d8;
+  color:black;
+}
+
+.badge{
+  background-color: #00deb6;
+}
+#like{
+  border-color: #00deb6;
+}
+#like:hover{
+  background-color: #00deb6;
+  border-color: #00deb6;
+}
+#test{
+  border-bottom: 1px solid #dee2e6;
+  margin-left:10px;
+  padding-left:20px;
+  margin-top:570px;
+  padding-bottom:10px;
+}
+h1{
+  font-size: 35px;
+}
+google-map{
+  margin:200px;
+}
