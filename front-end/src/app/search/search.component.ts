@@ -70,7 +70,7 @@ export class SearchComponent implements OnInit {
     this.adService.getAllAds()
     this.ads=this.adService.getSearchResults()
     this.status=this.ads.length
-
+  
   }
   houseMode(){
     this.mode=false

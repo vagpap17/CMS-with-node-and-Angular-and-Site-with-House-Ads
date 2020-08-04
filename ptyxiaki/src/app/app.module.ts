@@ -42,13 +42,14 @@ import { PostEditComponent } from './Posts/post-edit/post-edit.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FeedbackComponent } from './messages/feedback/feedback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PostListComponent,
-    PostCreateComponent,DashboardComponent, LoginComponent, SignupComponent, UserListComponent, PostEditComponent, DialogComponent, MessagesComponent, FeedbackComponent
+    PostCreateComponent,DashboardComponent, LoginComponent, SignupComponent, UserListComponent, PostEditComponent, DialogComponent, MessagesComponent, FeedbackComponent, NotFoundComponent
   ],
   imports: [
     GoogleMapsModule,

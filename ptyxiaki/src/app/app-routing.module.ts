@@ -11,6 +11,7 @@ import { UserListComponent } from './auth/user-list/user-list.component';
 import { PostEditComponent } from './Posts/post-edit/post-edit.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FeedbackComponent } from './messages/feedback/feedback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 const routes:Routes=[
   {path:'',component:DashboardComponent},
   {path:'show',component:PostListComponent,canActivate:[AuthGuard]},
@@ -21,7 +22,9 @@ const routes:Routes=[
   {path:'users',component:UserListComponent,canActivate:[AuthGuard]},
   {path:'users/:userId',component:SignupComponent,canActivate:[AuthGuard]},
   {path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
-  {path:'messages/:id',component:FeedbackComponent}
+  {path:'messages/:id',component:FeedbackComponent},
+  {path:'404',component:NotFoundComponent},
+  {path:'**',redirectTo:'404'}
 
 ]
 

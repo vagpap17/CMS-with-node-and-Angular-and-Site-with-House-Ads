@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSliderModule } from '@angular/material/slider';
 import { SearchComponent } from './search/search.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     FooterComponent,
     SearchComponent,
     FeedbackComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

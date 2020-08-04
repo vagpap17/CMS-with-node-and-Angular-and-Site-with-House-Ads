@@ -14,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class MessagesComponent implements OnInit {
   search;
+  arraySeen=[];
   array=[];
   displayedColumns: string[] = ['name', 'email', 'number','agent','advertisment','called','feedback'];
   dataSource ;
@@ -52,20 +53,18 @@ export class MessagesComponent implements OnInit {
   }
   clicked(id:number,clicked:boolean){
     this.bclicked=true;
-    console.log(clicked)
+    console.log(id)
     const seenArray=<FormArray>this.form.controls.seen;
     if (clicked) {
-      seenArray.push(new FormControl(id));
-      this.array.push(id)
+      this.arraySeen.push(id)
     } else {
-      let index = seenArray.controls.findIndex(x => x.value == id)
-      seenArray.removeAt(index);
-      this.array.splice(index)
+      let index = this.arraySeen.indexOf(id)
+      this.arraySeen.splice(index,1);
     }
-    console.log(this.array)
+    console.log(this.arraySeen)
   }
   onSave(){
-    this.messagesService.saveSeen(this.array)
+    this.messagesService.saveSeen(this.arraySeen)
   }
 
   applyFilter(filterValue: string) {

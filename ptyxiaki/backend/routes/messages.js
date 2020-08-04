@@ -14,25 +14,21 @@ var connection=mysql.createConnection({
 })
 
 router.post("",function(req,res){
-  q2="select * from feedback where formId=?;"
-  duplicate=true;
-    var formId           = '';
-    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < 9; i++ ) {
-       formId += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    console.log(formId)
-
-
-
 
   q="update contacts set seen=true where id=?;";
   q1="insert into feedback set ?;select last_insert_id() as lastid;select cusName,cusEmail from contacts where id=?"
 
 
   for(let i=0;i<req.body.length;i++){
+    var formId           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var j = 0; j < 9; j++ ) {
+       formId += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    console.log(formId)
     let contact={contact_id:req.body[i],formId:formId}
+    console.log(contact)
     connection.query(q,req.body[i],function(err,results){
       if(err){
         console.log(err)
@@ -82,7 +78,7 @@ router.get("/:id/:pre",function(req,res){
   id=req.params.id
   pre=req.params.pre
   if(pre==="1"){
-    q="select * from contacts"
+    q="select * from contacts order by id desc"
     connection.query(q,function(err,results){
       if(err){
         console.log(err)
