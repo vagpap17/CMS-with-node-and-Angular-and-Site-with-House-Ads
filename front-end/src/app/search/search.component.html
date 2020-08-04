@@ -2,34 +2,34 @@
   <h1   *ngIf="status===0">Sorry we didnt find ads with these criteria.Please try again.</h1>
 <h1  *ngIf="status>0">We found these ads for you:</h1>
 </div>
-<div class="container row">
+<div class=" row">
 
-  <div class="col-md-2">
-    <div id="search" class="col-md-4 pb-3">
+  <div id="search"class="col-md-3">
+
       <h1 id="stitle">Search for properties:</h1>
-      <div id="searchForm" class="row">
-        <div class="row  col-md-8">
+      <div  class="">
+        <div class="row  col-md-12">
 
         <a id="house"class=" mb-0 col-md-6 " (click)="houseMode()">Residences</a>
         <a id="commercial"class=" mb-0 col-md-6 ml-0 float-right" (click)="comMode()" >Commercial</a>
 
         <form [formGroup]="form" id="formHouse"*ngIf="!mode" class="col-md-12" (submit)="searchHouse(form.value)">
           <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label >State</label>
               <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
                 <option value="null"></option>
                 <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label >Location</label>
               <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
                 <option value="null"></option>
                 <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label>Type</label>
               <select class="form-control" formControlName="adtype" >
                 <option value="null"></option>
@@ -37,13 +37,13 @@
                 <option value="rent">rent</option>
               </select>
             </div>
-            <div class="form-group col-md-3 ">
+            <div class="form-group col-md-6 ">
               <label for="inputZip">Min price</label>
-              <input type="text" class="form-control size" formControlName="minprice">
+              <input type="text" class="form-control " formControlName="minprice">
             </div>
-            <div class="form-group col-md-3 ">
+            <div class="form-group col-md-6 ">
               <label for="inputZip">Max price</label>
-              <input type="text" class="form-control size" formControlName="maxprice">
+              <input type="text" class="form-control " formControlName="maxprice">
             </div>
             <div class="form-group col-md-6">
               <label>Bednumber</label>
@@ -99,9 +99,9 @@
         <div class="card"></div>
       </div> -->
       </div>
-    </div>
+
   </div>
-  <div id="results"class="row col-md-9">
+  <div id="results"class="col-md-8">
     <div class="card mb-3 col-md-12 pl-0"  *ngFor="let ad of ads;let i=index">
       <div class="row no-gutters">
         <div class="col-md-3">
@@ -109,11 +109,21 @@
         </div>
         <div class="col-md-9">
           <div class="card-body">
-            <h2 class="card-title">{{ads[i].state}},{{ads[i].location}},{{ads[i].area}} sq m, <span *ngIf="ads[i].adtype==='sell'">{{ads[i].price}} <b>€</b></span><span *ngIf="ads[i].adtype==='rent'">{{ads[i].price}} <b>€/month</b></span><span class="ml-2 badge badge-pill ">{{ads[i].adtype}}</span></h2>
+            <h2 class="card-title "><a [routerLink]="['/ads/show',ads[i].post_id]">{{ads[i].title}}</a></h2>
+            <h4>
+              <span>{{ads[i].btype}} for</span>
+              <span class="mr-1 ml-1" *ngIf="ads[i].adtype==='sell'">sale</span><span class="mr-1 ml-1" *ngIf="ads[i].adtype==='rent'">rent</span>
+               <span id="location"class="material-icons">location_on</span> {{ads[i].location}},({{ads[i].state}})
+               <span id="location"class="material-icons">
+                schedule
+                </span><span>{{ads[i].dateAdded}}</span>
+                <br>
+               <span id="price"*ngIf="ads[i].adtype==='sell'"><b>{{ads[i].price}} €</b></span><span id="price" *ngIf="ads[i].adtype==='rent'"><b>{{ads[i].price}} €/month</b></span>
 
+              </h4>
 
             <p class="card-text crop">{{ads[i].description}}</p>
-            <button type="button"[routerLink]="['/ads/show',ads[i].post_id]" class="btn-dark btn">See More</button>
+
           </div>
         </div>
       </div>

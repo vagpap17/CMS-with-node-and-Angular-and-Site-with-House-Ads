@@ -1,7 +1,4 @@
-.container{
-  margin-top:50px;
-  padding-bottom:300px;
-}
+
 #status{
   margin-top:10px;
   margin-left:25%
@@ -17,9 +14,9 @@
     background-color: #00deb6;
   }
 #search{
-  position:fixed;
+  margin-left:20px;
   font-size:15px;
-  height:200px;
+
 }
 #search select{
   padding-left:2px;
@@ -39,10 +36,7 @@ form{
   background-color: #e0ebf4;
   color:#337ab7;
 }
-#searchForm{
-  margin-bottom:200px;
-  padding-bottom:200px;
-}
+
 #commercial{
   background-color: #6ecc8f;
   color:#06782f;
@@ -58,10 +52,29 @@ img{
   height:100%;
 }
 
-#results{
-  /* margin-left:350px; */
-  margin-left:30%
-}
+/*  */
 .size{
   width:60px;
+}
+h4{
+  color:#555;
+}
+
+a{
+  text-decoration: none;
+  color:#111111;
+}
+a:hover{
+  color:#3bb9bf;
+  transition: 0.5s;
+}
+#location{
+  font-size:17px;
+}
+#price{
+  font-size: 20px;
+  color:#3bb9bf;
+}
+h2{
+  margin:0;
 }

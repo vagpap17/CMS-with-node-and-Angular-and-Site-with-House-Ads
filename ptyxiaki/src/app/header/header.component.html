@@ -46,7 +46,7 @@
             <a class="links" *ngIf="!userIsAuthenticated"mat-list-item  routerLink="/login" >Login</a>
             <div *ngIf="userIsAuthenticated">
                 <a class="links" mat-list-item routerLink="/" routerLinkActive="active-list-item">Dashboard</a>
-                <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item">Messages</a>
+
                 <mat-expansion-panel color="primary"[class.mat-elevation-z0]="true" dense>
                     <mat-expansion-panel-header>
                         Ads
@@ -56,6 +56,7 @@
                         <a mat-list-item routerLink="/create">Add new</a>
                     </mat-nav-list>
                 </mat-expansion-panel>
+                <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item">Messages</a>
                 <mat-expansion-panel *ngIf="isAdmin==='1'" [class.mat-elevation-z0]="true" dense>
                     <mat-expansion-panel-header>
                         Users
