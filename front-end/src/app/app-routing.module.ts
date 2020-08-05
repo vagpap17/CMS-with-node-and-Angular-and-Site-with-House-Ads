@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'ads/:list',component:adListComponent},
   {path:'ads/show/:id',component:AdShowComponent},
-  {path:'search/:param',component:SearchComponent},
+  {path:'search',component:SearchComponent},
   {path:'feedback/:id',component:FeedbackComponent},
   // {path:'404',component:NotFoundComponent},
   // {path:'**',redirectTo:'404'}

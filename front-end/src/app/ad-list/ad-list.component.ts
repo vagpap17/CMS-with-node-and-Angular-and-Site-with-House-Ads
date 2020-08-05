@@ -14,10 +14,13 @@ export class adListComponent implements OnInit {
   private resSalesSub:Subscription
   constructor(private adService:AdsService,private route:ActivatedRoute) { }
   mode;
+  param;
   ngOnInit(): void {
 
     this.route.paramMap.subscribe((paramMap:ParamMap)=>{
       this.mode=paramMap.get("list")
+      this.param=paramMap.get("param")
+      console.log(this.param)
       this.adService.getAds(paramMap.get("list"));
       this.resSalesSub=this.adService.getAdsUpdateListener()
       .subscribe(ads=>{

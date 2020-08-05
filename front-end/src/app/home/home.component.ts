@@ -1,6 +1,6 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { AdsService } from '../ad.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   starAdsSub:Subscription
   form:FormGroup;
   formC:FormGroup;
-  constructor(private adService:AdsService,private route:ActivatedRoute) { }
+  constructor(private adService:AdsService,private route:ActivatedRoute,private router:Router) { }
 
   states=[{state:"Attikis",id:1},{state:"Thessalonikis",id:2},{state:"Pierias",id:3},{state:"Chalkidikis",id:4},{state:"Imathias",id:5},{state:"Pellas",id:6},{state:"Florinas",id:7},{state:"Iwanninwn",id:8},{state:"Kilkis",id:9},{state:"Serron",id:10}];
   locations=[
@@ -45,6 +45,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.adService.getAllAds();
     this.form=new FormGroup({
+      btype: new FormControl(null,{
+      }),
       state: new FormControl(null,{
     }),
     location: new FormControl(null,{
@@ -115,34 +117,21 @@ export class HomeComponent implements OnInit {
   }
 
   searchHouse(filters: any): void {
-    // console.log(filters)
-    let min=filters.minprice
-    let max=filters.maxprice
 
-    if(filters.minprice===null||filters.minprice===undefined||filters.minprice===""){
-
-      min=0
-    }
-    if(filters.maxprice===null||filters.maxprice===undefined||filters.maxprice===""){
-
-      max=0
-    }
-
-
-    for (var propName in filters) {
-      if (filters[propName] === null || filters[propName] === undefined || filters[propName] === "" || filters[propName] === "null" ||  propName=="minprice" ||  propName=="maxprice"){
-        delete filters[propName];
-      }
-
-    }
-
-    if(min===0&&max===0){
-    }else{
-      filters['price']={min:min,max:max}
-    }
-
-
-
-    this.adService.searchFiltersHouse(filters,this.mode)
+    this.adService.searchFiltersHouse(filters)
   }
+
+  redirect(filters:any){
+
+    Object.keys(filters).forEach(key => {
+      if (filters[key] === undefined || filters[key]==="null" || filters[key]==="" ||filters[key]===null) {
+        delete filters[key];
+      }
+    });
+    console.log("FILTERS",filters)
+
+    this.router.navigate(['search'], { queryParams: filters});
+  }
+
+
 }

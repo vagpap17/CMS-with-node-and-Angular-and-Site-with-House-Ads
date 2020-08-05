@@ -1,104 +1,111 @@
 
-
-    <div id="marketing" >
-      <div class="container">
-
-        <h1>Site Title</h1>
-        Marketing Messages
-      </div>
-      <a [routerLink]="['/search/katerini']">Katerini</a>
-    </div>
     <div id="search" class="col-md-12 pb-3">
-      <h1 id="stitle">Search for properties:</h1>
-      <div class="row">
-        <div id="searchForm"class="row  col-md-8">
+      <h1 id="stitle">Make your next step.</h1>
+      <div class="form-row">
+        <div id="searchForm"class="row  col-md-6">
 
-        <a id="house"class=" mb-0 col-md-6 " (click)="houseMode()">Residences</a>
-        <a id="commercial"class=" mb-0 col-md-6 ml-0 float-right" (click)="comMode()" >Commercial</a>
-
-        <form [formGroup]="form" id="formHouse"*ngIf="!mode" class="col-md-12" (submit)="searchHouse(form.value)">
+        <form [formGroup]="form" *ngIf="!mode" class="col-md-12" >
+          <h2 id="you">Find the property <span class="need">you</span> need!</h2>
           <div class="row">
             <div class="form-group col-md-6">
-              <label >State</label>
-              <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
+              <label class="need">Type</label>
+              <select class="form-control custom-select" formControlName="btype">
+                <option value="null"></option>
+                <option value="apartment">Residence</option>
+                <option value="shop">Commercial</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="need">State</label>
+              <select class="form-control custom-select" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
                 <option value="null"></option>
                 <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label >Location</label>
-              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
+              <label class="need">Location</label>
+              <select class="form-control custom-select" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
                 <option value="null"></option>
                 <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label>Type</label>
-              <select class="form-control" formControlName="adtype" >
+              <label class="need">Type</label>
+              <select class="form-control custom-select" formControlName="adtype" >
                 <option value="null"></option>
                 <option value="sell">sell</option>
                 <option value="rent">rent</option>
               </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputZip">Min price</label>
-              <input type="text" class="form-control" formControlName="minprice">
+              <label class="need"for="inputZip">Min price</label>
+              <input type="text" class="form-control color" formControlName="minprice">
             </div>
             <div class="form-group col-md-3">
-              <label for="inputZip">Max price</label>
-              <input type="text" class="form-control" formControlName="maxprice">
+              <label class="need"for="inputZip">Max price</label>
+              <input type="text" class="form-control color" formControlName="maxprice">
             </div>
             <div class="form-group col-md-6">
-              <label>Bednumber</label>
-              <input type="range" class="custom-range" min="0" max="3" formControlName="bednum"  >
+              <label class="need">Bednumber</label>
+              <select class="form-control custom-select" formControlName="bednum" >
+                <option value="null"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+              </select>
             </div>
             <div class="form-group col-md-6">
-              <label>Bathnumber</label>
-              <input type="range" class="custom-range" min="0" max="3" formControlName="bathnum" >
+              <label class="need">Bathnumber</label>
+              <select class="form-control custom-select" formControlName="bathnum" >
+                <option value="null"></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="1">3</option>
+                <option value="1">4</option>
+              </select>
             </div>
           </div>
-          <button type="submit" class="btn btn-dark mb-2">Search</button>
-
-        </form>
-        <form id="formCom"*ngIf="mode" [formGroup]="formC" class="col-md-12" (submit)="searchHouse(formC.value)">
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label >State</label>
-              <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
-                <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label >Location</label>
-              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
-                <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="exampleFormControlSelect1">Type</label>
-              <select class="form-control" >
-              </select>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputZip">Min price</label>
-              <input type="text" class="form-control" >
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputZip">Max price</label>
-              <input type="text" class="form-control" >
-            </div>
-
-
-          </div>
-          <button type="submit" class="btn btn-dark mb-2">Search</button>
+          <button id="submit"type="button" class="btn btn-dark mb-2"(click)="redirect(form.value)">Search</button>
 
         </form>
       </div>
-      <!-- <div id="results"class="col-md-6 ml-4 ">
-        <div class="card"></div>
-      </div> -->
       </div>
     </div>
+    <div id="marketing" >
+      <div class="container">
+          <div id="first"class="row">
+            <div class="col-md-6">
+              <div id="home"></div>
+            </div>
+            <div id="rightH" class="col-md-6">
+              <h1 id="nextH">Find your next House!</h1>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div id="rightH" class="col-md-6">
+              <h1 id="nextH">We provide commercial ads too!</h1>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            </div>
+            <div class="col-md-6 pl-5 ">
+              <div id="shop"></div>
+            </div>
+            <div class="row mt-5">
+
+              <div class="col-md-6 pl-5 ">
+                <div id="support"></div>
+              </div>
+              <div id="rightH" class="col-md-6">
+                <h1 id="nextH">We are here for you!!</h1>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+              </div>
+
+          </div>
+      </div>
+
+    </div>
+
     <div id="topads" class="col-md-12 container mt-5 mb-5">
 
 

@@ -9,23 +9,31 @@
       <h1 id="stitle">Search for properties:</h1>
       <div  class="">
         <div class="row  col-md-12">
-
+<!--
         <a id="house"class=" mb-0 col-md-6 " (click)="houseMode()">Residences</a>
-        <a id="commercial"class=" mb-0 col-md-6 ml-0 float-right" (click)="comMode()" >Commercial</a>
+        <a id="commercial"class=" mb-0 col-md-6 ml-0 float-right" (click)="comMode()" >Commercial</a> -->
 
-        <form [formGroup]="form" id="formHouse"*ngIf="!mode" class="col-md-12" (submit)="searchHouse(form.value)">
+        <form [formGroup]="form" id="formHouse" class="col-md-12" >
           <div class="row">
+            <div class="form-group col-md-12">
+              <label >Type</label>
+              <select class="form-control" formControlName="btype">
+                <option value="null"></option>
+                <option value="apartment">Residence</option>
+                <option value="shop">Commercial</option>
+              </select>
+            </div>
             <div class="form-group col-md-12">
               <label >State</label>
               <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
-                <option value="null"></option>
+                <option value=null></option>
                 <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
               </select>
             </div>
             <div class="form-group col-md-12">
               <label >Location</label>
-              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
-                <option value="null"></option>
+              <select class="form-control" formControlName="location" >
+                <option value=null></option>
                 <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
               </select>
             </div>
@@ -45,55 +53,19 @@
               <label for="inputZip">Max price</label>
               <input type="text" class="form-control " formControlName="maxprice">
             </div>
-            <div class="form-group col-md-6">
+            <div *ngIf="!mode" class="form-group col-md-6">
               <label>Bednumber</label>
               <input type="range" class="custom-range" min="0" max="3" formControlName="bednum"  >
             </div>
-            <div class="form-group col-md-6">
+            <div *ngIf="!mode"  class="form-group col-md-6">
               <label>Bathnumber</label>
               <input type="range" class="custom-range" min="0" max="3" formControlName="bathnum" >
             </div>
           </div>
-          <button type="submit" class="btn btn-dark mb-2">Search</button>
+          <button type="button" class="btn btn-dark mb-2"(click)="redirect(form.value)">Search</button>
 
         </form>
-        <form id="formCom"*ngIf="mode" [formGroup]="formC" class="col-md-12" (submit)="searchHouse(formC.value)">
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label >State</label>
-              <select class="form-control" formControlName="state" [(ngModel)]="selected" (change)="citiesSelect(selected)" >
-                <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label >Location</label>
-              <select class="form-control" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
-                <option value="null"></option>
-                <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
-              </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label>Type</label>
-              <select class="form-control" formControlName="adtype" >
-                <option value="null"></option>
-                <option value="sell">sell</option>
-                <option value="rent">rent</option>
-              </select>
-            </div>
-            <div class="form-group col-md-3 ">
-              <label for="inputZip">Min price</label>
-              <input type="text" class="form-control size" formControlName="minprice">
-            </div>
-            <div class="form-group col-md-3 ">
-              <label for="inputZip">Max price</label>
-              <input type="text" class="form-control size" formControlName="maxprice">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-dark mb-2">Search</button>
 
-
-
-        </form>
       </div>
       <!-- <div id="results"class="col-md-6 ml-4 ">
         <div class="card"></div>

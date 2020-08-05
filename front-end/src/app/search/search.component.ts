@@ -2,6 +2,8 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { AdsService } from '../ad.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
+import { ParamMap, ActivatedRoute, Router } from '@angular/router';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +12,8 @@ import { Subscription, Observable } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
   selectedL;
-
+  gParams;
+  nfilters;
   flocations=[]
   states=[{state:"Attikis",id:1},{state:"Thessalonikis",id:2},{state:"Pierias",id:3},{state:"Chalkidikis",id:4},{state:"Imathias",id:5},{state:"Pellas",id:6},{state:"Florinas",id:7},{state:"Iwanninwn",id:8},{state:"Kilkis",id:9},{state:"Serron",id:10}];
   locations=[
@@ -30,16 +33,15 @@ export class SearchComponent implements OnInit {
   status:number;
   mode=false;
   form:FormGroup;
-  formC:FormGroup;
   searchResult:Observable<any>;
-  constructor(private adService:AdsService) { }
+  constructor(private adService:AdsService,private route:ActivatedRoute,private router:Router) { }
 
-  ngDoCheck(){
-    this.ads=this.adService.getSearchResults()
-    this.status=this.ads.length
-  }
+
   ngOnInit(): void {
+
     this.form=new FormGroup({
+      btype: new FormControl(null,{
+      }),
         state: new FormControl(null,{
       }),
       location: new FormControl(null,{
@@ -55,67 +57,39 @@ export class SearchComponent implements OnInit {
       bathnum: new FormControl(null,{
       })
     })
-    this.formC=new FormGroup({
-      state: new FormControl(null,{
-    }),
-    location: new FormControl(null,{
-    }),
-    adtype: new FormControl(null,{
-    }),
-    minprice: new FormControl(null,{
-    }),
-    maxprice: new FormControl(null,{
+
+    this.adService.getAllAds().then(()=>{
+      this.route.queryParams
+      .subscribe(params => {
+        console.log("Params",params);
+        this.searchHouse(params)
+        this.ads=this.adService.getSearchResults()
+        this.status=this.ads.length
+        if(params.state){
+          this.citiesSelect(params.state)
+        }
+
+        Object.keys(params).forEach(key => {
+          console.log(key,params[key])
+          this.form.patchValue({[key]: params[key]});
+          // this.form.get(key).patchValue(params[key])
+          this.form.get(key).updateValueAndValidity();
+          console.log(this.form.value)
+        });
+
+
+      })
     })
-  })
-    this.adService.getAllAds()
-    this.ads=this.adService.getSearchResults()
-    this.status=this.ads.length
-  
+
   }
-  houseMode(){
-    this.mode=false
-    this.form.reset();
-    console.log(this.mode)
-  }
-  comMode(){
-    this.mode=true;
-    this.form.reset();
-    console.log(this.mode)
-    this.ads=[]
-  }
+
 
   searchHouse(filters: any): void {
     console.log(filters)
-    let min=filters.minprice
-    let max=filters.maxprice
-
-    if(filters.minprice===null||filters.minprice===undefined||filters.minprice===""){
-
-      min=0
-    }
-    if(filters.maxprice===null||filters.maxprice===undefined||filters.maxprice===""){
-
-      max=0
-    }
-
-
-    for (var propName in filters) {
-      if (filters[propName] === null || filters[propName] === undefined || filters[propName] === "" || filters[propName] === "null" ||  propName=="minprice" ||  propName=="maxprice"){
-        delete filters[propName];
-      }
-
-    }
-    if(min===0&&max===0){
-    }else{
-      filters['price']={min:min,max:max}
-    }
-
-
-
-    this.adService.searchFiltersHouse(filters,this.mode)
+    this.adService.searchFiltersHouse(filters)
   }
   citiesSelect(templocation){
-    this.form.controls["location"].patchValue("")
+    this.form.controls["location"].patchValue(null)
     this.flocations=[]
     let foundLocationId;
     for(let i=0;i<this.states.length;i++){
@@ -137,6 +111,17 @@ export class SearchComponent implements OnInit {
         foundlocationLid=this.locations[i].lid
       }
     }
+  }
+  redirect(filters:any){
+
+    Object.keys(filters).forEach(key => {
+      if (filters[key] === undefined || filters[key]==="null" || filters[key]==="" ||filters[key]===null) {
+        delete filters[key];
+      }
+    });
+    console.log("FILTERS",filters)
+
+    this.router.navigate(['search'], { queryParams: filters});
   }
 
 

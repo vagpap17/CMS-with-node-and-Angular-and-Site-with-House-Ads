@@ -2,7 +2,7 @@
 <mat-form-field>
   <input matInput [(ngModel)]="search" placeholder="Filter">
 </mat-form-field>
-<button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" matTooltip="Filter">
+<button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" >
   <mat-icon>search</mat-icon>
 </button>
 <form [formGroup]="form" (submit)="onSave()">

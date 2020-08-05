@@ -1,32 +1,35 @@
 
-#marketing{
-  height:400px;
 
+#you{
+  padding-left:23%;
+  font-size:30px;
 }
 #search{
-
-  background-color: mediumturquoise;
+  color:white;
+  padding-top:70px;
+    height:700px;
+  background-image:url(/assets/image.jpg);
+  -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
 
 }
 #searchForm{
-  margin-left:15%
+  margin-left:25%
 }
 #stitle{
-  padding-top:10px;
+  font-size: 65px;
+  font-family:Noto Sans, sans-serif;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  margin-bottom:100px;
   margin-left:37%;
   font-size:40px;
 }
-
-#topads{
-  background-color: white;
-
-
+.need{
+  color:#F26335;
 }
-#services{
-  height:300px;
-  background-color: orange;
 
-}
 .card{
   background-color: #f5f5f5;
 }
@@ -38,27 +41,92 @@
 div .info{
   border-bottom:1px solid #e0e0e0;
 }
-#house{
-  background-color:#e0ebf4;
-  height:50px;
-  font-size:40px;
-  color:#337ab7;
-  padding-top:10px;
+
+form{
+  padding-top:20px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight:600;
+  background: rgba(15,16,49,0.75);
+  box-shadow: 0 3px 6px rgba(0,0,0,1);
+  border-radius: 30px;
 }
-#formHouse{
-  background-color: #e0ebf4;
-  color:#337ab7;
+.custom-select{
+  background-color:#0c1396;
+  color:white;
+  border-color: #070b61;
 }
-#commercial{
-  background-color: #6ecc8f;
-  color:#06782f;
-  font-size:40px;
-  padding-top:10px;
+
+.color{
+  background-color:#0c1396;
+  color:white;
+  border-color: #070b61;
 }
-#formCom{
-  background-color: #6ecc8f;
-  color:#06782f;
+
+#submit{
+  background-color:#F26335
 }
-#results{
-  background-color:white;
+#submit:hover{
+  background-color:#050742;
+}
+
+/* marketing */
+
+#marketing{
+  margin-top:40px;
+}
+#feat{
+  color:black;
+  font-weight:500;
+  margin-left:37%;
+  font-size:50px;
+}
+#rightH{
+  padding-top:100px;
+}
+#nextH{
+  font-size:35px;
+  font-weight:700;
+}
+#home{
+  height:400px;
+  width:400px;
+  background-image:url(/assets/house.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#shop{
+  height:400px;
+  width:400px;
+  background-image:url(/assets/shop.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#support{
+  height:400px;
+  width:400px;
+  background-image:url(/assets/technical-support.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#first{
+  border-bottom: ;
+}
+/*  */
+
+#topads{
+  background-color: white;
+
+
+}
+#services{
+  height:300px;
+  background-color: orange;
+
 }

@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 
 @Injectable({providedIn:'root'})
 export class AdsService{
-  houseAds=[]
-  shopAds=[]
+  resultAds=[]
   ads=[]
   starAds=[]
   constructor(private http:HttpClient,private router:Router){  }
@@ -25,11 +24,11 @@ export class AdsService{
     return this.starAdsUpdated.asObservable();
   }
   getAllAds(){
-
+    console.log("get all ads")
     return this.http.get<any>("http://localhost:3000/api/posts/")
-   .subscribe(ads=>{
+    .toPromise().then(ads=>{
      this.ads=ads
-     console.log(ads)
+     console.log("get all ads",ads)
    })
 
   }
@@ -68,31 +67,36 @@ export class AdsService{
 
   }
 
-  searchFiltersHouse(filters:any,mode:boolean){
+  searchFiltersHouse(filters:any){
     console.log("filters",filters)
-    console.log(mode)
-    let houses;
-    if(mode===true){
-      houses=this.ads.filter(item=>item.btype==="shop")
-    }else{
-      houses=this.ads.filter(item=>item.btype==="apartment")
-    }
+    // console.log(mode)
+    var filteredData=this.ads
+    let houses=this.ads
+    // if(mode===true){
+    //   houses=this.ads.filter(item=>item.btype==="shop")
+    // }else{
+    //   houses=this.ads.filter(item=>item.btype==="apartment")
+    // }
 
 
-    const filteredData = houses.filter( (item) => {
+  filteredData = houses.filter( (item) => {
         if(Object.keys(filters).length===0){
-          console.log("no filters")
+          console.log("mphke 0")
+          filteredData=this.ads
         }else{
           for (let key in filters) {
+            // console.log(item["price"],filters[key])
 
-            console.log(key)
-            // console.log(key)
-
-            // console.log(item[key])
-            // console.log(item[key])
-            if (item[key] === undefined) {
-              return false;
-            }else if(key==="state"){
+            // if (item[key] === undefined) {
+            //   console.log("bike undefined")
+            //   return false;
+             if(key==="type"){
+              if (key !== null && item[key] !== filters[key]) {
+                return false;
+              }
+            }
+            else if(key==="state"){
+              // console.log("bike state")
               if (key !== null && item[key] !== filters[key]) {
                 return false;
               }
@@ -102,28 +106,34 @@ export class AdsService{
               }
             }
             else if (key=="bathnum") {
-              console.log("bike bathnum")
+
               if (key !== null && item[key] > filters[key]) {
                   return false;
               }
             }else if (key=="bednum") {
-              console.log("bike bednum")
+
               if (key !== null && item[key] > filters[key]) {
                   return false;
               }
             }
-            else if (key==="price" && filters['price']!=0 ) {
-              if (key !== null && item[key] < filters['price']['min'] && filters['price']['min']!==0) {
-                console.log("bike min")
+            else if (key=="minprice") {
+              // console.log("bike min price")
+              if (key !== null && item["price"] < filters[key]) {
+
                   return false;
               }
-              if (key !== null && item[key] >filters['price']['max'] && filters['price']['max']!==0) {
-                console.log("bike max")
-                return false;
-             }
 
-            } else if (!filters[key].includes(item[key])) {
-              console.log("bike teleutaio")
+            } else  if (key=="maxprice") {
+              // console.log("bike max price")
+              if (key !== null && item["price"] > filters[key]) {
+
+                return false;
+            }
+           }
+
+
+            else if (!filters[key].includes(item[key])) {
+
               return false;
           }
           }
@@ -131,14 +141,17 @@ export class AdsService{
         }
 
     });
-    console.log(filteredData)
-    this.houseAds=filteredData
-    this.resultsUpdated.next([...this.houseAds])
-    this.router.navigate(["/search"])
+    console.log("filtereddata",filteredData)
+    this.resultAds=filteredData
+    this.resultsUpdated.next([...this.resultAds])
+
 
   }
   getSearchResults(){
-    return this.houseAds
+
+      return this.resultAds
+
+
   }
   getSearchUpdateListener(){
     return this.resultsUpdated.asObservable();
