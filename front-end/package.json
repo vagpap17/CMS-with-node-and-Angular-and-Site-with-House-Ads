@@ -1,6 +1,7 @@
 {
   "name": "front-end",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -29,6 +30,7 @@
     "ngx-bootstrap": "^5.6.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "vm": "^0.1.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

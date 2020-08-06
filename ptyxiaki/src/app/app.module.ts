@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import{HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 
 import { GoogleMapsModule } from '@angular/google-maps'
-
+import {MatBadgeModule} from '@angular/material/badge';
 import {MatRadioModule} from '@angular/material/radio'
 import {MatToolbarModule} from '@angular/material/toolbar'
 import {MatSidenavModule} from '@angular/material/sidenav'
@@ -52,6 +52,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PostCreateComponent,DashboardComponent, LoginComponent, SignupComponent, UserListComponent, PostEditComponent, DialogComponent, MessagesComponent, FeedbackComponent, NotFoundComponent
   ],
   imports: [
+    MatBadgeModule,
     GoogleMapsModule,
     FormsModule,
     MatProgressSpinnerModule,

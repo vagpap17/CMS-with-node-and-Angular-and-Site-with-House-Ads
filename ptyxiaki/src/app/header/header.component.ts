@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { StyleService } from '../style.service';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-header',
@@ -17,10 +18,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAdmin;
   currentUser:string;
 
+  customers=[];
 
-  constructor(private authService: AuthService,private styleService:StyleService) {}
+  constructor(private authService: AuthService,private styleService:StyleService,private messagesService:MessagesService) {}
 
   ngOnInit() {
+    var id=this.authService.getUserId()
+    var pre=this.authService.getPrivileges()
     this.styleService.getMenuData()
     this.styleService.getMenuUpdated()
     .subscribe(response=>{
@@ -44,6 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+      this.messagesService.getMessages(id,pre)
 
 
   }

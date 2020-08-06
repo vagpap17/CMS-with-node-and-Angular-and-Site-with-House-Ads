@@ -26,6 +26,9 @@ export class FeedbackComponent implements OnInit {
     wSeen: new FormControl(null,{
         validators:[Validators.required]
     }),
+    agentRating:new FormControl(null,{
+      validators:[Validators.required]
+    }),
     aRating: new FormControl(null,{
       validators:[Validators.required]
     }),

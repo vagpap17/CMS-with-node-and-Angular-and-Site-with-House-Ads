@@ -4,11 +4,12 @@
       <a routerLink="/">Papp</a>
 
     </span>
+
   <button  *ngIf="userIsAuthenticated"  id="menu"  mat-button [matMenuTriggerFor]="selections">Menu</button>
   <mat-menu  #selections="matMenu">
     <button mat-menu-item  [matMenuTriggerFor]="Aggelies">Ads</button>
     <button mat-menu-item routerLink="/messages" >Messages</button>
-    <button mat-menu-item *ngIf="isAdmin==='1'" [matMenuTriggerFor]="Users">Users</button>
+    <button mat-menu-item *ngIf="isAdmin==='1'" [matMenuTriggerFor]="Users">Agents</button>
   </mat-menu>
 
   <mat-menu #Aggelies='matMenu'>
@@ -45,21 +46,34 @@
       <mat-nav-list  >
             <a class="links" *ngIf="!userIsAuthenticated"mat-list-item  routerLink="/login" >Login</a>
             <div *ngIf="userIsAuthenticated">
-                <a class="links" mat-list-item routerLink="/" routerLinkActive="active-list-item">Dashboard</a>
+              <div id="current"><span class="material-icons">
+                account_circle
+                </span><span id="username">{{currentUser}}</span>
+              </div>
+                <a class="links" mat-list-item routerLink="/" routerLinkActive="active-list-item"><span class="material-icons">
+                  preview
+                  </span>Dashboard</a>
 
                 <mat-expansion-panel color="primary"[class.mat-elevation-z0]="true" dense>
                     <mat-expansion-panel-header>
-                        Ads
+                      <span class="material-icons">
+                        work
+                        </span><span class="pt-1">Ads</span>
                     </mat-expansion-panel-header>
                     <mat-nav-list class="menu-items" dense>
                         <a mat-list-item routerLink="/show">Manage</a>
                         <a mat-list-item routerLink="/create">Add new</a>
                     </mat-nav-list>
                 </mat-expansion-panel>
-                <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item">Messages</a>
+                <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item"><span class="material-icons">
+                  chat
+                  </span>Messages </a>
+
                 <mat-expansion-panel *ngIf="isAdmin==='1'" [class.mat-elevation-z0]="true" dense>
                     <mat-expansion-panel-header>
-                        Users
+                      <span class="material-icons">
+                        supervised_user_circle
+                        </span> <span class="pt-1">Agents</span>
                     </mat-expansion-panel-header>
                     <mat-nav-list class="menu-items" dense>
                         <a mat-list-item routerLink="/users">Manage</a>
@@ -67,7 +81,9 @@
                     </mat-nav-list>
               </mat-expansion-panel>
           </div>
-          <a  class="links" *ngIf="userIsAuthenticated" mat-list-item (click)="onLogout()">Logout</a>
+          <a  class="links" *ngIf="userIsAuthenticated" mat-list-item (click)="onLogout()"><span class="material-icons">
+            exit_to_app
+            </span>Logout</a>
       </mat-nav-list>
 
   </mat-sidenav>

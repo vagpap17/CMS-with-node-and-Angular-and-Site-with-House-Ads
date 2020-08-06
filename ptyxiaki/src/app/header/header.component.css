@@ -2,6 +2,12 @@
   height:100%;
   display: inline-block;
 }
+#current{
+  padding:15px;
+  font-size:20px;
+  border-bottom:1px solid #cfcfcf;
+
+}
 
 ul {
   list-style: none;

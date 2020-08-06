@@ -112,16 +112,47 @@ router.get("/feeds",function(req,res){
 })
 router.put("/:id",function(req,res){
   console.log(req.body)
+  let score=0;
+  let rating=0;
+  for(key in req.body){
+    console.log(key)
+    if(key=="wSeen"||key=="useAgain"||key=="submit"){
+    }else if (key==="agentRating"){
+      rating=rating+parseInt(req.body[key])
+    }else{
+      console.log("value",parseInt(req.body[key]))
+      score=score+parseInt(req.body[key])
+    }
+
+  }
+  console.log("score",score)
+  req.body.score=score
+  console.log("agrating",rating)
   q="update feedback set ? where formId=?;"
+  q1="update users set rating = rating + ? where id=(select conAgent from contacts inner join feedback on contacts.id=feedback.contact_id where formId=?)"
+  q2="update users set ratingCount=ratingCount+1 where id=(select conAgent from contacts inner join feedback on contacts.id=feedback.contact_id where formId=?)"
   connection.query(q,[req.body,req.params.id],function(err,results){
     if(err){
       console.log(err)
     }else{
-      res.status(201).json({
-        done:true
+      connection.query(q1,[rating,req.params.id],function(err,results){
+        if(err){
+          console.log(err)
+        }else{
+          connection.query(q2,req.params.id,function(err,results){
+            if(err){
+
+            }else{
+              res.status(201).json({
+                done:true
+              })
+            }
+          })
+        }
       })
     }
   })
+
 })
 
 

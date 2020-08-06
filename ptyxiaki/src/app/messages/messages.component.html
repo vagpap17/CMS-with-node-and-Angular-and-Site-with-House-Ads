@@ -2,9 +2,9 @@
 <mat-form-field>
   <input matInput [(ngModel)]="search" placeholder="Filter">
 </mat-form-field>
-<button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" >
+<!-- <button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" > -->
   <mat-icon>search</mat-icon>
-</button>
+<!-- </button> -->
 <form [formGroup]="form" (submit)="onSave()">
 
   <mat-table [dataSource]="dataSource" *ngIf="size" class="mat-elevation-z8">

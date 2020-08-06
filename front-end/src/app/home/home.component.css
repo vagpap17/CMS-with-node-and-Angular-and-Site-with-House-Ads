@@ -115,8 +115,10 @@ form{
   background-size: cover;
 }
 
-#first{
-  border-bottom: ;
+.border{
+  padding-bottom:100px;
+  border-color:#ededed;
+  border-bottom:1px solid #323240 ;
 }
 /*  */
 
