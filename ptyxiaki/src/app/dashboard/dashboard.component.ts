@@ -46,9 +46,11 @@ export class DashboardComponent implements OnInit {
     this.messagesService.getMessages(id,pre)
     this.custSub=this.messagesService.getMessagesUpdated()
     .subscribe(data=>{
+      this.customers=[]
       console.log(data)
       for(let i=0;i<data.length;i++){
         if(data[i].seen===null){
+          console.log("bike seen")
           this.customers.push(data[i])
         }
       }

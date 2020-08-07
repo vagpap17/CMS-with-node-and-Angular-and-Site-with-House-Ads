@@ -31,7 +31,7 @@ export class SearchComponent implements OnInit {
   selected;
   ads=[]
   status:number;
-  mode=false;
+  mode;
   form:FormGroup;
   searchResult:Observable<any>;
   constructor(private adService:AdsService,private route:ActivatedRoute,private router:Router) { }
@@ -62,6 +62,11 @@ export class SearchComponent implements OnInit {
       this.route.queryParams
       .subscribe(params => {
         console.log("Params",params);
+        if(params.btype==="apartment"){
+          this.mode="apartment"
+        }else{
+          this.mode="commercial"
+        }
         this.searchHouse(params)
         this.ads=this.adService.getSearchResults()
         this.status=this.ads.length
@@ -123,7 +128,9 @@ export class SearchComponent implements OnInit {
 
     this.router.navigate(['search'], { queryParams: filters});
   }
-
+  changeMode(){
+    this.mode=this.form.get("btype").value
+  }
 
 
 }

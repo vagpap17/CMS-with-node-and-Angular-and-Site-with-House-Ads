@@ -6,7 +6,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { AdShowComponent } from './ad-show/ad-show.component';
 import {HttpClientModule} from '@angular/common/http';
-import { adListComponent } from './ad-list/ad-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +21,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HeaderComponent,
     HomeComponent,
     AdShowComponent,
-    adListComponent,
     FooterComponent,
     SearchComponent,
     FeedbackComponent,

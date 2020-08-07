@@ -14,6 +14,10 @@
 
 
 }
+
+#box{
+  height:200px;
+}
 #user{
   font-weight: bold;
 }

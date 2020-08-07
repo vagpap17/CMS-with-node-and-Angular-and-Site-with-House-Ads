@@ -83,7 +83,7 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
   ngOnInit() {
     this.form=new FormGroup({
       title: new FormControl(null,{
-        validators:[Validators.required]
+        validators:[Validators.required,Validators.maxLength(30)]
     }),
       description: new FormControl(null,{
         validators:[Validators.required]

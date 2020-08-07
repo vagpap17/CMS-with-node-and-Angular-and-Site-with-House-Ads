@@ -24,7 +24,7 @@ export class AdsService{
     return this.starAdsUpdated.asObservable();
   }
   getAllAds(){
-    console.log("get all ads")
+
     return this.http.get<any>("http://localhost:3000/api/posts/")
     .toPromise().then(ads=>{
      this.ads=ads
@@ -32,14 +32,14 @@ export class AdsService{
    })
 
   }
-  getAds(adtype:string){
-    this.http.get<any>("http://localhost:3000/api/posts/show/"+adtype)
-    .subscribe(newAds=>{
-      this.ads=newAds
-      this.adsUpdated.next([...this.ads])
-      console.log("ads",this.ads)
-    })
-  }
+  // getAds(adtype:string){
+  //   this.http.get<any>("http://localhost:3000/api/posts/show/"+adtype)
+  //   .subscribe(newAds=>{
+  //     this.ads=newAds
+  //     this.adsUpdated.next([...this.ads])
+  //     console.log("ads",this.ads)
+  //   })
+  // }
   getAdData(id:string){
     console.log(id)
     return this.http.get<any>("http://localhost:3000/api/posts/"+id)

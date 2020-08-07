@@ -74,36 +74,43 @@
     </div>
     <div id="marketing" >
       <div class="container">
-          <div class="row border">
-            <div class="col-md-6">
-              <div id="home"></div>
+          <div class="row ">
+            <div  class="col-md-4">
+              <span class="material-icons">
+                house
+                </span>
+              <h1 id=""><b>Find your next House!</b></h1>
+              Select the advanced search filters according to the criteria you want to display the results that meet your needs.
             </div>
-            <div id="rightH" class="col-md-6">
-              <h1 id="nextH">Find your next House!</h1>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div  class="col-md-4">
+              <span class="material-icons">
+                store
+                </span>
+              <h1 id=""><b>Find your next store!</b></h1>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </div>
-          </div>
-          <div class="row mt-5 border">
-            <div id="rightH" class="col-md-6">
-              <h1 id="nextH">We provide commercial ads too!</h1>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <div  class="col-md-4">
+              <span class="material-icons">
+                location_on
+                </span>
+              <h1 id=""><b>See the property on Map!</b></h1>
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </div>
-            <div class="col-md-6 pl-5 ">
-              <div id="shop"></div>
+            <div  class="col-md-4">
             </div>
-          </div>
-            <div class="row mt-5 border">
+            <div  class="col-md-4 mt-5">
+              <span class="material-icons">
+                sentiment_satisfied_alt
+                </span>
+              <h1 id=""><b>We will be there for you!</b></h1>
+              Send us your information and we will contact <span class="need"><b>you</b></span> for more information!!
+            </div>
+            <div  class="col-md-4">
 
-              <div class="col-md-6 pl-5 ">
-                <div id="support"></div>
-              </div>
-              <div id="rightH" class="col-md-6">
-                <h1 id="nextH">We are here for you!!</h1>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-              </div>
-
           </div>
-      </div>
+
+        </div>
+
 
     </div>
 
@@ -111,18 +118,16 @@
 
 
         <div class="container">
-          <h1>Our stars</h1>
+          <h1 id="stars">Our stars</h1>
           <div class="row ">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let star of stars;let i=index">
+            <div [routerLink]="['/show',stars[i].post_id]" class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let star of stars;let i=index">
               <div class="card" [routerLink]="['/show',stars[i].post_id]">
                 <img class="card-img-top" [src]="stars[i].photoname" alt="Card image cap">
                 <div class="card-body">
-
-                  <h5 class="card-title">{{stars[i].title}}</h5>
-
-                  <p class="card-text">{{stars[i].state}},{{stars[i].location}}</p>
-
-                  <button class="card-link" type="button"[routerLink]="['/ads/show',stars[i].post_id]" class="btn-dark btn">See More</button>
+                  <h5 class="card-title">{{stars[i].state}}>{{stars[i].location}}</h5>
+                  <p class="card-text"><b>{{stars[i].title}}</b></p>
+                  <p class="card-text">{{stars[i].price}}€ | {{stars[i].area}}sqm | {{stars[i].bednum}} bedrooms</p>
+                  <button id="CardSubmit" class="card-link" type="button"[routerLink]="['/ads/show',stars[i].post_id]" class="btn-dark btn">See More</button>
                 </div>
               </div>
             </div>

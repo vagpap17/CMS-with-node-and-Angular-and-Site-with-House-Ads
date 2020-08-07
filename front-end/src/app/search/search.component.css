@@ -1,4 +1,8 @@
-
+#stitle{
+  background-color: #F26335;
+  margin-bottom: 0;
+  color:#0f1031;
+}
 #status{
   margin-top:10px;
   margin-left:25%
@@ -26,26 +30,36 @@
   background-color:#e0ebf4;
   height:50px;
   font-size:20px;
-  color:#337ab7;
+  color:#0f1031;
   padding-top:10px;
 }
 form{
+  padding-top:20px;
   padding-right:40px;
+  padding-left:35px;
+  background-color: #0f1031;
 }
-#formHouse{
-  background-color: #e0ebf4;
-  color:#337ab7;
+.custom-select{
+  background-color:#0c1396;
+  color:white;
+  border-color: #070b61;
 }
 
-#commercial{
-  background-color: #6ecc8f;
-  color:#06782f;
-  font-size:20px;
-  padding-top:10px;
+.color{
+  background-color:#0c1396;
+  color:white;
+  border-color: #070b61;
 }
-#formCom{
-  background-color: #6ecc8f;
-  color:#06782f;
+.need{
+  color:#F26335;
+}
+
+
+#submit{
+  background-color:#F26335
+}
+#submit:hover{
+  background-color:#050742;
 }
 img{
   width:100%;

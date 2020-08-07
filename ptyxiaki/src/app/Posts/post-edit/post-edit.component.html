@@ -106,7 +106,7 @@
       </span></mat-checkbox>
     <br>
     <button (click)="backClicked()" mat-raised-button color="primary" type="button">Back</button>
-      <button mat-raised-button color="accent" type="submit">Save</button>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!form.dirty">Save</button>
 
     </form>
   </mat-tab>

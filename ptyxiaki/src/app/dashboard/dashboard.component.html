@@ -2,34 +2,7 @@
 <h1 *ngIf="!userIsAuthenticated">Welcome to Papp!Please Login</h1>
 <div *ngIf="userIsAuthenticated">
   <div class="row">
-      <div class="col-md-4 mb-4 ">
-        <mat-card >
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="..." class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
-        </mat-card >
-      </div>
-      <div class="col-md-4 mb-4">
-        <mat-card >
-          <h2>Active ads:  <span id="user">{{currentUser}}</span> </h2>
-          <h3>Sales: <a id="custSum"[routerLink]="['/messages']">{{custSum}}</a> </h3>
-        </mat-card>
-      </div>
-      <div class="col-md-4 mb-4">
-        <mat-card >
-          <h2>Welcome user  <span id="user">{{currentUser}}</span> </h2>
-          <h3>Potential Customers: <a id="custSum"[routerLink]="['/messages']">{{custSum}}</a> </h3>
-        </mat-card>
-      </div>
+
 
 
     <div class="col-md-6">

@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 router.get("",function(req,res,next){
-  q="select *,username as addedBy from users right join posts on users.id=posts.user_id right join images on posts.id=images.post_id group by posts.id"
+  q="select * from posts right join images on posts.id=images.post_id group by posts.id order by dateAdded desc"
   // q="select * from posts"
   connection.query(q,function(err,results,fields){
       if(err){

@@ -14,7 +14,8 @@ import { Location } from '@angular/common';
 export class PostEditComponent implements OnInit {
   selected;
   selectedL;
-  adtypes="apartments";
+  adtypes="";
+
   imageTrue=false;
   deleteMode=false;
   imagePicked=false;
@@ -22,6 +23,11 @@ export class PostEditComponent implements OnInit {
   post:Post
   isLoading=false;
   images=[];
+  address;
+  addressnum;
+  location;
+  postal;
+  state;
   uImages=[];
   dImages=[];
   editImages=false;
@@ -142,38 +148,42 @@ export class PostEditComponent implements OnInit {
     })
 
   });
-  this.form.statusChanges.subscribe(
-    result => console.log(result)
-  );
 
-  if(this.adtypes!="apartments"){
-    this.form.get('bedrooms').setValidators([]); // or clearValidators()
-    this.form.get('bedrooms').updateValueAndValidity();
-    this.form.get('bathrooms').setValidators([]); // or clearValidators()
-    this.form.get('bathrooms').updateValueAndValidity();
-  }else{
-    this.form.get('bedrooms').setValidators([Validators.required]); // or clearValidators()
-    this.form.get('bedrooms').updateValueAndValidity();
-    this.form.get('bathrooms').setValidators([Validators.required]); // or clearValidators()
-    this.form.get('bathrooms').updateValueAndValidity();
-  }
+  // if(this.adtypes!="apartments"){
+  //   console.log("bike comercial")
+  //   this.form.get('bedrooms').setValidators([]); // or clearValidators()
+  //   this.form.get('bedrooms').updateValueAndValidity();
+  //   this.form.get('bathrooms').setValidators([]); // or clearValidators()
+  //   this.form.get('bathrooms').updateValueAndValidity();
+  //  }
+  // else{
+  //   console.log("bike apartments")
+  //   this.form.get('bedrooms').setValidators([Validators.required]); // or clearValidators()
+  //   this.form.get('bedrooms').updateValueAndValidity();
+  //   this.form.get('bathrooms').setValidators([Validators.required]); // or clearValidators()
+  //   this.form.get('bathrooms').updateValueAndValidity();
+  // }
   this.imagesF=new FormGroup({
     images:new FormControl(null)
   })
 
-
   this.route.paramMap.subscribe((paramMap:ParamMap)=>{
     if(paramMap.has("postId")){
-      if(this.adtypes!="apartments"){
-        this.form.get('bedrooms').setValidators([]); // or clearValidators()
-        this.form.get('bedrooms').updateValueAndValidity();
-        this.form.get('bathrooms').setValidators([]); // or clearValidators()
-        this.form.get('bathrooms').updateValueAndValidity();
-      }
       this.postId=paramMap.get("postId")
       this.isLoading=true;
       this.postsService.getPost(this.postId).subscribe(postData=>{
         console.log(postData)
+        this.state=postData[0][0].state
+        this.location=postData[0][0].location
+        this.postal=postData[0][0].postal
+        this.address=postData[0][0].address
+        this.addressnum=postData[0][0].addressnum
+
+        if(postData[0][0].btype==="apartment"){
+          this.adtypes="apartment"
+        }else{
+          this.adtypes="commercial"
+        }
         if(postData[0][0].starAd=="1"){
           this.starValue=true;
         }else{
@@ -244,7 +254,17 @@ export class PostEditComponent implements OnInit {
 
 
   onEditPost(){
-    console.log(this.adtypes)
+
+    // console.log(this.form.value)
+    // console.log(this.adtypes)
+    let changes;
+    if(this.form.value.state===this.state&&this.form.value.location===this.location&&this.form.value.postal===this.postal&&this.form.value.address===this.address&&this.form.value.addressnum===this.addressnum){
+      console.log("no changes")
+      changes=false;
+    }else{
+      console.log("changes")
+      changes=true;
+    }
     this.isLoading=true;
     if(this.form.invalid){
       return
@@ -268,7 +288,8 @@ export class PostEditComponent implements OnInit {
             this.form.value.bedrooms,
             this.form.value.bathrooms,
             this.form.value.floor,
-            this.form.value.star
+            this.form.value.star,
+            changes
           )
 
         }else{
@@ -289,7 +310,8 @@ export class PostEditComponent implements OnInit {
               "0",
               "0",
               this.form.value.floor,
-              this.form.value.star
+              this.form.value.star,
+              changes
         )
 
       }

@@ -40,7 +40,7 @@ export class PostsService{
               id: post.post_id,
               description:post.description,
               price:post.price,
-              addedBy:post.addedBy,
+              addedBy:post.user_id,
               btype:post.btype
             };
           });
@@ -139,7 +139,7 @@ export class PostsService{
     })
   }
 
-  updatePost(id:string,title:string,description:string,state:string,location:string,postal:string,yearb:string,address:string,addressnum:string,area:string,price:string,adtype:string,type:string,bedrooms:string,bathrooms:string,floor:string,star:string){
+  updatePost(id:string,title:string,description:string,state:string,location:string,postal:string,yearb:string,address:string,addressnum:string,area:string,price:string,adtype:string,type:string,bedrooms:string,bathrooms:string,floor:string,star:string,changes:boolean){
     const Newpost=new FormData();
     console.log(id,title)
     let pstar;
@@ -148,7 +148,22 @@ export class PostsService{
     }else{
       pstar="0"
     }
-    this.getcords(location,address,addressnum,postal).then(()=>{
+    if(changes){
+      this.getcords(location,address,addressnum,postal).then(()=>{
+        let test={title:title,description:description,state:state,location:location,postal:postal,yearb:yearb,address:address,addressnum:addressnum
+          ,area:area,btype:type,bednum:bedrooms,bathnum:bathrooms,floor:floor,price:price,adtype:adtype,starAd:pstar,lat:this.lat,lon:this.lon
+        }
+        this.http
+        .put<{message:string,post:Post}>(
+          "http://localhost:3000/api/posts/"+id,test
+            )
+          .subscribe(responseData=>{
+            console.log(responseData)
+            this.router.navigate(["/show"])
+          })
+
+      })
+    }else{
       let test={title:title,description:description,state:state,location:location,postal:postal,yearb:yearb,address:address,addressnum:addressnum
         ,area:area,btype:type,bednum:bedrooms,bathnum:bathrooms,floor:floor,price:price,adtype:adtype,starAd:pstar,lat:this.lat,lon:this.lon
       }
@@ -160,8 +175,8 @@ export class PostsService{
           console.log(responseData)
           this.router.navigate(["/show"])
         })
+    }
 
-    })
     // Newpost.append("title",title);
     // Newpost.append("description",description);
     // Newpost.append("state",state);
