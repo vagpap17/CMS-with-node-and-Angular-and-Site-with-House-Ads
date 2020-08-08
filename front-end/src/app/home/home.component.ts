@@ -14,8 +14,8 @@ import { MapMarker, MapInfoWindow, GoogleMap } from '@angular/google-maps';
 })
 export class HomeComponent implements OnInit {
   @Output() autoSearch: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
-  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
+  // @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
+  // @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @Output() groupFilters: EventEmitter<any> = new EventEmitter<any>();
   infoContent = ''
   markers=[]
@@ -57,6 +57,14 @@ export class HomeComponent implements OnInit {
 ]
 
   ngOnInit(): void {
+    let map: google.maps.Map;
+
+    map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+      center: { lat: 37.983810, lng: 23.727539 },
+      zoom: 5
+    });
+
+
     this.adService.getAllAds();
     this.form=new FormGroup({
       btype: new FormControl(null,{
@@ -95,31 +103,36 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
   for(let i=0;i<ads.length;i++){
     let lat=parseFloat(ads[i].lat)
     let lng=parseFloat(ads[i].lon)
-    this.markers.push({
-      position: {
-        lat: lat,
-        lng: lng,
-      },
-      label: {
-        color: 'red',
-        text: ""+i
-      },
-      info: new google.maps.InfoWindow({
-        content: "geia sou koukla",
-        maxWidth: 320
-    }),
+    console.log(ads)
+  var contentString = '<b>'+ads[i].title+'</b>';
 
-    })
+      var infowindow = new google.maps.InfoWindow({
+      content: contentString
+      });
+      console.log(infowindow)
+
+      var marker = new google.maps.Marker({
+      position: {lat:lat,
+      lng: lng},
+      map: map,
+      title: 'Uluru (Ayers Rock)'
+
+      });
+      google.maps.event.addListener(marker, 'click', function () {
+        infowindow.setContent('<h3 style="padding:0"><b>' + ads[i].title +'|' +ads[i].adtype+ '</b></h3><br><h4>'+ads[i].location+'<h4>'+ads[i].btype+'|'+ads[i].area+'m²|'+ads[i].price+'€</h4><a href="http://localhost:4300/ads/show/'+ads[i].post_id+'">See more</a><br><img style="width:100px;height:100px;"src="'+ads[i].photoname+'">');
+        infowindow.open(map, this);
+    });
+
   }
 
 
 })
 
 
-    this.center = {
-      lat: 37.983810,
-      lng: 23.727539,
-    }
+    // this.center = {
+    //   lat: 37.983810,
+    //   lng: 23.727539,
+    // }
 
     this.adService.getAdStars()
     this.starAdsSub=this.adService.getStarAdsUpdateListener()
@@ -182,9 +195,10 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
     console.log(event)
   }
 
-  openInfo(marker: MapMarker, content) {
-    this.infoWindow.open(marker)
-  }
-  
+  // openInfo(marker: MapMarker, content) {
+  //   this.infoContent=content.content
+  //   this.infoWindow.open(marker)
+  // }
+
 
 }

@@ -1,4 +1,4 @@
-
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
     <div id="search" class="col-md-12 pb-3">
       <h1 id="stitle">Make your next step.</h1>
       <div class="form-row">
@@ -136,7 +136,7 @@
     </div>
     <div id="services" class="col-md-12 container">
 
-        <h1>Check out Our map!</h1>
+        <!-- <h1>Check out Our map!</h1>
         <google-map class="col-md-12"
               height="500px"
               width="55%"
@@ -146,7 +146,7 @@
               (mapClick)="click($event)"
             >
               <map-marker
-                #markerElem
+                #markerElem="mapMarker"
                 *ngFor="let marker of markers"
                 [position]="marker.position"
                 [label]="marker.label"
@@ -157,7 +157,11 @@
               </map-marker>
 
               <map-info-window>{{ infoContent }}</map-info-window>
-            </google-map>
+            </google-map> -->
+            <div id="map" ></div>
+
+
+
 
     </div>
 
