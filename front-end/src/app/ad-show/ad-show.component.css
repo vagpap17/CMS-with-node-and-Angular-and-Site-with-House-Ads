@@ -1,4 +1,6 @@
-
+.row{
+  background-color: #F3F4F5;
+}
 #carousel{
   float:left;
   margin-right:10px;
@@ -27,12 +29,19 @@
 
 #contact{
   margin-top:30px;
+  color:#0f1031;
 
 }
 .card{
-  background-color: #edf1f2;
+  background-color: #0f1031;
   position: fixed;
+  color:white;
 
+}
+.card-title{
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  color:#F26335;
+  font-size:20px;
 }
 input{
   background-color: #dce2e3;
@@ -41,20 +50,25 @@ input{
 }
 
 .badge{
-  background-color: #00deb6;
+  background-color: #F26335;
 }
 #like{
-  border-color: #00deb6;
+  color:white;
+  font-weight: 500;
+  background-color: #F26335;
+  border-color: #F26335;
+  margin-top:20px;
 }
 #like:hover{
-  background-color: #00deb6;
-  border-color: #00deb6;
+  background-color: #d6582f;
+  border-color: #d6582f;
 }
+
 #test{
   border-bottom: 1px solid #dee2e6;
   margin-left:10px;
   padding-left:20px;
-  margin-top:570px;
+
   padding-bottom:10px;
 }
 h1{
@@ -62,4 +76,33 @@ h1{
 }
 google-map{
   margin:200px;
+}
+#title{
+  padding-top:20px;
+  font-weight: 500;
+  font-size:1.5rem;
+}
+#price{
+  background-color: white;
+  height:150px;
+
+}
+.priceStyle{
+  color:#F26335;
+  font-size:30px;
+  font-weight: 500;
+}
+.material-icons{
+  color:#9c9c9c
+}
+#heart{
+  color:white;
+  vertical-align: middle;
+}
+#heart:hover{
+  color:red;
+}
+#area{
+  color:#9c9c9c;
+  font-size:20px;
 }

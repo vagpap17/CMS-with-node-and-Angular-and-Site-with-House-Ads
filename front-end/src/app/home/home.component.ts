@@ -1,9 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { AdsService } from '../ad.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
+import { MapMarker, MapInfoWindow, GoogleMap } from '@angular/google-maps';
 
 
 @Component({
@@ -13,8 +14,21 @@ import { EventEmitter } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   @Output() autoSearch: EventEmitter<string> = new EventEmitter<string>();
-
+  @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
+  @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
   @Output() groupFilters: EventEmitter<any> = new EventEmitter<any>();
+  infoContent = ''
+  markers=[]
+  zoom = 6
+  center;
+  options: google.maps.MapOptions = {
+    mapTypeId: 'roadmap',
+    zoomControl: true,
+    scrollwheel: true,
+    disableDoubleClickZoom: true,
+    maxZoom: 100,
+    minZoom: 6,
+  }
   Sfilters=[];
   selected;
   selectedL;
@@ -76,6 +90,37 @@ export class HomeComponent implements OnInit {
   })
 
 })
+this.adService.getAdsUpdateListener().subscribe(ads=>{
+
+  for(let i=0;i<ads.length;i++){
+    let lat=parseFloat(ads[i].lat)
+    let lng=parseFloat(ads[i].lon)
+    this.markers.push({
+      position: {
+        lat: lat,
+        lng: lng,
+      },
+      label: {
+        color: 'red',
+        text: ""+i
+      },
+      info: new google.maps.InfoWindow({
+        content: "geia sou koukla",
+        maxWidth: 320
+    }),
+
+    })
+  }
+
+
+})
+
+
+    this.center = {
+      lat: 37.983810,
+      lng: 23.727539,
+    }
+
     this.adService.getAdStars()
     this.starAdsSub=this.adService.getStarAdsUpdateListener()
     .subscribe(starAds=>{
@@ -133,5 +178,13 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['search'], { queryParams: filters});
   }
 
+  click(event: google.maps.MouseEvent) {
+    console.log(event)
+  }
+
+  openInfo(marker: MapMarker, content) {
+    this.infoWindow.open(marker)
+  }
+  
 
 }

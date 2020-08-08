@@ -1,13 +1,8 @@
 <!-- <button (click)="backClicked()" class="btn-secondary btn">Back</button> -->
 
 <div class="row">
-    <div class="col-md-8 ml-5">
-      <div id="title" class="row col-md-12 pt-3 pb-0 mb-0" *ngFor="let info of ad" >
+    <div class="col-md-8 ml-5 mt-2">
 
-        <h1 class="d-inline col-md-10">{{info.title}},{{info.state}},{{info.location}}<span class="ml-2 badge badge-pill ">{{info.adtype}}</span></h1>
-        <h2 *ngIf="info.adtype==='sell'" class="d-inline float-right col-md-2  ">Price:{{info.price}}<b>€</b></h2>
-        <h2 *ngIf="info.adtype==='rent'" class="d-inline float-right col-md-2 ">Price:{{info.price}}<b>€</b>/month</h2>
-      </div>
 
       <div id="carousel" class="carousel slide col-md-12 " data-ride="carousel">
         <ol class="carousel-indicators">
@@ -28,15 +23,38 @@
         </div>
       </div>
 
+      <div  class="row col-md-12 pt-3 ml-3" *ngFor="let info of ad" >
 
+        <h1 id="title" class="d-inline col-md-8">{{info.title}},{{info.state}},{{info.location}}<span class="ml-2 badge badge-pill ">{{info.adtype}}</span><br>
+          <div class="pt-3">
+          <span id="area">{{info.area}} m² | </span>
+          <span *ngIf="info.btype==='apartment'" class="material-icons "> bathtub<h3 class="d-inline ml-1 mt-2"> {{info.bathnum}} Bathrooms</h3></span>
+          <span *ngIf="info.btype==='apartment'" class="material-icons ml-3">| king_bed<h3 class="d-inline ml-1 mt-2"> {{info.bednum}} Bedrooms</h3></span>
+
+          </div>
+        </h1>
+
+        <div id="price" class="col-md-3 ml-5">
+          <h3 style="color:#5e5e5e" class="pt-2">Price:</h3>
+          <div *ngIf="info.adtype==='rent'" class="pl-4">
+            <span  class="priceStyle col-md-2 mr-0 pr-0">{{info.price}}€ </span><span class="pl-0">/month</span>
+          </div>
+          <span *ngIf="info.adtype=='sell'" class="priceStyle col-md-2 pl-5">{{info.price}}<b>€</b></span>
+          <button id="like"class="d-inline  btn btn-block" (click)="contactUs()"><span id="heart"class="material-icons pr-2">
+            favorite
+            </span><span >I like it</span></button>
+        </div>
+        <div class="col-md-8">
+
+        </div>
+
+
+      </div>
 
 
       <div class="container" id="infoc" *ngFor="let info of ad">
-        <div id="test"class="">
-          <span class="material-icons ">bathtub</span><h3 class="d-inline ml-1 mt-2"> {{info.bathnum}} Bathrooms</h3>
-          <span class="material-icons ml-4">king_bed</span><h3 class="d-inline ml-1 mt-2"> {{info.bednum}} Bedrooms</h3>
-          <button id="like"class="d-inline ml-5  btn btn-outline-dark" (click)="contactUs()">I like it</button>
-        </div>
+        <h2 class="mt-3">Property description</h2>
+        <p>{{info.description}}</p>
         <div id="desc"class="pl-2">
 
           <h2>Property Details</h2>
@@ -58,7 +76,7 @@
                 </tr>
                 <tr>
                   <td><b>Area:</b></td>
-                  <td>{{info.area}} <b>sq m</b> </td>
+                  <td>{{info.area}} <b>m²</b> </td>
                 </tr>
 
                 <tr>
@@ -89,8 +107,7 @@
               </tbody>
             </table>
           </div>
-          <h2 class="mt-3">Property description</h2>
-          <p>{{info.description}}</p>
+
           <h2 class="mt-5">Property Map</h2>
           <google-map
               height="500px"
@@ -124,8 +141,8 @@
         <div class="card-body" *ngFor="let info of ad">
 
           <form *ngIf="submitted===false" [formGroup]="form" (submit)="onContact(info.user_id)">
-            <h3 class="card-title ml-5"><b>I want more information:</b></h3>
-            <h4 class="card-title"><b>I like </b> this property:</h4>
+            <h3 class="card-title pl-1"><b>I want more information</b></h3>
+            <h4 class=""><b>I like </b> this property:</h4>
             <div class="form-group">
               <input type="text" formControlName="name" class="form-control"  placeholder="Name">
               <small id="emailHelp" class="form-text text-muted" *ngIf="form.get('name').invalid">Please enter a name</small>
@@ -138,7 +155,9 @@
               <input type="text"formControlName="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telephone number">
               <small id="emailHelp" class="form-text text-muted" *ngIf="form.get('phone').invalid">Please enter a phone number</small>
             </div>
-            <button type="submit" class="btn btn-lg btn-outline-secondary ml-4">Contact me</button>
+            <button id="like"type="submit" class="btn btn-lg btn-block"><span class="" style="color:white;vertical-align: middle;"class="material-icons">
+              mail
+              </span>Contact me</button>
           </form>
           <div *ngIf="submitted===true">
             <h5><b>Thank you!</b></h5>

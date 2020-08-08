@@ -133,7 +133,10 @@ img,.card{
 
 /*  */
 #services{
-  height:300px;
+  height:100%;
   background-color: orange;
 
+}
+google-map{
+  width:50%;
 }
