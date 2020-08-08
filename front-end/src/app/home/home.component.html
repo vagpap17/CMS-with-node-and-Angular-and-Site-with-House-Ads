@@ -72,7 +72,7 @@
       </div>
       </div>
     </div>
-    <div id="marketing" >
+    <div id="marketing" href="services">
       <div class="container">
           <div class="row ">
             <div  class="col-md-4">
@@ -113,8 +113,8 @@
 
 
     </div>
-
-    <div id="topads" class="col-md-12 container mt-5 mb-5">
+  </div>
+    <div id="topads" class="col-md-12 container mb-5">
 
 
         <div class="container">
@@ -134,8 +134,8 @@
         </div>
       </div>
     </div>
-    <div id="services" class="col-md-12 container">
-
+    <div id="services" class="col-md-12 pt-0">
+      <h1 id="checkout"class="pt-0">Check out our Map!</h1>
         <!-- <h1>Check out Our map!</h1>
         <google-map class="col-md-12"
               height="500px"
@@ -160,9 +160,15 @@
             </google-map> -->
             <div id="map" ></div>
 
-
-
-
+</div>
+<div id="suggested" class="row">
+  <h1 class="col-md-12">Find Real Estate Listings By State/City</h1>
+  <div *ngFor="let state of states" class="col-md-3 pt-2">
+   <b id="state" [routerLink]="['/search']" [queryParams]="{state:state.state}">{{state.state}}</b>
+    <div *ngFor="let location of locations">
+      <a id="links" *ngIf="state.id===location.id" [routerLink]="['/search']" [queryParams]="{state:state.state,location:location.location}">{{location.location}}</a>
     </div>
+  </div>
+</div>
 
 

@@ -6,13 +6,18 @@ nav{
   top:0;
 }
 a{
+  margin-left:20px;
   color:white;
+  text-decoration: none;
 }
 #dropdown{
   color: black;
 }
 a:hover{
   color:#c5c9c6
+}
+a>span{
+  vertical-align: middle;
 }
  /* Dropdown Button */
  .dropbtn {

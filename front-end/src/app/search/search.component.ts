@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { AdsService } from '../ad.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
-import { ParamMap, ActivatedRoute, Router } from '@angular/router';
+import { ParamMap, ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { runInThisContext } from 'vm';
 
 @Component({
@@ -38,6 +38,12 @@ export class SearchComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0)
+  });
 
     this.form=new FormGroup({
       btype: new FormControl(null,{

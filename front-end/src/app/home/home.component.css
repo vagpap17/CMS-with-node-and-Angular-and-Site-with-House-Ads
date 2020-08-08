@@ -74,6 +74,7 @@ form{
 #marketing{
   padding-top:30px;
   background-color: #fafafa;
+
 }
 
 
@@ -134,26 +135,53 @@ img,.card{
 /*  */
 #services{
   height:100%;
-  background-color: orange;
+  background-color: white;
+  padding:0;
+}
 
-}
-google-map{
-  width:50%;
-}
-map-info-window{
-  color:red;
-  width:50px;
-  height:100px;
-}
 #map {
   height: 500px;
   width: 100%;
  }
-
-
-
-
-
+#content{
+  background-color:red;
+  color:red;
+}
+/* suggested */
+#suggested{
+  padding-top:70px;
+  padding-left:13%;
+  padding-bottom:70px;
+  background-color: #0f1031;
+}
+#checkout{
+  padding-left: 35%;
+  font-size: 50px !important;
+  font-weight:700;
+}
+#links{
+  text-decoration: none;
+  color:white;
+  font-size:15px;
+}
+#links:hover{
+  color:#F26335;
+}
+#state{
+  font-size:20px;
+  color:#F26335;
+}
+#state:hover{
+  color:#d4572f;
+  cursor: pointer;
+}
+#suggested>h1{
+  color:#F26335;
+  padding-left:17%;
+  padding-bottom:30px;
+  font-weight:500;
+  font-size:40px;
+}
 
 
 

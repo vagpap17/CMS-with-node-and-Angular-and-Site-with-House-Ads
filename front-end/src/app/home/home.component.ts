@@ -14,21 +14,9 @@ import { MapMarker, MapInfoWindow, GoogleMap } from '@angular/google-maps';
 })
 export class HomeComponent implements OnInit {
   @Output() autoSearch: EventEmitter<string> = new EventEmitter<string>();
-  // @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
-  // @ViewChild(GoogleMap, { static: false }) map: GoogleMap;
+
   @Output() groupFilters: EventEmitter<any> = new EventEmitter<any>();
-  infoContent = ''
-  markers=[]
-  zoom = 6
-  center;
-  options: google.maps.MapOptions = {
-    mapTypeId: 'roadmap',
-    zoomControl: true,
-    scrollwheel: true,
-    disableDoubleClickZoom: true,
-    maxZoom: 100,
-    minZoom: 6,
-  }
+
   Sfilters=[];
   selected;
   selectedL;
@@ -60,8 +48,8 @@ export class HomeComponent implements OnInit {
     let map: google.maps.Map;
 
     map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-      center: { lat: 37.983810, lng: 23.727539 },
-      zoom: 5
+      center: { lat: 39.173900, lng: 23.344548 },
+      zoom: 7
     });
 
 
@@ -103,13 +91,13 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
   for(let i=0;i<ads.length;i++){
     let lat=parseFloat(ads[i].lat)
     let lng=parseFloat(ads[i].lon)
-    console.log(ads)
+    // console.log(ads)
   var contentString = '<b>'+ads[i].title+'</b>';
 
       var infowindow = new google.maps.InfoWindow({
       content: contentString
       });
-      console.log(infowindow)
+
 
       var marker = new google.maps.Marker({
       position: {lat:lat,
@@ -119,7 +107,7 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
 
       });
       google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent('<h3 style="padding:0"><b>' + ads[i].title +'|' +ads[i].adtype+ '</b></h3><br><h4>'+ads[i].location+'<h4>'+ads[i].btype+'|'+ads[i].area+'m²|'+ads[i].price+'€</h4><a href="http://localhost:4300/ads/show/'+ads[i].post_id+'">See more</a><br><img style="width:100px;height:100px;"src="'+ads[i].photoname+'">');
+        infowindow.setContent('<p style="font-weight:700">' + ads[i].title +'|' +ads[i].adtype+ '</p><br><p style="font-weight:500">'+ads[i].location+'</p><p>'+ads[i].btype+'|'+ads[i].area+'m²|'+ads[i].price+'€</p><a href="http://localhost:4300/ads/show/'+ads[i].post_id+'">See more</a><br><img style="width:100px;height:100px;"src="'+ads[i].photoname+'">');
         infowindow.open(map, this);
     });
 
@@ -129,10 +117,6 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
 })
 
 
-    // this.center = {
-    //   lat: 37.983810,
-    //   lng: 23.727539,
-    // }
 
     this.adService.getAdStars()
     this.starAdsSub=this.adService.getStarAdsUpdateListener()
@@ -165,7 +149,7 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
     }
   }
   locationSelect(templocation){
-    console.log(templocation)
+
     let foundlocationLid;
     for(let i=0;i<this.locations.length;i++){
       if(templocation===this.locations[i].location){
@@ -186,19 +170,11 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
         delete filters[key];
       }
     });
-    console.log("FILTERS",filters)
+    // console.log("FILTERS",filters)
 
     this.router.navigate(['search'], { queryParams: filters});
   }
 
-  click(event: google.maps.MouseEvent) {
-    console.log(event)
-  }
-
-  // openInfo(marker: MapMarker, content) {
-  //   this.infoContent=content.content
-  //   this.infoWindow.open(marker)
-  // }
 
 
 }
