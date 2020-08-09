@@ -3,6 +3,7 @@ export interface Post{
   title:string;
   description:string;
   price:string;
-  dateAdded:Date;
+  dateAdded:string;
   adtype:string;
+  time:string;
 }

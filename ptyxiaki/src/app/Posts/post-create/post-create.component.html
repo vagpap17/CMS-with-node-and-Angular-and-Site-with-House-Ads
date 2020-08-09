@@ -107,13 +107,13 @@
     <div id="image">
       <button mat-stroked-button type="button" color="primary" (click)="filePicker.click()"  >Pick Images</button>
 
-      <p *ngIf="form.get('images').invalid ">Please enter at least one photo</p>
+      <p *ngIf="form.get('images').invalid ">Please enter at least one photo.If you want to delete click on the photo.</p>
       <br>
     <!-- <div class="image-preview" *ngIf="imagePreview!=='' && imagePreview && form.get('image').valid">
       <img [src]="imagePreview" [alt]="form.value.title">
     </div> -->
 
-      <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;">
+      <img *ngFor='let url of images'  [src]="url" height="150" width="200px" style="margin: 3px;" (click)="onSelectImage(url)">
     </div>
 
     <br>

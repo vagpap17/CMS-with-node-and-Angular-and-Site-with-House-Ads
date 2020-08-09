@@ -16,7 +16,9 @@
 
 }
 #searchForm{
-  margin-left:25%
+  margin-left:25%;
+  font-family:'Barlow', sans-serif;
+  font-size:18px;
 }
 #stitle{
   font-size: 65px;

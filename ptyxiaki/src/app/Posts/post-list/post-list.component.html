@@ -10,39 +10,47 @@
   <!-- </button> -->
 <table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef class="edit">  </th>
+    <th mat-header-cell *matHeaderCellDef class="small">  </th>
   <td mat-cell *matCellDef="let element" ><span class="material-icons"><a id="edit"*ngIf="privileges==='1'||currentUser===element.addedBy"  [routerLink]="['/edit',element.id]" >edit</a></span><br>
 </td>
   </ng-container>
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef class="edit"> id. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  <ng-container matColumnDef="id" >
+    <th mat-header-cell *matHeaderCellDef > id. </th>
+    <td mat-cell *matCellDef="let element" class="small"> {{element.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="Title">
-    <th mat-header-cell *matHeaderCellDef class="dateadded">  Title </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+  <ng-container matColumnDef="Title" >
+    <th mat-header-cell *matHeaderCellDef >  Title </th>
+    <td mat-cell *matCellDef="let element" class="large"> {{element.title}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="addedBy">
-    <th mat-header-cell *matHeaderCellDef class="dateadded">  addedBy </th>
-    <td mat-cell *matCellDef="let element"> {{element.addedBy}}</td>
+  <ng-container matColumnDef="addedBy" >
+    <th mat-header-cell *matHeaderCellDef >  addedBy </th>
+    <td mat-cell *matCellDef="let element" class="small"> {{element.addedBy}}</td>
   </ng-container>
+
+
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef class="type"> Type</th>
     <td mat-cell *matCellDef="let element"> {{element.btype}}</td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="DateAdded">
+  <ng-container matColumnDef="DateAdded" >
     <th mat-header-cell *matHeaderCellDef class="dateadded"> DateAdded </th>
-    <td mat-cell *matCellDef="let element" > {{element.dateAdded}} </td>
+    <td mat-cell *matCellDef="let element" class="medium" > {{element.dateAdded}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Time">
+    <th mat-header-cell *matHeaderCellDef class="dateadded"> Time</th>
+    <td mat-cell *matCellDef="let element" class="medium"> {{element.time}}</td>
   </ng-container>
 
   <ng-container matColumnDef="Actions">
     <th mat-header-cell *matHeaderCellDef class="edit"> Actions </th>
-  <td mat-cell *matCellDef="let element"> <button *ngIf="privileges==='1'||currentUser===element.addedBy"mat-button color='primary' (click)="openDialog(element.id)">Delete</button> </td>
+  <td mat-cell *matCellDef="let element"> <span class="material-icons" *ngIf="privileges==='1'||currentUser===element.addedBy"mat-button color='primary' >
+   <a id="edit" (click)="openDialog(element.id)"> delete</a>
+    </span> </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

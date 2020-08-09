@@ -75,6 +75,11 @@ export class SearchComponent implements OnInit {
         }
         this.searchHouse(params)
         this.ads=this.adService.getSearchResults()
+        for(let i=0;i<this.ads.length;i++){
+          var splited=this.ads[i].dateAdded.split("T")
+          this.ads[i].dateAdded=splited[0]
+
+        }
         this.status=this.ads.length
         if(params.state){
           this.citiesSelect(params.state)

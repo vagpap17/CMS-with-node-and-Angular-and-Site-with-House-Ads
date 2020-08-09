@@ -91,21 +91,36 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
   for(let i=0;i<ads.length;i++){
     let lat=parseFloat(ads[i].lat)
     let lng=parseFloat(ads[i].lon)
-    // console.log(ads)
+    console.log(ads)
   var contentString = '<b>'+ads[i].title+'</b>';
 
       var infowindow = new google.maps.InfoWindow({
       content: contentString
       });
 
+      if(ads[i].btype=="apartment"){
+        console.log("bike apartment")
+        var marker = new google.maps.Marker({
+          position: {lat:lat,
+          lng: lng},
+          map: map,
+          title: 'Uluru (Ayers Rock)',
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          }
+          });
+      }else{
+        var marker = new google.maps.Marker({
+          position: {lat:lat,
+          lng: lng},
+          map: map,
+          title: 'Uluru (Ayers Rock)',
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+          }
+          });
+      }
 
-      var marker = new google.maps.Marker({
-      position: {lat:lat,
-      lng: lng},
-      map: map,
-      title: 'Uluru (Ayers Rock)'
-
-      });
       google.maps.event.addListener(marker, 'click', function () {
         infowindow.setContent('<p style="font-weight:700">' + ads[i].title +'|' +ads[i].adtype+ '</p><br><p style="font-weight:500">'+ads[i].location+'</p><p>'+ads[i].btype+'|'+ads[i].area+'m²|'+ads[i].price+'€</p><a href="http://localhost:4300/ads/show/'+ads[i].post_id+'">See more</a><br><img style="width:100px;height:100px;"src="'+ads[i].photoname+'">');
         infowindow.open(map, this);

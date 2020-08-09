@@ -19,14 +19,22 @@ table,mat-paginator {
 #edit:visited:hover{
   color:#6c706d
 }
+
 .edit{
   width:10px;
   padding:0;
 
 }
-
-.dateadded{
+.large{
+  width:200px;
+  margin-left:20px;
+}
+.medium{
   width:100px;
+  margin:20px;
+}
+.small{
+  width:20px;
   margin:20px;
 }
 .type{

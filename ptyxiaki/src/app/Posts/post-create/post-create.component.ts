@@ -141,12 +141,14 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
       this.postsService.getPost(this.postId).subscribe(postData=>{
         this.isLoading=false;
         this.post={
+
           id:postData[0][0].id,
           title:postData[0][0].title,
           description:postData[0][0].description,
           price:postData[0][0].price,
           adtype:postData[0][0].adtype,
-          dateAdded:null
+          dateAdded:null,
+          time:null
         }
         this.form.setValue({
           title:this.post.title,
@@ -168,6 +170,8 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
 
 
   onSavePost(){
+    // console.log(this.form.value)
+    // console.log(this.uImages)
     this.isLoading=true;
     this.status="Submitting the form"
     if(this.form.invalid){
@@ -177,10 +181,10 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
         this.uImages
 
       )
-       console.log(this.adtypes)
+      //  console.log(this.adtypes)
       if(this.adtypes==="apartment"){
         this.status="Waiting for response from google API"
-      console.log("apartment")
+      // console.log("apartment")
         this.postsService.addPost(
           this.form.value.title,
           this.form.value.description,
@@ -199,7 +203,7 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
           this.form.value.floor
         )
       }else{
-        console.log("shop")
+        // console.log("shop")
 
         this.postsService.addPost(
 
@@ -224,6 +228,22 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
 
     }
 
+  onSelectImage(url){
+
+
+      // console.log(url)
+      for(let i=0;i<this.images.length;i++){
+        if(this.images[i]===url){
+          var index=this.uImages.indexOf(this.images[i])
+          this.uImages.splice(index,1)
+          this.images.splice(index,1)
+
+        }
+      }
+      // console.log("this.images",this.images)
+      // console.log("this.Uimages",this.uImages)
+  }
+
   onImagePicked(event){
     if (event.target.files && event.target.files[0]) {
       var filesAmount = event.target.files.length;
@@ -240,6 +260,8 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
               reader.readAsDataURL(event.target.files[i]);
       }
     }
+    // console.log("this.images",this.images)
+    // console.log("this.Uimages",this.uImages)
 
   }
   adtype(event){
@@ -280,14 +302,14 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
         foundlocationLid=this.locations[i].lid
       }
     }
-    console.log(foundlocationLid)
+    // console.log(foundlocationLid)
     for(let i=0;i<this.postals.length;i++){
       if(this.postals[i].lid===foundlocationLid){
         for(let j=0;j<this.postals[i].postal.length;j++)
         this.fpostals.push(this.postals[i].postal[j])
       }
     }
-    console.log(this.fpostals)
+    // console.log(this.fpostals)
   }
 
 }

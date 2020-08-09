@@ -20,7 +20,7 @@ export class PostListComponent implements OnInit,OnDestroy {
   search;
 
   isLoading=false;
-  displayedColumns: string[] = ['edit','id', 'Title', 'DateAdded','type','addedBy','Actions'];
+  displayedColumns: string[] = ['edit','id', 'Title', 'DateAdded','Time','type','addedBy','Actions'];
   userIsAuthenticated = false;
   dataSource;
 
@@ -42,7 +42,14 @@ export class PostListComponent implements OnInit,OnDestroy {
     this.postsSub=this.postsService
     .getPostUpdateListener()
     .subscribe((postData:{posts:Post[]})=>{
-      console.log(postData.posts)
+
+      for(let i=0;i<postData.posts.length;i++){
+        var splited=postData.posts[i].dateAdded.split("T")
+        postData.posts[i].dateAdded=splited[0]
+        var time=splited[1].split(".")
+        postData.posts[i].time=time[0]
+
+      }
       this.dataSource = new MatTableDataSource(postData.posts);
       this.dataSource.paginator = this.paginator;
 
