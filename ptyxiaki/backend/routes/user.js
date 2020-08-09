@@ -79,7 +79,10 @@ router.post("/login", (req, res, next) => {
               token:token,
               expiresIn: 3600,
               userId:fetchedUser[0].id,
-              privileges:fetchedUser[0].uprivileges
+              privileges:fetchedUser[0].uprivileges,
+              rating:fetchedUser[0].rating,
+              ratingCount:fetchedUser[0].ratingCount
+
             })
           }else{
             res.send({error:"wrong password"})

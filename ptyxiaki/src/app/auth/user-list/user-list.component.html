@@ -22,7 +22,7 @@
 
   <ng-container matColumnDef="privileges">
     <th mat-header-cell id="privileges" *matHeaderCellDef>  Privileges </th>
-    <td mat-cell id="privileges" *matCellDef="let element"> {{element.privileges}}</td>
+    <td mat-cell id="privileges" *matCellDef="let element"> {{element.uprivileges}}</td>
   </ng-container>
 
   <!-- Symbol Column -->
@@ -34,7 +34,14 @@
   <ng-container matColumnDef="Actions">
     <th mat-header-cell id="actions"*matHeaderCellDef> Actions </th>
   <td mat-cell id="actions" *matCellDef="let element"> <button mat-button color='primary' [routerLink]="['/users',element.id]" *ngIf="element.username!==currentUser">Edit</button><br><button *ngIf="element.username!==currentUser&&element.privileges!==1"mat-button color='primary' (click)="openDialog(element.id)">Delete</button> </td>
+  </ng-container> <ng-container matColumnDef="Rating">
+    <th mat-header-cell id=""*matHeaderCellDef> Rating </th>
+    <td mat-cell id="privileges" *matCellDef="let element"> {{element.rating}}</td>
   </ng-container>
+<ng-container matColumnDef="Ratings">
+  <th mat-header-cell id=""*matHeaderCellDef> Reviews </th>
+  <td mat-cell id="privileges" *matCellDef="let element"> {{element.ratingCount}}</td>
+</ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

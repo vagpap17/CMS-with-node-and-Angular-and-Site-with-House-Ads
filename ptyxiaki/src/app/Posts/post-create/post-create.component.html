@@ -48,7 +48,7 @@
     <br>
     <mat-form-field  id="desc">
       <textarea  #desc matInput formControlName="description" placeholder="Post Description"></textarea>
-      <mat-error *ngIf="form.get('description').invalid">Please enter a description</mat-error>
+      <mat-error *ngIf="form.get('description').invalid">Please enter a description with max length 500 </mat-error>
       <mat-hint align="end">{{desc.value.length}} / 500</mat-hint>
     </mat-form-field>
     <br>

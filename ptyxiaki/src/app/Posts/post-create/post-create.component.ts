@@ -86,7 +86,7 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
         validators:[Validators.required,Validators.maxLength(30)]
     }),
       description: new FormControl(null,{
-        validators:[Validators.required]
+        validators:[Validators.required,Validators.maxLength(500)]
     }),
     state: new FormControl(null,{
       validators:[Validators.required]
@@ -141,14 +141,15 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
       this.postsService.getPost(this.postId).subscribe(postData=>{
         this.isLoading=false;
         this.post={
-
           id:postData[0][0].id,
           title:postData[0][0].title,
           description:postData[0][0].description,
           price:postData[0][0].price,
           adtype:postData[0][0].adtype,
           dateAdded:null,
-          time:null
+          time:null,
+          addedBy:null
+
         }
         this.form.setValue({
           title:this.post.title,

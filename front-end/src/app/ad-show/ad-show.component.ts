@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, NavigationEnd, Router } from '@angular/router';
 import { AdsService } from '../ad.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MapInfoWindow, MapMarker } from '@angular/google-maps';
@@ -30,11 +30,17 @@ export class AdShowComponent implements OnInit {
     maxZoom: 20,
     minZoom: 8,
   }
-  constructor(private _location: Location,private route:ActivatedRoute,private adService:AdsService) { }
+  constructor(private _location: Location,private route:ActivatedRoute,private adService:AdsService,private router:Router) { }
   contactUsVar=false;
   ngOnInit(): void {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0)
+  });
 
-    console.log(this.submitted)
+    // console.log(this.submitted)
     this.form=new FormGroup({
         name: new FormControl(null,{
           validators:[Validators.required]
@@ -50,12 +56,12 @@ export class AdShowComponent implements OnInit {
 
     this.route.paramMap.subscribe((paramMap:ParamMap)=>{
       this.id=paramMap.get("id")
-      console.log(this.id)
+      // console.log(this.id)
       this.adService.getAdData(this.id)
       .subscribe(adData=>{
         let lat=parseFloat(adData[0][0].lat)
         let lng=parseFloat(adData[0][0].lon)
-        console.log(lat,lng)
+        //console.log(lat,lng)
 
           this.center = {
             lat: lat,
@@ -73,10 +79,10 @@ export class AdShowComponent implements OnInit {
 
           })
 
-        console.log(adData[0])
+        //console.log(adData[0])
         this.ad=adData[0]
         this.images=adData[1]
-        console.log(this.ad,this.images)
+        //console.log(this.ad,this.images)
       })
       // this.resSalesSub=this.adService.getAdsUpdateListener()
       // .subscribe(ads=>{
@@ -91,13 +97,13 @@ export class AdShowComponent implements OnInit {
   }
   contactUs(){
     this.contactUsVar=!this.contactUsVar
-    console.log(this.contactUsVar)
+    //console.log(this.contactUsVar)
   }
   onContact(agentid){
     if(this.form.invalid){
       return
       }
-    console.log(agentid)
+    //console.log(agentid)
     this.submitted=true;
     this.adService.saveContact(
       this.form.value.name,
@@ -109,7 +115,7 @@ export class AdShowComponent implements OnInit {
   }
 
   click(event: google.maps.MouseEvent) {
-    console.log(event)
+    //console.log(event)
   }
 
   openInfo(marker: MapMarker, content) {

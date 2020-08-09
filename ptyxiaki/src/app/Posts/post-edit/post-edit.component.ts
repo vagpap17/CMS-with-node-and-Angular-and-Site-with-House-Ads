@@ -150,14 +150,14 @@ export class PostEditComponent implements OnInit {
   });
 
   // if(this.adtypes!="apartments"){
-  //   console.log("bike comercial")
+  //   //console.log("bike comercial")
   //   this.form.get('bedrooms').setValidators([]); // or clearValidators()
   //   this.form.get('bedrooms').updateValueAndValidity();
   //   this.form.get('bathrooms').setValidators([]); // or clearValidators()
   //   this.form.get('bathrooms').updateValueAndValidity();
   //  }
   // else{
-  //   console.log("bike apartments")
+  //   //console.log("bike apartments")
   //   this.form.get('bedrooms').setValidators([Validators.required]); // or clearValidators()
   //   this.form.get('bedrooms').updateValueAndValidity();
   //   this.form.get('bathrooms').setValidators([Validators.required]); // or clearValidators()
@@ -172,7 +172,7 @@ export class PostEditComponent implements OnInit {
       this.postId=paramMap.get("postId")
       this.isLoading=true;
       this.postsService.getPost(this.postId).subscribe(postData=>{
-        console.log(postData)
+        //console.log(postData)
         this.state=postData[0][0].state
         this.location=postData[0][0].location
         this.postal=postData[0][0].postal
@@ -238,7 +238,7 @@ export class PostEditComponent implements OnInit {
           this.images.push(postData[1][i].photoname)
           // this.uImages.push("/assets/images/"+postData[1][i].photoname)
         }
-          // console.log("length",this.images.length)
+          // //console.log("length",this.images.length)
           if(this.images.length>0){
             this.imageTrue=true;
           }
@@ -255,14 +255,14 @@ export class PostEditComponent implements OnInit {
 
   onEditPost(){
 
-    // console.log(this.form.value)
-    // console.log(this.adtypes)
+    // //console.log(this.form.value)
+    // //console.log(this.adtypes)
     let changes;
     if(this.form.value.state===this.state&&this.form.value.location===this.location&&this.form.value.postal===this.postal&&this.form.value.address===this.address&&this.form.value.addressnum===this.addressnum){
-      console.log("no changes")
+      //console.log("no changes")
       changes=false;
     }else{
-      console.log("changes")
+      //console.log("changes")
       changes=true;
     }
     this.isLoading=true;
@@ -270,7 +270,7 @@ export class PostEditComponent implements OnInit {
       return
       }
       if(this.adtypes==="apartment"){
-        console.log("apartment")
+        //console.log("apartment")
         this.postsService.updatePost(
           this.postId,
           this.form.value.title,
@@ -338,8 +338,8 @@ export class PostEditComponent implements OnInit {
 
   }
   onSaveImages(){
-    // console.log("UPLOAD",this.uImages)
-    // console.log("DELETE",this.dImages)
+    // //console.log("UPLOAD",this.uImages)
+    // //console.log("DELETE",this.dImages)
     this.postsService.addImagesForDelete(this.dImages)
     this.postsService.addImages(this.uImages)
     this.postsService.updateImages(this.postId)
@@ -347,7 +347,7 @@ export class PostEditComponent implements OnInit {
   onSelectImage(url){
     if(this.deleteMode){
       this.imagePicked=true;
-      // console.log(url)
+      // //console.log(url)
       for(let i=0;i<this.images.length;i++){
         if(this.images[i]===url){
           var index=this.images.indexOf(this.images[i])
@@ -391,7 +391,7 @@ export class PostEditComponent implements OnInit {
     }
   }
   locationSelect(templocation){
-    console.log(templocation)
+    ////console.log(templocation)
     this.fpostals=[]
     let foundlocationLid;
     for(let i=0;i<this.locations.length;i++){
@@ -399,14 +399,14 @@ export class PostEditComponent implements OnInit {
         foundlocationLid=this.locations[i].lid
       }
     }
-    console.log(foundlocationLid)
+    ////console.log(foundlocationLid)
     for(let i=0;i<this.postals.length;i++){
       if(this.postals[i].lid===foundlocationLid){
         for(let j=0;j<this.postals[i].postal.length;j++)
         this.fpostals.push(this.postals[i].postal[j])
       }
     }
-    console.log(this.fpostals)
+    ////console.log(this.fpostals)
   }
   backClicked() {
     this._location.back();

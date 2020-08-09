@@ -8,17 +8,19 @@
     <div class="col-md-6">
       <mat-card id="welcome">
         <h2>Welcome user  <span id="user">{{currentUser}}</span> </h2>
+        <h3>Your posts: <a id="custSum"[routerLink]="['/show']">{{myPosts}}</a> </h3>
         <h3>Potential Customers: <a id="custSum"[routerLink]="['/messages']">{{custSum}}</a> </h3>
+
       </mat-card>
     </div>
     <div class="col-md-6">
       <mat-card id="rating">
         <h2>Rating <span id="user">{{currentUser}}</span> </h2>
-
+        {{userRating}} with {{reviews}} reviews
       </mat-card>
 
     </div>
-    <div class="col-md-12 mt-5">
+    <div *ngIf="pre=='1'"class="col-md-12 mt-5">
       <mat-card id="statistics">
         <h2>Statistics</h2>
         <br>
@@ -27,7 +29,7 @@
       </mat-card>
 
     </div>
-    <div class="col-md-6">
+    <div *ngIf="pre=='1'"class="col-md-6">
       <mat-card id="styling">
         <h2>Styling</h2>
         <br>

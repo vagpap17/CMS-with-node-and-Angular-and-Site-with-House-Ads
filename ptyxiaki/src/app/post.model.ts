@@ -6,4 +6,5 @@ export interface Post{
   dateAdded:string;
   adtype:string;
   time:string;
+  addedBy:string;
 }

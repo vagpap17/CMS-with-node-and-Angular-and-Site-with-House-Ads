@@ -13,7 +13,7 @@ import { DialogComponent } from 'src/app/dialog/dialog.component';
 export class UserListComponent implements OnInit {
   currentUser;
   isLoading=false;
-  displayedColumns: string[] = ['id', 'username', 'privileges','Actions'];
+  displayedColumns: string[] = ['id', 'username', 'privileges','Actions','Rating','Ratings'];
   dataSource;
   private usersSub:Subscription;
   constructor(private authService:AuthService,public dialog: MatDialog) { }

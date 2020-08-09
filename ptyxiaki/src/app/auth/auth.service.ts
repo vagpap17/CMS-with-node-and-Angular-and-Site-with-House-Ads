@@ -11,6 +11,8 @@ export class AuthService {
   private isAuthenticated = false;
   error:string;
   users=[];
+  private rating;
+  private reviews;
   private currentUser:string;
   private isAdmin:string;
   private token: string;
@@ -28,6 +30,12 @@ export class AuthService {
   }
   getError(){
     return this.error
+  }
+  getRating(){
+    return this.rating;
+  }
+  getReviews(){
+    return this.reviews;
   }
   getPrivileges(){
     return this.isAdmin
@@ -117,17 +125,15 @@ export class AuthService {
 
     return this.http
       .get<any>("http://localhost:3000/api/user")
-      .pipe(
-        map(userData => {
-          return userData.map(user => {
-            return {
-              id:user.id,
-              username: user.username,
-              privileges:user.uprivileges
-            };
-          });
-        })
-      ).subscribe(data => {
+      .subscribe(data => {
+        for(let i=0;i<data.length;i++){
+          if(data[i].rating!==0){
+            data[i].rating=(data[i].rating/data[i].ratingCount).toFixed(2);
+          }
+
+          //console.log(data[i].rating)
+        }
+        //console.log(data)
         this.users = data
         this.userUpdated.next([...this.users]);
       });
@@ -136,15 +142,23 @@ export class AuthService {
   login(username: string, password: string) {
     const authData={ username: username, password: password};
     this.http
-      .post<{user:string, token: string; expiresIn: number, userId: string ,privileges:string,error:string}>(
+      .post<any>(
         "http://localhost:3000/api/user/login",
         authData
       )
       .subscribe(response => {
+        console.log(response)
         const token = response.token;
         this.token = token;
-        // console.log(response)
+
+        // //console.log(response)
         if (token) {
+          if(response.rating!==0){
+            this.rating=(response.rating/response.ratingCount).toFixed(2);
+            this.reviews=response.ratingCount
+          }else{
+            this.rating=0;
+          }
           const expiresInDuration = response.expiresIn;
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
@@ -165,7 +179,7 @@ export class AuthService {
           this.router.navigate(["/"]);
         }else{
           this.currentError.next(response.error)
-          // console.log(response.error)
+          // //console.log(response.error)
           this.error=response.error
           this.router.navigate(["/login"])
         }
@@ -201,7 +215,7 @@ export class AuthService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log("Setting timer: " + duration);
+    //console.log("Setting timer: " + duration);
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, duration * 1000);

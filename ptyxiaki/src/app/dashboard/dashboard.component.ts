@@ -15,7 +15,12 @@ import { MessagesService } from '../messages.service';
 export class DashboardComponent implements OnInit {
   lat = 51.678418;
   lng = 7.809007;
+  myPosts=0;
   menu;
+  pre;
+  id;
+  userRating;
+  reviews;
   isLoading=true;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
@@ -40,17 +45,20 @@ export class DashboardComponent implements OnInit {
         validators:[Validators.required]
     })
   })
+  this.userRating=this.authService.getRating();
+  this.reviews=this.authService.getReviews();
+
     this.currentUser=this.authService.getCurrentUser()
-    var id=this.authService.getUserId()
-    var pre=this.authService.getPrivileges()
-    this.messagesService.getMessages(id,pre)
+    this.id=parseInt(this.authService.getUserId())
+    this.pre=this.authService.getPrivileges()
+    this.messagesService.getMessages(this.id,this.pre)
     this.custSub=this.messagesService.getMessagesUpdated()
     .subscribe(data=>{
       this.customers=[]
-      console.log(data)
+      //console.log(data)
       for(let i=0;i<data.length;i++){
         if(data[i].seen===null){
-          console.log("bike seen")
+          //console.log("bike seen")
           this.customers.push(data[i])
         }
       }
@@ -74,6 +82,12 @@ export class DashboardComponent implements OnInit {
     this.postsSub=this.postService
     .getPostUpdateListener()
     .subscribe((postData:{posts:Post[]})=>{
+      for(let i=0;i<postData.posts.length;i++){
+
+        if(postData.posts[i].addedBy==this.id){
+          this.myPosts++;
+        }
+      }
       this.isLoading=false;
       this.postsSum=postData.posts.length
     })

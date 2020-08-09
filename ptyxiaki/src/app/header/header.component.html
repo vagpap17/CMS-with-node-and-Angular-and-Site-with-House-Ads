@@ -44,7 +44,9 @@
       </mat-toolbar>
 
       <mat-nav-list  >
-            <a class="links" *ngIf="!userIsAuthenticated"mat-list-item  routerLink="/login" >Login</a>
+            <a class="links" *ngIf="!userIsAuthenticated"mat-list-item  routerLink="/login" ><span class="material-icons">
+              login
+              </span>Login</a>
             <div *ngIf="userIsAuthenticated">
               <div id="current"><span class="material-icons">
                 account_circle

@@ -37,11 +37,11 @@ export class AdsService{
     .subscribe(newAds=>{
       this.ads=newAds
       this.adsUpdated.next([...this.ads])
-      console.log("ads",this.ads)
+      //console.log("ads",this.ads)
     })
   }
   getAdData(id:string){
-    console.log(id)
+    //console.log(id)
     return this.http.get<any>("http://localhost:3000/api/posts/"+id)
   }
 
@@ -62,13 +62,13 @@ export class AdsService{
     }
     this.http.post("http://localhost:3000/api/user/contact",data)
     .subscribe(response=>{
-      console.log(response)
+      //console.log(response)
     })
 
   }
 
   searchFiltersHouse(filters:any){
-    console.log("filters",filters)
+    //console.log("filters",filters)
     // console.log(mode)
     var filteredData=this.ads
     let houses=this.ads
@@ -81,7 +81,7 @@ export class AdsService{
 
   filteredData = houses.filter( (item) => {
         if(Object.keys(filters).length===0){
-          console.log("mphke 0")
+          //console.log("mphke 0")
           filteredData=this.ads
         }else{
           for (let key in filters) {
@@ -141,7 +141,7 @@ export class AdsService{
         }
 
     });
-    console.log("filtereddata",filteredData)
+    //console.log("filtereddata",filteredData)
     this.resultAds=filteredData
     this.resultsUpdated.next([...this.resultAds])
 

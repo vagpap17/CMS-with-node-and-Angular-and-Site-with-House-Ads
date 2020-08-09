@@ -16,15 +16,17 @@ import { MatSort } from '@angular/material/sort';
 })
 export class PostListComponent implements OnInit,OnDestroy {
   currentUser;
+  currentUserId;
   privileges;
+  empty=false;
   search;
-
+  postList=[]
   isLoading=false;
   displayedColumns: string[] = ['edit','id', 'Title', 'DateAdded','Time','type','addedBy','Actions'];
   userIsAuthenticated = false;
   dataSource;
 
-  userId:string
+  userId:number
   private postsSub:Subscription;
   private authStatusSub: Subscription;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
@@ -35,22 +37,48 @@ export class PostListComponent implements OnInit,OnDestroy {
     this.currentUser=this.authService.getCurrentUser()
     console.log(this.currentUser)
     this.privileges=this.authService.getPrivileges();
+    console.log(this.privileges)
     // this.isLoading=true;
     this.postsService.getPosts();
 
-    this.userId = this.authService.getUserId();
+    this.userId = parseInt(this.authService.getUserId());
+    console.log(this.userId)
     this.postsSub=this.postsService
     .getPostUpdateListener()
-    .subscribe((postData:{posts:Post[]})=>{
+    .subscribe(postData=>{
+      console.log(postData.posts)
+      if(this.privileges==="1"){
+        for(let i=0;i<postData.posts.length;i++){
 
-      for(let i=0;i<postData.posts.length;i++){
-        var splited=postData.posts[i].dateAdded.split("T")
-        postData.posts[i].dateAdded=splited[0]
-        var time=splited[1].split(".")
-        postData.posts[i].time=time[0]
+          var splited=postData.posts[i].dateAdded.split("T")
+          postData.posts[i].dateAdded=splited[0]
+          var time=splited[1].split(".")
+          postData.posts[i].time=time[0]
 
+        }
+        this.dataSource = new MatTableDataSource(postData.posts);
+      }else{
+        for(let i=0;i<postData.posts.length;i++){
+          // if(postData.posts[i].)
+          if(parseInt(postData.posts[i].addedBy)===this.userId){
+            var splited=postData.posts[i].dateAdded.split("T")
+            postData.posts[i].dateAdded=splited[0]
+            var time=splited[1].split(".")
+            postData.posts[i].time=time[0]
+            this.postList.push(postData.posts[i])
+          }
+
+
+        }
+        if(this.postList.length==0){
+          this.empty=true;
+        }
+        console.log(this.postList)
+        this.dataSource = new MatTableDataSource(this.postList);
       }
-      this.dataSource = new MatTableDataSource(postData.posts);
+
+
+      console.log(this.dataSource)
       this.dataSource.paginator = this.paginator;
 
     })
@@ -59,7 +87,7 @@ export class PostListComponent implements OnInit,OnDestroy {
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
-        this.userId = this.authService.getUserId();
+        this.userId = parseInt(this.authService.getUserId());
       });
 
 
