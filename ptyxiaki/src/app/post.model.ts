@@ -6,5 +6,10 @@ export interface Post{
   dateAdded:string;
   adtype:string;
   time:string;
-  addedBy:string;
+  user_id:string;
+  lat:string;
+  lon:string;
+  location:string;
+  area:string;
+  btype:string;
 }

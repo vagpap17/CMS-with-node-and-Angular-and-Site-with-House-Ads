@@ -19,6 +19,7 @@ export class AuthService {
   private tokenTimer: any;
   private userId: string;
   private authStatusListener = new Subject<boolean>();
+
   private userUpdated= new Subject<any>();
   private adminListener=new Subject<any>();
   private currentUserListener=new Subject<any>();
@@ -68,6 +69,8 @@ export class AuthService {
   getCurrentUserListner(){
     return this.currentUserListener.asObservable();
   }
+
+
   getErrorListener(){
     return this.currentError.asObservable();
   }
@@ -101,7 +104,18 @@ export class AuthService {
     })
   }
   getUser(id:string){
-    return this.http.get<any>("http://localhost:3000/api/user/"+id)
+    return this.http.get<any>("http://localhost:3000/api/user/"+id).toPromise().then(response=>{
+
+      if(response[0].rating!==0){
+        this.rating=(response[0].rating/response[0].ratingCount).toFixed(2);
+        this.reviews=response[0].ratingCount
+      }else{
+        this.rating=0;
+        this.reviews=0;
+      }
+
+
+    })
   }
   updateUser(id:string,username:string,uprivileges:string){
    const upUser={
@@ -153,12 +167,7 @@ export class AuthService {
 
         // //console.log(response)
         if (token) {
-          if(response.rating!==0){
-            this.rating=(response.rating/response.ratingCount).toFixed(2);
-            this.reviews=response.ratingCount
-          }else{
-            this.rating=0;
-          }
+
           const expiresInDuration = response.expiresIn;
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;

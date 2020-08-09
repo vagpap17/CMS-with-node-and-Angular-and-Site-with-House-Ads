@@ -114,7 +114,7 @@ router.get("",(req,res,next)=>{
 })
 router.get("/:id",(req,res,next)=>{
   userId=req.params.id
-  connection.query("select username,uprivileges from users where id=?",userId,function(error,result){
+  connection.query("select * from users where id=?",userId,function(error,result){
     if(error){
       console.log(error)
     }else{

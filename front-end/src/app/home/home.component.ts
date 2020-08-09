@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
-import { MapMarker, MapInfoWindow, GoogleMap } from '@angular/google-maps';
+
 
 
 @Component({

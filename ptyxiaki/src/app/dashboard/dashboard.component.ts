@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 import { PostsService } from '../post.service';
@@ -12,9 +12,7 @@ import { MessagesService } from '../messages.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-  lat = 51.678418;
-  lng = 7.809007;
+export class DashboardComponent implements OnInit,AfterViewInit {
   myPosts=0;
   menu;
   pre;
@@ -28,28 +26,49 @@ export class DashboardComponent implements OnInit {
   usersSum;
   customers=[];
   custSum;
+  reviewSub:Subscription;
+  ratingSub:Subscription;
   custSub:Subscription;
   usersSub:Subscription;
   postsSub:Subscription;
   menuSub:Subscription;
   currentUser;
+  user
   form:FormGroup;
+  map: google.maps.Map;
+  ngAfterViewInit(): void{
+
+
+    this.map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+      center: { lat: 39.173900, lng: 23.344548 },
+      zoom: 7
+    });
+  }
+
 
   constructor(private authService:AuthService,private postService:PostsService,private styleService:StyleService,private messagesService:MessagesService) { }
-
   ngOnInit(): void {
-// this.postService.getcords();
 
-        this.form=new FormGroup({
+
+this.form=new FormGroup({
       menup: new FormControl(null,{
         validators:[Validators.required]
     })
   })
-  this.userRating=this.authService.getRating();
-  this.reviews=this.authService.getReviews();
 
     this.currentUser=this.authService.getCurrentUser()
+
     this.id=parseInt(this.authService.getUserId())
+    this.authService.getUser(this.id).then(()=>{
+      this.userRating=this.authService.getRating()
+      this.reviews=this.authService.getReviews()
+    })
+
+
+    this.reviewSub=this.authService.getCurrentUserListner().subscribe(data=>{
+      console.log(data)
+    })
+
     this.pre=this.authService.getPrivileges()
     this.messagesService.getMessages(this.id,this.pre)
     this.custSub=this.messagesService.getMessagesUpdated()
@@ -81,15 +100,63 @@ export class DashboardComponent implements OnInit {
     this.postService.getPosts()
     this.postsSub=this.postService
     .getPostUpdateListener()
-    .subscribe((postData:{posts:Post[]})=>{
-      for(let i=0;i<postData.posts.length;i++){
+    .subscribe(postData=>{
+      console.log(postData)
+      for(let i=0;i<postData.length;i++){
+        var contentString = '<b>'+postData[i].title+'</b>';
 
-        if(postData.posts[i].addedBy==this.id){
-          this.myPosts++;
+        if(this.pre=="1"){
+          let lat=parseFloat(postData[i].lat)
+          let lng=parseFloat(postData[i].lon)
+
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+            var marker = new google.maps.Marker({
+              position: {lat:lat,
+              lng: lng},
+              map: this.map,
+              title: 'Uluru (Ayers Rock)',
+              icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
+              }
+              });
+              google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent('<p style="font-weight:700">' + postData[i].title +'|' +postData[i].adtype+ '</p><br><p style="font-weight:500">'+postData[i].location+'</p><p>'+postData[i].btype+'|'+postData[i].area+'m²|'+postData[i].price+'€</p><a href="http://localhost:4200/edit/'+postData[i].post_id+'">Edit</a><br>');
+                infowindow.open(this.map, this);
+            });
+
         }
+        if(postData[i].user_id==this.id){
+          let lat=parseFloat(postData[i].lat)
+          let lng=parseFloat(postData[i].lon)
+          this.myPosts++;
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+            var marker = new google.maps.Marker({
+              position: {lat:lat,
+              lng: lng},
+              map: this.map,
+              title: 'Uluru (Ayers Rock)',
+              icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+              }
+              });
+              google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent('<p style="font-weight:700">' + postData[i].title +'|' +postData[i].adtype+ '</p><br><p style="font-weight:500">'+postData[i].location+'</p><p>'+postData[i].btype+'|'+postData[i].area+'m²|'+postData[i].price+'€</p><a href="http://localhost:4200/edit/'+postData[i].post_id+'">Edit</a><br>');
+                infowindow.open(this.map, this);
+            });
+
+
+
+        }
+
+
+
       }
       this.isLoading=false;
-      this.postsSum=postData.posts.length
+      this.postsSum=postData.length
     })
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService

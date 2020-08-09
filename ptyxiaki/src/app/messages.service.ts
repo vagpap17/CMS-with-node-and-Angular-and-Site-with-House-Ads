@@ -14,6 +14,7 @@ export class MessagesService{
       return this.http
         .get<any>("http://localhost:3000/api/messages/"+id+"/"+privileges)
         .subscribe(messages=>{
+
           this.messagesA=messages;
           this.messagesUpdated.next([...this.messagesA])
 

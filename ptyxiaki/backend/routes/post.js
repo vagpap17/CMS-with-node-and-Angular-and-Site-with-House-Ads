@@ -34,7 +34,7 @@ router.get("",function(req,res,next){
       if(err){
         console.log(err);
     }else{
-        res.json(results)
+        res.send(results)
     }
   })
 })

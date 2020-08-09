@@ -134,36 +134,43 @@ postals=[{postal:[11743,11744, 11745, 17234],lid:1},
     })
 
   });
-  this.route.paramMap.subscribe((paramMap:ParamMap)=>{
-    if(paramMap.has("postId")){
-      this.postId=paramMap.get("postId")
-      this.isLoading=true;
-      this.postsService.getPost(this.postId).subscribe(postData=>{
-        this.isLoading=false;
-        this.post={
-          id:postData[0][0].id,
-          title:postData[0][0].title,
-          description:postData[0][0].description,
-          price:postData[0][0].price,
-          adtype:postData[0][0].adtype,
-          dateAdded:null,
-          time:null,
-          addedBy:null
-
-        }
-        this.form.setValue({
-          title:this.post.title,
-          description:this.post.description,
-          price:this.post.price,
-          adtype:this.post.adtype,
-          images:null
-        })
+  // this.route.paramMap.subscribe((paramMap:ParamMap)=>{
+  //   console.log("edw")
+  //   if(paramMap.has("postId")){
+  //     this.postId=paramMap.get("postId")
+  //     this.isLoading=true;
+  //     this.postsService.getPost(this.postId).subscribe(postData=>{
+  //       this.isLoading=false;
+  //       this.post={
+  //         id:postData[0][0].id,
+  //         title:postData[0][0].title,
+  //         description:postData[0][0].description,
+  //         price:postData[0][0].price,
+  //         adtype:postData[0][0].adtype,
+  //         dateAdded:null,
+  //         time:null,
+  //         addedBy:null,
+  //         lat:postData[0][0].lat,
+  //         lng:postData[0][0].lng,
+  //         location:postData[0][0].location,
+  //         area:postData[0][0].area,
+  //         btype:postData[0][0].btype
 
 
+  //       }
+  //       this.form.setValue({
+  //         title:this.post.title,
+  //         description:this.post.description,
+  //         price:this.post.price,
+  //         adtype:this.post.adtype,
+  //         images:null
+  //       })
 
-        })
-     }
-    })
+
+
+  //       })
+  //    }
+  //   })
 
 
   }

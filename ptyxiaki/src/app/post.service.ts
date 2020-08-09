@@ -12,8 +12,8 @@ import { AuthService } from './auth/auth.service';
 
 @Injectable({providedIn:'root'})
 export class PostsService{
-  private posts:Post[]=[];
-  private postsUpdated= new Subject<{posts:Post[]}>();
+  private posts=[]
+  private postsUpdated= new Subject<any>();
   private images=[];
   private imagesForDelete=[];
   private lat;
@@ -31,32 +31,16 @@ export class PostsService{
   getPosts() {
     return this.http
       .get<any>("http://localhost:3000/api/posts")
-      .pipe(
-        map(postData => {
-          return postData.map(post => {
-            return {
-              title: post.title,
-              dateAdded: post.dateAdded,
-              id: post.post_id,
-              description:post.description,
-              price:post.price,
-              addedBy:post.user_id,
-              btype:post.btype
-            };
-          });
+      .subscribe(posts => {
 
-        })
-
-      )
-      .subscribe(transformedPosts => {
-        this.posts = transformedPosts;
-        this.postsUpdated.next({posts:[...this.posts]});
+        this.posts = posts;
+        this.postsUpdated.next(this.posts);
       });
   }
 
   getPost(id:string){
-    return this.http.get<any
-    >("http://localhost:3000/api/posts/"+id);
+    return this.http.
+    get<any>("http://localhost:3000/api/posts/"+id);
   }
   getPostUpdateListener(){
     return this.postsUpdated.asObservable();

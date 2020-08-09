@@ -15,6 +15,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit,OnDestroy {
+
   currentUser;
   currentUserId;
   privileges;
@@ -46,41 +47,46 @@ export class PostListComponent implements OnInit,OnDestroy {
     this.postsSub=this.postsService
     .getPostUpdateListener()
     .subscribe(postData=>{
-      console.log(postData.posts)
+      console.log(postData)
+      console.log(this.privileges)
       if(this.privileges==="1"){
-        for(let i=0;i<postData.posts.length;i++){
+        console.log("mphke admin")
+        for(let i=0;i<postData.length;i++){
 
-          var splited=postData.posts[i].dateAdded.split("T")
-          postData.posts[i].dateAdded=splited[0]
+          var splited=postData[i].dateAdded.split("T")
+          postData[i].dateAdded=splited[0]
           var time=splited[1].split(".")
-          postData.posts[i].time=time[0]
+          postData[i].time=time[0]
+
 
         }
-        this.dataSource = new MatTableDataSource(postData.posts);
+        this.dataSource = new MatTableDataSource(postData);
+        this.dataSource.paginator=this.paginator
       }else{
-        for(let i=0;i<postData.posts.length;i++){
+        for(let i=0;i<postData.length;i++){
           // if(postData.posts[i].)
-          if(parseInt(postData.posts[i].addedBy)===this.userId){
-            var splited=postData.posts[i].dateAdded.split("T")
-            postData.posts[i].dateAdded=splited[0]
+
+          if(parseInt(postData[i].user_id)===this.userId){
+            console.log("mphke")
+            var splited=postData[i].dateAdded.split("T")
+            postData[i].dateAdded=splited[0]
             var time=splited[1].split(".")
-            postData.posts[i].time=time[0]
-            this.postList.push(postData.posts[i])
+            postData[i].time=time[0]
+            this.postList.push(postData[i])
           }
 
 
         }
-        if(this.postList.length==0){
+        if(this.postList.length===0){
+          console.log(this.empty)
           this.empty=true;
+          console.log(this.empty)
         }
         console.log(this.postList)
         this.dataSource = new MatTableDataSource(this.postList);
+        this.dataSource.paginator=this.paginator
+
       }
-
-
-      console.log(this.dataSource)
-      this.dataSource.paginator = this.paginator;
-
     })
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authStatusSub = this.authService

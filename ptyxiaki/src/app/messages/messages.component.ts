@@ -38,6 +38,7 @@ export class MessagesComponent implements OnInit {
     this.messagesService.getMessages(id,pre)
     this.messagesSub=this.messagesService.getMessagesUpdated()
     .subscribe(data=>{
+      console.log(data)
       if(data.length>0){
         this.size=true;
         this.dataSource = new MatTableDataSource(data);

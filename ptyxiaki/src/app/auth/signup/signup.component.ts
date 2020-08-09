@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit{
         this.mode="edit";
         this.userId=paramMap.get("userId")
         this.isLoading=true;
-        this.authService.getUser(this.userId).subscribe(userData=>{
+        this.authService.getUser(this.userId).then(userData=>{
           this.isLoading=false;
           this.form.setValue({
             username:userData[0].username,
