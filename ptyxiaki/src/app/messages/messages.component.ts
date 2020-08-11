@@ -16,7 +16,7 @@ export class MessagesComponent implements OnInit {
   search;
   arraySeen=[];
   array=[];
-  displayedColumns: string[] = ['name', 'email', 'number','agent','advertisment','called','feedback'];
+  displayedColumns: string[] = ['name', 'email', 'number','agent','advertisment','called'];
   dataSource ;
   bclicked=false;
   size=false;

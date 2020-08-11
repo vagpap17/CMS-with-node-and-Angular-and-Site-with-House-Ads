@@ -20,13 +20,13 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.cusName}} </mat-cell>
+      <mat-cell class="large" *matCellDef="let element"> {{element.cusName}} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.cusEmail}} </mat-cell>
+    <ng-container class="large" matColumnDef="email">
+      <mat-header-cell class="large"*matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell class="large" *matCellDef="let element"> {{element.cusEmail}} </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
@@ -47,11 +47,7 @@
       <mat-cell *matCellDef="let element"><mat-checkbox (change)="clicked(element.id,$event.checked)" [checked]="element.seen" [disabled]="element.seen" ></mat-checkbox>
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="feedback">
-      <mat-header-cell *matHeaderCellDef> Feedback </mat-header-cell>
-      <mat-cell *matCellDef="let element"><a id="seeAd"[routerLink]="[element.adSelected]">See more</a>
-      </mat-cell>
-    </ng-container>
+
 
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

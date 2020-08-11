@@ -17,7 +17,11 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   menu;
   pre;
   id;
+  statisticsSub:Subscription;
+  satisfy;
+
   userRating;
+  statistics=[];
   reviews;
   isLoading=true;
   userIsAuthenticated = false;
@@ -62,6 +66,12 @@ this.form=new FormGroup({
     this.authService.getUser(this.id).then(()=>{
       this.userRating=this.authService.getRating()
       this.reviews=this.authService.getReviews()
+      if(this.userRating>0.01&&this.userRating<1.60){
+        this.satisfy="bad"
+      }else if(this.userRating>1.61&&this.userRating<3.20){
+        this.satisfy="mid"
+      }else if(this.userRating>3.21&&this.userRating<5.00)
+      this.satisfy="good"
     })
 
 
@@ -91,6 +101,12 @@ this.form=new FormGroup({
       this.form.setValue({menup:response.toString()})
     })
     this.authService.getUsers()
+    this.postService.calculateStatistics();
+    this.statisticsSub=this.postService.getStatisticsUpdated().subscribe(data=>{
+      this.statistics=[data]
+      console.log(this.statistics)
+    });
+
     this.usersSub=this.authService
     .getUserUpdateListener()
     .subscribe((userData)=>{

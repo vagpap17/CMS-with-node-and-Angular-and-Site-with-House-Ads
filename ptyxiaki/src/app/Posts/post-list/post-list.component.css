@@ -1,5 +1,33 @@
 table,mat-paginator {
-  width: 100%
+  width: 100%;
+
+}
+th{
+  background-color: #212121;;
+  color:white;
+  font-size:15px;
+  font-weight:500;
+}
+tr:nth-child(even){
+
+  background-color: #f2f2f2;
+}
+tr:nth-child(odd):hover{
+
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd){
+  background-color: #fafafa;
+}
+td{
+  color:#454545;
+  font-size:15px;
+
+}
+td:hover{
+  color:#262626;
+
 }
 #create{
   margin-bottom:20px;

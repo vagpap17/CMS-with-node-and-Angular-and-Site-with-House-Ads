@@ -1,5 +1,6 @@
-.row{
+#content{
   margin-left:40px;
+  padding-bottom:50px;
 }
 
 #cardformat{
@@ -20,7 +21,7 @@
 }
 #cardformat1{
   width:100%;
-  height:75%;
+  height:71%;
   padding:0.5px;
 }
 #cardformat1>ul>#head{
@@ -28,12 +29,7 @@
   color:white;
 }
 #statistics{
-
   width:100%;
-
-  height:400px;
-
-
 }
 
 #box{
@@ -43,10 +39,15 @@
   font-weight: bold;
 }
 
-#styling{
-  margin-top:20px;
-
+.progress{
+  height:50px;
+  margin-left:10px;
 }
+.progress-bar{
+  padding:10px;
+}
+
+
 button{
   margin-left:20px;
 }
@@ -59,7 +60,7 @@ button{
 }
 
 #rating{
-  padding-top:40px;
+  padding-top:25px;
   font-size:20px;
 
 }
@@ -76,3 +77,30 @@ button{
   font-size:30px;
 }
 
+#mood_bad{
+  color:red;
+}
+#mood_mid{
+  color:orange;
+}
+#mood_good{
+  color:green
+}
+.material-icons{
+  vertical-align: middle;
+}
+.list-group-item{
+  width:100%;
+}
+div>#cardformat>ul>.row{
+  padding:10px;
+  font-size:20px;
+  margin:0;
+  width:100%;
+
+  border:1px solid rgba(0, 0, 0, 0.125);
+}
+.statTitle{
+  margin-left:20px;
+
+}

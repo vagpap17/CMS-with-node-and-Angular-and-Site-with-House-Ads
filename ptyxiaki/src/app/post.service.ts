@@ -14,10 +14,21 @@ import { AuthService } from './auth/auth.service';
 export class PostsService{
   private posts=[]
   private postsUpdated= new Subject<any>();
+  private statisticsUpdated= new Subject<{}>();
+  statistics;
   private images=[];
   private imagesForDelete=[];
   private lat;
   private lon;
+  private aRating=0;
+  private likeAdNum=0;
+  private likeSiteNum=0;
+  private score=0;
+  private useAgainY=0;
+  private useAgainN=0;
+  private other=0;
+  private SM=0;
+  private ads=0;
   constructor(private http:HttpClient,private router:Router,private AuthService:AuthService){ }
 
   addImages(images:File[]){
@@ -211,6 +222,70 @@ export class PostsService{
         this.router.navigate(["/show"])
       })
 
+  }
+  calculateStatistics(){
+    this.likeSiteNum=0;
+    this.aRating=0;
+    this.likeAdNum=0;
+    this.score=0;
+    this.useAgainN=0;
+    this.useAgainY=0;
+    this.other=0;
+    this.SM=0;
+    this.ads=0;
+    this.http.get<any>("http://localhost:3000/api/messages/").
+    subscribe(data=>{
+      console.log(data)
+    for(let i=0;i<data.length;i++){
+        for(let key in data[i]){
+          // console.log(data[i][key])
+          if(key=="aRating"){
+            this.aRating=this.aRating+parseInt(data[i][key])/data.length
+          }else if(key=="likeAdNum"){
+            this.likeAdNum=this.likeAdNum+parseInt(data[i][key])/data.length
+          }else if(key=="likeSiteNum"){
+            this.likeSiteNum=this.likeSiteNum+parseInt(data[i][key])/data.length
+          }else if(key=="score"){
+            this.score=(this.score+parseInt(data[i][key])/data.length)
+          }else if(key=="useAgain"){
+            if(data[i][key]=="1"){
+              this.useAgainY++
+            }else{
+              this.useAgainN++
+            }
+          }else if(key=="wSeen"){
+            if(data[i][key]=="other"){
+              this.other++
+            }else if(data[i][key]=="SM"){
+              this.SM++
+            }else if(data[i][key]=="ads"){
+              this.ads++
+            }
+          }
+      }
+    }
+    let number=100/data.length
+      this.aRating=parseFloat((this.aRating).toFixed(1))
+      this.likeAdNum=parseFloat((this.likeAdNum).toFixed(1))
+      this.likeSiteNum=parseFloat((this.likeSiteNum).toFixed(1))
+
+      this.useAgainY=parseFloat((this.useAgainY*number).toFixed(1))
+      this.useAgainN=parseFloat((this.useAgainN*number).toFixed(1))
+      this.other=parseFloat((this.other*number).toFixed(1))
+      this.SM=parseFloat((this.SM*number).toFixed(1))
+      this.ads=parseFloat((this.ads*number).toFixed(1))
+
+      // console.log("useAgainN",this.useAgainY+"/"+100)
+      // console.log("useAgainN",this.useAgainN+"/"+100)
+      this.statistics={aRating:this.aRating,likeAdNum:this.likeAdNum,likeSiteNum:this.likeSiteNum,useAgainY:this.useAgainY,useAgainN:this.useAgainN,social:this.SM,ads:this.ads,other:this.other}
+      // console.log(this.statistics)
+      this.statisticsUpdated.next(this.statistics)
+    })
+
+  }
+  getStatisticsUpdated(){
+
+    return this.statisticsUpdated.asObservable();
   }
 
 

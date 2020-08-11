@@ -12,6 +12,16 @@ var connection=mysql.createConnection({
   database:"ptyxiaki",
   multipleStatements:true
 })
+router.get("",function(req,res){
+  q="select * from feedback where agentRating is not null"
+  connection.query(q,function(err,results){
+    if(err){
+      console.log(err)
+    }else{
+      res.json(results)
+    }
+  })
+})
 
 router.post("",function(req,res){
 
