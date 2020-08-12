@@ -1,3 +1,35 @@
-#content{
-  min-height: 400px;
+h1{
+  padding-top:20px;
+  font-size:30px;
 }
+/* 1d1f5e */
+#content{
+  background-color: #0f1031;
+  color:#F26335;
+  margin-top:50px;
+  min-height: 400px;
+  padding-bottom:20px;
+}
+h3{
+  font-size:25px;
+}
+.question{
+  background-color: #1d1f5e;
+  margin-bottom: 50px;
+  padding:20px;
+  font-size: 15px;
+
+}
+#submit{
+  background-color:#F26335;
+  color:white;
+}
+#submit:hover{
+  background-color:#050742;
+  color:white;
+}
+#submit:disabled{
+  background-color: #dedee0;
+}
+
+

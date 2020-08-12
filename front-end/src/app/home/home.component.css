@@ -53,22 +53,27 @@ form{
   border-radius: 30px;
 }
 .custom-select{
-  background-color:#0c1396;
-  color:white;
+  background-color:white;
+  color:#0c1396;
   border-color: #070b61;
 }
 
 .color{
-  background-color:#0c1396;
-  color:white;
+  background-color:white;
+  color:#0c1396;
   border-color: #070b61;
 }
 
 #submit{
-  background-color:#F26335
+  background-color:#F26335;
+  color:white;
 }
 #submit:hover{
   background-color:#050742;
+  color:white;
+}
+#submit:disabled{
+  background-color:red;
 }
 
 /* marketing */
@@ -81,7 +86,7 @@ form{
 
 
 .material-icons{
-  color:#4f4f4f;
+  color:#F26335;
   padding-left:18%;
 font-size:150px;
 }
@@ -95,10 +100,21 @@ font-size:150px;
 #stars{
   margin-left:25%;
 }
+.starAd{
+  color:red;
+}
+#star_icon{
+
+  color:#F26335;
+  font-size:30px;
+  padding-left: 0;
+  vertical-align: middle;
+
+}
 #topads{
   background-color: white;
   padding-top:70px;
-  padding-bottom:80px;
+  padding-bottom:50px;
 
 }
 .card{

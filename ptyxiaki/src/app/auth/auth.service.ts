@@ -21,11 +21,15 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
 
   private userUpdated= new Subject<any>();
+  private userEdit= new Subject<any>();
   private adminListener=new Subject<any>();
   private currentUserListener=new Subject<any>();
   private currentError=new Subject<any>();
 
   constructor(private http: HttpClient, private router: Router) {}
+  getUserEditListener(){
+    return this.userEdit.asObservable();
+  }
   getUsersSum(){
     return this.users
   }
@@ -76,9 +80,9 @@ export class AuthService {
   }
 
   createUser(username: string, password: string,uprivileges:number) {
-    const authData: AuthData = { username: username, password: password ,uprivileges:uprivileges};
+    const user = { username: username, password: password ,uprivileges:uprivileges,rating:0,ratingCount:0};
     this.http
-      .post<any>("http://localhost:3000/api/user/signup", authData)
+      .post<any>("http://localhost:3000/api/user/signup", user)
       .subscribe(response => {
         this.currentError.next(response.error)
         this.error=response.error
@@ -105,7 +109,6 @@ export class AuthService {
   }
   getUser(id:string){
     return this.http.get<any>("http://localhost:3000/api/user/"+id).toPromise().then(response=>{
-
       if(response[0].rating!==0){
         this.rating=(response[0].rating/response[0].ratingCount).toFixed(2);
         this.reviews=response[0].ratingCount
@@ -117,6 +120,20 @@ export class AuthService {
 
     })
   }
+  getUserEdit(id:string){
+    this.http.get<any>("http://localhost:3000/api/user/"+id).subscribe(response=>{
+      if(response[0].rating!==0){
+        this.rating=parseFloat((response[0].rating/response[0].ratingCount).toFixed(2));
+        this.reviews=response[0].ratingCount
+      }else{
+        this.rating=0;
+        this.reviews=0;
+      }
+      this.userEdit.next(response)
+
+    })
+  }
+
   updateUser(id:string,username:string,uprivileges:string){
    const upUser={
      username:username,
@@ -142,7 +159,7 @@ export class AuthService {
       .subscribe(data => {
         for(let i=0;i<data.length;i++){
           if(data[i].rating!==0){
-            data[i].rating=(data[i].rating/data[i].ratingCount).toFixed(2);
+            data[i].rating=parseFloat((data[i].rating/data[i].ratingCount).toFixed(2)).toFixed(2);
           }
 
           //console.log(data[i].rating)

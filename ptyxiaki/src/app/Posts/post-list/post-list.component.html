@@ -3,13 +3,9 @@
   <button id="create"  mat-stroked-button routerLink="/create" type="button" >Add new Post</button>
   <br>
   <mat-form-field>
-    <input matInput [(ngModel)]="search" placeholder="Filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. shop" #input>
   </mat-form-field>
-  <button mat-mini-fab matSuffix color="primary" class="btn" (click)="applyFilter()" >
-    <mat-icon>search</mat-icon>
-  </button>
-  <!-- <div *ngIf="empty"><h1>You have no ads</h1></div>
-  <div *ngIf="!empty"> -->
 
 
 <table mat-table  [dataSource]="dataSource" class="mat-elevation-z8" >

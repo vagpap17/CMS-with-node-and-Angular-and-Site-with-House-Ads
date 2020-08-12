@@ -36,15 +36,21 @@ export class SignupComponent implements OnInit{
       if(paramMap.has("userId")){
         this.mode="edit";
         this.userId=paramMap.get("userId")
+        console.log(this.userId)
         this.isLoading=true;
-        this.authService.getUser(this.userId).then(userData=>{
+        this.authService.getUserEdit(this.userId)
+        this.authService.getUserEditListener().subscribe(user=>{
           this.isLoading=false;
           this.form.setValue({
-            username:userData[0].username,
+            username:user[0].username,
             password:"a",
-            privileges:userData[0].uprivileges.toString()
+            privileges:user[0].uprivileges.toString()
           })
         })
+        //   .subscribe((userData)=>{
+        //   console.log(userData)
+        //
+        // })
       }
 
       })

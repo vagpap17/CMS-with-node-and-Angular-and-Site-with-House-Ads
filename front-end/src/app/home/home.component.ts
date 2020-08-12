@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   selected;
   selectedL;
   flocations=[]
-  mode=false;
+  mode;
   searchText;
   stars=[]
   ads=[]
@@ -190,6 +190,8 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
     this.router.navigate(['search'], { queryParams: filters});
   }
 
-
+  changeMode(){
+    this.mode=this.form.get("btype").value
+  }
 
 }

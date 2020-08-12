@@ -1,28 +1,32 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div id="content">
 
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. admin" #input>
+  </mat-form-field>
 
 <h1>Users List</h1>
-<table mat-table  [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
   <!-- Position Column -->
   <ng-container  matColumnDef="id">
-    <th mat-header-cell id="id" *matHeaderCellDef> id. </th>
-    <td mat-cell  id="id" *matCellDef="let element"> {{element.id}} </td>
+    <th mat-header-cell class="small" *matHeaderCellDef > id. </th>
+    <td mat-cell  class="small" *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="username">
-    <th mat-header-cell id="username" *matHeaderCellDef>  Title </th>
-    <td mat-cell id="username" *matCellDef="let element"> {{element.username}}</td>
+    <th mat-header-cell class="medium" *matHeaderCellDef>  Username </th>
+    <td mat-cell  class="medium" *matCellDef="let element"> {{element.username}}</td>
   </ng-container>
 
   <ng-container matColumnDef="privileges">
-    <th mat-header-cell id="privileges" *matHeaderCellDef>  Privileges </th>
-    <td mat-cell id="privileges" *matCellDef="let element"> {{element.uprivileges}}</td>
+    <th mat-header-cell class="medium" *matHeaderCellDef>  Privileges </th>
+    <td mat-cell class="medium"*matCellDef="let element"> {{element.uprivileges}}</td>
   </ng-container>
 
   <!-- Symbol Column -->
@@ -32,20 +36,35 @@
   </ng-container> -->
 
   <ng-container matColumnDef="Actions">
-    <th mat-header-cell id="actions"*matHeaderCellDef> Actions </th>
-  <td mat-cell id="actions" *matCellDef="let element"> <button mat-button color='primary' [routerLink]="['/users',element.id]" *ngIf="element.username!==currentUser">Edit</button><br><button *ngIf="element.username!==currentUser&&element.privileges!==1"mat-button color='primary' (click)="openDialog(element.id)">Delete</button> </td>
-  </ng-container> <ng-container matColumnDef="Rating">
-    <th mat-header-cell id=""*matHeaderCellDef> Rating </th>
-    <td mat-cell id="privileges" *matCellDef="let element"> {{element.rating}}</td>
+    <th mat-header-cell mat-sort-header class="medium"*matHeaderCellDef> Actions </th>
+  <td mat-cell id="actions"class="medium" *matCellDef="let element">
+    <span id="edit"class="material-icons"[routerLink]="['/users',element.id]" *ngIf="element.username!==currentUser">create</span>
+    <span id="delete"*ngIf="element.username!==currentUser&&element.privileges!==1"class="material-icons" (click)="openDialog(element.id)">delete</span>
+    </td>
+  </ng-container> <ng-container matColumnDef="rating">
+    <th mat-header-cell mat-sort-header class="medium"*matHeaderCellDef> Rating </th>
+    <td mat-cell class="medium" *matCellDef="let element"> {{element.rating}}
+      <span id="mood_bad"class="material-icons col-md-1" *ngIf="element.rating>0.01&&element.rating<1.60">
+      mood_bad
+      </span>
+      <span id="mood_mid"*ngIf="element.rating>1.61&&element.rating<3.20" class="material-icons col-md-1  ">
+        sentiment_dissatisfied
+      </span>
+      <span id="mood_good"*ngIf="element.rating>3.21&&element.rating<5.00" class="material-icons col-md-1 ">
+        mood
+      </span>
   </ng-container>
-<ng-container matColumnDef="Ratings">
-  <th mat-header-cell id=""*matHeaderCellDef> Reviews </th>
-  <td mat-cell id="privileges" *matCellDef="let element"> {{element.ratingCount}}</td>
+<ng-container matColumnDef="ratingCount">
+  <th mat-header-cell mat-sort-header class="medium" *matHeaderCellDef> Reviews </th>
+  <td mat-cell class="medium" *matCellDef="let element"> {{element.ratingCount}}</td>
 </ng-container>
-
+<ng-container matColumnDef="postCount">
+  <th mat-header-cell mat-sort-header class="medium" *matHeaderCellDef> Posts </th>
+  <td mat-cell class="medium" *matCellDef="let element"> {{element.postCount}}</td>
+</ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
 </table>
-
+<mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

@@ -1,4 +1,6 @@
-
+#content{
+  margin-bottom:50px;
+}
 #stitle{
   background-color: #F26335;
   margin-bottom: 0;
@@ -22,6 +24,7 @@
   margin-left:20px;
   font-size:15px;
 
+
 }
 #search select{
   padding-left:2px;
@@ -35,20 +38,18 @@
   padding-top:10px;
 }
 form{
-  padding-top:20px;
-  padding-right:40px;
-  padding-left:35px;
+  padding:20px;
   background-color: #0f1031;
 }
 .custom-select{
-  background-color:#0c1396;
-  color:white;
+  background-color:white;
+  color:#0c1396;
   border-color: #070b61;
 }
 
 .color{
-  background-color:#0c1396;
-  color:white;
+  background-color:white;
+  color:#0c1396;
   border-color: #070b61;
 }
 .need{
@@ -74,13 +75,23 @@ img{
 h4{
   color:#555;
 }
+.card{
+  background-color: #0f1031;
+  color:white;
+  box-shadow: 0 3px 6px rgba(0,0,0,1);
+  border-radius: 30px;
 
+}
+img,.card{
+  border-radius: 30px;
+
+}
 a{
   text-decoration: none;
-  color:#111111;
+  color:white;
 }
 a:hover{
-  color:#3bb9bf;
+  color:#F26335;
   transition: 0.5s;
 }
 #location{
@@ -92,4 +103,8 @@ a:hover{
 }
 h2{
   margin:0;
+}
+#star_icon{
+  margin-left:15px;
+  color:#F26335
 }

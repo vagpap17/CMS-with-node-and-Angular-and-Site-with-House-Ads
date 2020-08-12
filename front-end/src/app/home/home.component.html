@@ -4,12 +4,12 @@
       <div class="form-row">
         <div id="searchForm"class="row  col-md-6">
 
-        <form [formGroup]="form" *ngIf="!mode" class="col-md-12" >
+        <form [formGroup]="form"  class="col-md-12" >
           <h2 id="you">Find the property <span class="need">you</span> need!</h2>
           <div class="row">
             <div class="form-group col-md-6">
               <label class="need">Type</label>
-              <select class="form-control custom-select" formControlName="btype">
+              <select class="form-control custom-select" formControlName="btype" (change)="changeMode()">
                 <option value="null"></option>
                 <option value="apartment">Residence</option>
                 <option value="shop">Commercial</option>
@@ -45,7 +45,7 @@
               <label class="need"for="inputZip">Max price</label>
               <input type="text" class="form-control color" formControlName="maxprice">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6" *ngIf="mode==='apartment'" >
               <label class="need">Bedrooms</label>
               <select class="form-control custom-select" formControlName="bednum" >
                 <option value="null"></option>
@@ -55,8 +55,8 @@
                 <option value="1">4</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
-              <label class="need">Bathrooms</label>
+            <div class="form-group col-md-6" *ngIf="mode==='apartment'" >
+              <label class="need" >Bathrooms</label>
               <select class="form-control custom-select" formControlName="bathnum" >
                 <option value="null"></option>
                 <option value="1">1</option>
@@ -103,7 +103,7 @@
                 sentiment_satisfied_alt
                 </span>
               <h1 id=""><b>We will be there for you!</b></h1>
-              Send us your information and we will contact <span class="need"><b>you</b></span> for more information!!
+              Send us your information and we will contact <span class="need"><b>you</b></span> as soon as possible!!
             </div>
             <div  class="col-md-4">
 
@@ -122,10 +122,13 @@
           <div class="row ">
             <div [routerLink]="['/show',stars[i].post_id]" class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let star of stars;let i=index">
               <div class="card" [routerLink]="['/show',stars[i].post_id]">
+
                 <img class="card-img-top" [src]="stars[i].photoname" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{stars[i].state}}>{{stars[i].location}}</h5>
-                  <p class="card-text"><b>{{stars[i].title}}</b></p>
+                  <p class="card-text"><b>{{stars[i].title}}</b><span id="star_icon" class="material-icons">
+                    stars
+                    </span></p>
                   <p class="card-text">{{stars[i].price}}€ | {{stars[i].area}}sqm | {{stars[i].bednum}} bedrooms</p>
                   <button id="CardSubmit" class="card-link" type="button"[routerLink]="['/ads/show',stars[i].post_id]" class="btn-dark btn">See More</button>
                 </div>
@@ -135,7 +138,7 @@
       </div>
     </div>
     <div id="services" class="col-md-12 pt-0">
-      <h1 id="checkout"class="pt-0">Check out our Map!</h1>
+      <!-- <h1 id="checkout"class="pt-0">Check out our Map!</h1> -->
 
             <div id="map" ></div>
 

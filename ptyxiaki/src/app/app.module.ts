@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon'
 import {MatButtonModule} from '@angular/material/button'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table'
+// MatSortModule
+import { MatSortModule } from '@angular/material/sort'
 import {MatPaginatorModule} from '@angular/material/paginator'
 import {MatCardModule} from '@angular/material/card'
 import {MatInputModule} from '@angular/material/input'
@@ -78,6 +80,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatExpansionModule,
     MatDialogModule,
     MatListModule,
+    MatSortModule
 
 
   ],

@@ -20,7 +20,9 @@ router.post("/signup", (req, res, next) => {
     const user = {
       username: req.body.username,
       upassword: hash,
-      uprivileges:req.body.uprivileges
+      uprivileges:req.body.uprivileges,
+      rating:0,
+      ratingCount:0
     };
     q="insert into users set?;select last_insert_id() as lastid"
     connection.query(q,user,function(error,newUser){
@@ -104,7 +106,7 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("",(req,res,next)=>{
-  connection.query("select * from users",function(error,results){
+  connection.query("select u.id,p.id as postId,username,uprivileges,rating,ratingCount,count(*) as postCount from users u left join posts p on u.id=p.user_id group by u.id",function(error,results){
     if(error){
       console.log(error)
     }else{

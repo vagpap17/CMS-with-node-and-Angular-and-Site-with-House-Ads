@@ -27,8 +27,8 @@
 
         <h1 id="title" class="d-inline col-md-8">{{info.title}},{{info.state}},{{info.location}}<span class="ml-2 badge badge-pill ">{{info.adtype}}</span><br>
           <div class="pt-3">
-          <span id="area">{{info.area}} m² | </span>
-          <span *ngIf="info.btype==='apartment'" class="material-icons "> bathtub<h3 class="d-inline ml-1 mt-2"> {{info.bathnum}} Bathrooms</h3></span>
+          <span id="area">{{info.area}} m²  </span>
+          <span *ngIf="info.btype==='apartment'" class="material-icons ">| bathtub<h3 class="d-inline ml-1 mt-2"> {{info.bathnum}} Bathrooms</h3></span>
           <span *ngIf="info.btype==='apartment'" class="material-icons ml-3">| king_bed<h3 class="d-inline ml-1 mt-2"> {{info.bednum}} Bedrooms</h3></span>
 
           </div>
