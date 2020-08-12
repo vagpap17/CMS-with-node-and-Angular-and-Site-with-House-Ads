@@ -23,7 +23,7 @@ export class PostListComponent implements OnInit,OnDestroy {
   search;
   postList=[]
   isLoading=false;
-  displayedColumns: string[] = ['edit','id', 'Title', 'DateAdded','Time','type','addedBy','Actions'];
+  displayedColumns: string[] = ['edit','post_id', 'title', 'dateAdded','time','btype','user_id','Actions','starAd'];
   userIsAuthenticated = false;
   dataSource;
 
@@ -62,6 +62,7 @@ export class PostListComponent implements OnInit,OnDestroy {
         }
         this.dataSource = new MatTableDataSource(postData);
         this.dataSource.paginator=this.paginator
+        this.dataSource.sort = this.sort;
       }else{
         for(let i=0;i<postData.length;i++){
           // if(postData.posts[i].)
@@ -85,6 +86,7 @@ export class PostListComponent implements OnInit,OnDestroy {
         console.log(this.postList)
         this.dataSource = new MatTableDataSource(this.postList);
         this.dataSource.paginator=this.paginator
+        this.dataSource.sort = this.sort;
 
       }
     })

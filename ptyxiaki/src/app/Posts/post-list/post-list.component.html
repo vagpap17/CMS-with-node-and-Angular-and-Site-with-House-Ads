@@ -8,42 +8,42 @@
   </mat-form-field>
 
 
-<table mat-table  [dataSource]="dataSource" class="mat-elevation-z8" >
+<table mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8" >
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef class="small"> Edit </th>
   <td mat-cell *matCellDef="let element" ><span class="material-icons"><a id="edit"*ngIf="privileges==='1'||element.user_id===userId"  [routerLink]="['/edit',element.post_id]">edit</a> </span><br>
 </td>
 
   </ng-container>
-  <ng-container matColumnDef="id" >
-    <th mat-header-cell *matHeaderCellDef > id. </th>
+  <ng-container matColumnDef="post_id" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header > id. </th>
     <td mat-cell *matCellDef="let element" class="small"> {{element.post_id}} </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="Title" >
+  <ng-container matColumnDef="title" >
     <th mat-header-cell *matHeaderCellDef >  Title </th>
     <td mat-cell *matCellDef="let element" class="large"> {{element.title}}</td>
   </ng-container>
 
-  <ng-container matColumnDef="addedBy" >
-    <th mat-header-cell *matHeaderCellDef >  addedBy </th>
+  <ng-container matColumnDef="user_id" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header >  addedBy </th>
     <td mat-cell *matCellDef="let element" class="small"> {{element.user_id}}</td>
   </ng-container>
 
 
-  <ng-container matColumnDef="type">
-    <th mat-header-cell *matHeaderCellDef class="type"> Type</th>
+  <ng-container matColumnDef="btype">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="type"> Type</th>
     <td mat-cell *matCellDef="let element"> {{element.btype}}</td>
   </ng-container>
 
   <!-- Weight Column -->
-  <ng-container matColumnDef="DateAdded" >
-    <th mat-header-cell *matHeaderCellDef class="dateadded"> DateAdded </th>
+  <ng-container matColumnDef="dateAdded" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateadded"> DateAdded </th>
     <td mat-cell *matCellDef="let element" class="medium" > {{element.dateAdded}} </td>
   </ng-container>
-  <ng-container matColumnDef="Time">
-    <th mat-header-cell *matHeaderCellDef class="dateadded"> Time</th>
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateadded"> Time</th>
     <td mat-cell *matCellDef="let element" class="medium"> {{element.time}}</td>
   </ng-container>
 
@@ -51,6 +51,12 @@
     <th mat-header-cell *matHeaderCellDef class="edit"> Actions </th>
     <td mat-cell *matCellDef="let element"> <span class="material-icons" *ngIf="privileges==='1'||element.user_id===userId"mat-button color='primary' >
       <a id="edit" (click)="openDialog(element.id)"> delete</a>
+       </span> </td>
+  </ng-container>
+  <ng-container matColumnDef="starAd">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header class="edit"> StarAd </th>
+    <td mat-cell *matCellDef="let element"> <span *ngIf="element.starAd=='1'"class="material-icons" mat-button color='primary' >
+      star
        </span> </td>
   </ng-container>
 
