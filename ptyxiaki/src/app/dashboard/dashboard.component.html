@@ -130,21 +130,25 @@
 
     </div>
     <div *ngIf="pre=='1'"class="col-md-6">
-      <mat-card id="styling">
-        <h2>Styling</h2>
-        <br>
-        <form [formGroup]="form" (submit)="onSaveMenu()" enctype="multipart/form-data">
-          <mat-form-field>
+      <mat-card id="cardformat2">
+        <ul class="list-group">
+          <li class="list-group-item" id="head"><h2>Styling</h2></li>
+          <li class="list-group-item" id="styling">
+              <form [formGroup]="form" (submit)="onSaveMenu()" enctype="multipart/form-data">
+                <mat-form-field>
 
-            <mat-label>Menu Position</mat-label>
-            <mat-select formControlName="menup">
-              <mat-option value="0">top-menu</mat-option>
-              <mat-option value="1">Sidenav</mat-option>
+                  <mat-label>Menu Position</mat-label>
+                  <mat-select formControlName="menup">
+                    <mat-option value="0">top-menu</mat-option>
+                    <mat-option value="1">Sidenav</mat-option>
 
-            </mat-select>
-          </mat-form-field>
-          <button mat-raised-button type="submit" color="primary">Save</button>
-      </form>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-raised-button type="submit" color="primary">Save</button>
+            </form>
+          </li>
+        </ul>
+
       </mat-card>
     </div>
   </div>

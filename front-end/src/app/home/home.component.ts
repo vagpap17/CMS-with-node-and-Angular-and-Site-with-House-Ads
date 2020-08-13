@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   @Output() groupFilters: EventEmitter<any> = new EventEmitter<any>();
 
   Sfilters=[];
-  selected;
+  selected="null";
   selectedL;
   flocations=[]
   mode;
@@ -73,19 +73,8 @@ export class HomeComponent implements OnInit {
     })
 
   })
-  this.formC=new FormGroup({
-    state: new FormControl(null,{
-  }),
-  location: new FormControl(null,{
-  }),
-  adtype: new FormControl(null,{
-  }),
-  minprice: new FormControl(null,{
-  }),
-  maxprice: new FormControl(null,{
-  })
 
-})
+
 this.adService.getAdsUpdateListener().subscribe(ads=>{
 
   for(let i=0;i<ads.length;i++){

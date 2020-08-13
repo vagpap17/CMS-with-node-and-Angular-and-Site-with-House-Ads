@@ -29,7 +29,7 @@
   font-size:40px;
 }
 .need{
-  color:#F26335;
+  color:#E63946;
 }
 
 .card{
@@ -48,28 +48,28 @@ form{
   padding-top:20px;
   font-family:Arial, Helvetica, sans-serif;
   font-weight:600;
-  background: rgba(15,16,49,0.75);
-  box-shadow: 0 3px 6px rgba(0,0,0,1);
+  background: rgba(0, 48, 73,0.75);
+  box-shadow: 0 3px 6px #003049;
   border-radius: 30px;
 }
 .custom-select{
   background-color:white;
-  color:#0c1396;
-  border-color: #070b61;
+  color:#003049;
+  border-color: #003049;
 }
 
 .color{
   background-color:white;
-  color:#0c1396;
-  border-color: #070b61;
+  color:#003049;
+  border-color: #003049;
 }
 
 #submit{
-  background-color:#F26335;
+  background-color:#E63946;
   color:white;
 }
 #submit:hover{
-  background-color:#050742;
+  background-color:#003049;
   color:white;
 }
 #submit:disabled{
@@ -79,14 +79,15 @@ form{
 /* marketing */
 
 #marketing{
-  padding-top:30px;
+  padding-top:20px;
+  padding-bottom: 20px;
   background-color: #fafafa;
 
 }
 
 
 .material-icons{
-  color:#F26335;
+  color:#E63946;
   padding-left:18%;
 font-size:150px;
 }
@@ -98,14 +99,16 @@ font-size:150px;
 }
 /* stars */
 #stars{
-  margin-left:25%;
+  margin-left:38%;
+  font-size:50px;
+  font-weight: 500;
 }
 .starAd{
   color:red;
 }
 #star_icon{
 
-  color:#F26335;
+  color:#E63946;
   font-size:30px;
   padding-left: 0;
   vertical-align: middle;
@@ -113,12 +116,12 @@ font-size:150px;
 }
 #topads{
   background-color: white;
-  padding-top:70px;
+  padding-top:40px;
   padding-bottom:50px;
 
 }
 .card{
-  background-color: #0f1031;
+  background-color: #003049;
   color:white;
   box-shadow: 0 3px 6px rgba(0,0,0,1);
   border-radius: 30px;
@@ -131,7 +134,7 @@ img,.card{
   border-top-left-radius: 30px;
 }
 .card:hover{
-  background-color: #24266e;
+  background-color: #02537d;
 
 }
 .card-body{
@@ -146,7 +149,7 @@ img,.card{
 
   #CardSubmit{
     margin-left: 30%;
-    background-color:#F26335
+    background-color:#E63946
   }
   #CardSubmit:hover{
     background-color:#050742;
@@ -172,7 +175,7 @@ img,.card{
   padding-top:70px;
   padding-left:13%;
   padding-bottom:70px;
-  background-color: #0f1031;
+  background-color: #003e5e;
 }
 #checkout{
   padding-left: 35%;
@@ -185,18 +188,18 @@ img,.card{
   font-size:15px;
 }
 #links:hover{
-  color:#F26335;
+  color:#E63946;
 }
 #state{
   font-size:20px;
-  color:#F26335;
+  color:#E63946;
 }
 #state:hover{
-  color:#d4572f;
+  color:#E63946;
   cursor: pointer;
 }
 #suggested>h1{
-  color:#F26335;
+  color:#E63946;
   padding-left:17%;
   padding-bottom:30px;
   font-weight:500;

@@ -22,10 +22,10 @@
                 <option *ngFor="let item of states" [value]="item.state">{{item.state}}</option>
               </select>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6" *ngIf="selected!=='null'">
               <label class="need">Location</label>
-              <select class="form-control custom-select" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)">
-                <option value="null"></option>
+              <select class="form-control custom-select" formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)" >
+                <option  value="null"></option>
                 <option *ngFor="let item of flocations" [value]="item.location">{{item.location}}</option>
               </select>
             </div>

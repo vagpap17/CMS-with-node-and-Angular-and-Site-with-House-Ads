@@ -36,7 +36,7 @@
   </ng-container> -->
 
   <ng-container matColumnDef="Actions">
-    <th mat-header-cell mat-sort-header class="medium"*matHeaderCellDef> Actions </th>
+    <th mat-header-cell  class="medium"*matHeaderCellDef> Actions </th>
   <td mat-cell id="actions"class="medium" *matCellDef="let element">
     <span id="edit"class="material-icons"[routerLink]="['/users',element.id]" *ngIf="element.username!==currentUser">create</span>
     <span id="delete"*ngIf="element.username!==currentUser&&element.privileges!==1"class="material-icons" (click)="openDialog(element.id)">delete</span>

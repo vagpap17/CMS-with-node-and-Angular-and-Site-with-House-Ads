@@ -2,9 +2,9 @@
   margin-bottom:50px;
 }
 #stitle{
-  background-color: #F26335;
+  background-color: #003049;
   margin-bottom: 0;
-  color:#0f1031;
+  color:#E63946;
 }
 #status{
   margin-top:10px;
@@ -18,7 +18,7 @@
     width: 400px;
   }
   .badge{
-    background-color: #00deb6;
+    background-color: #E63946;
   }
 #search{
   margin-left:20px;
@@ -34,34 +34,34 @@
   background-color:#e0ebf4;
   height:50px;
   font-size:20px;
-  color:#0f1031;
+  color:#003049;
   padding-top:10px;
 }
 form{
   padding:20px;
-  background-color: #0f1031;
+  background-color: #003049;
 }
 .custom-select{
   background-color:white;
-  color:#0c1396;
-  border-color: #070b61;
+  color:#003049;
+  border-color: #003049;
 }
 
 .color{
   background-color:white;
-  color:#0c1396;
-  border-color: #070b61;
+  color:#003049;
+  border-color: #003049;
 }
 .need{
-  color:#F26335;
+  color:#E63946;
 }
 
 
 #submit{
-  background-color:#F26335
+  background-color:#E63946
 }
 #submit:hover{
-  background-color:#050742;
+  background-color:#F77F00;
 }
 img{
   width:100%;
@@ -76,7 +76,7 @@ h4{
   color:#555;
 }
 .card{
-  background-color: #0f1031;
+  background-color: #003049;
   color:white;
   box-shadow: 0 3px 6px rgba(0,0,0,1);
   border-radius: 30px;
@@ -91,7 +91,7 @@ a{
   color:white;
 }
 a:hover{
-  color:#F26335;
+  color:#E63946;
   transition: 0.5s;
 }
 #location{
@@ -99,12 +99,12 @@ a:hover{
 }
 #price{
   font-size: 20px;
-  color:#F26335;
+  color:#E63946;
 }
 h2{
   margin:0;
 }
 #star_icon{
   margin-left:15px;
-  color:#F26335
+  color:#E63946
 }

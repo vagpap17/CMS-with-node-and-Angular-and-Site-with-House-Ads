@@ -28,6 +28,15 @@
   background-color: #212121;
   color:white;
 }
+#cardformat2{
+  width:100%;
+  height:40%;
+  padding:0.5px;
+}
+#cardformat2>ul>#head{
+  background-color: #212121;
+  color:white;
+}
 #statistics{
   width:100%;
 }
@@ -103,4 +112,8 @@ div>#cardformat>ul>.row{
 .statTitle{
   margin-left:20px;
 
+}
+#styling{
+  padding-bottom:40px;
+  margin-top:20px;
 }
