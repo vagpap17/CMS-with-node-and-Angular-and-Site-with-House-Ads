@@ -137,7 +137,7 @@ this.form=new FormGroup({
                 strokeColor: '#E63946',
                 strokeOpacity: 0.9,
                 strokeWeight: 1,
-                scale: 5
+                scale: 4
             },
 
               });
@@ -161,9 +161,9 @@ this.form=new FormGroup({
               title: 'Uluru (Ayers Rock)',
               icon: {
                 path: google.maps.SymbolPath.CIRCLE,
-                fillColor: '#03369e',
+                fillColor: '#235ec4',
                 fillOpacity: 1,
-                strokeColor: '#03369e',
+                strokeColor: '#235ec4',
                 strokeOpacity: 0.9,
                 strokeWeight: 1,
                 scale: 5
