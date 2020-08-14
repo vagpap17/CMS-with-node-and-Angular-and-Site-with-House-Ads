@@ -25,7 +25,7 @@ export class AdsService{
   }
   getAllAds(){
 
-    return this.http.get<any>("http://localhost:3000/api/posts/")
+    return this.http.get<any>("http://localhost:3000/api/posts/ads")
     .toPromise().then(ads=>{
      this.ads=ads
     this.adsUpdated.next([...this.ads])

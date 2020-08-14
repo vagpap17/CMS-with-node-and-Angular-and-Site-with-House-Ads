@@ -5,6 +5,7 @@ import { PostsService } from 'src/app/post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { mimeType } from '../post-edit/mime-type.validator';
 import { Location } from '@angular/common';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-post-edit',
@@ -15,7 +16,7 @@ export class PostEditComponent implements OnInit {
   selected;
   selectedL;
   adtypes="";
-
+  privileges;
   imageTrue=false;
   deleteMode=false;
   imagePicked=false;
@@ -89,12 +90,13 @@ export class PostEditComponent implements OnInit {
   fpostals=[]
   constructor(private postsService:PostsService,
     private route:ActivatedRoute,
-    private _location: Location
+    private _location: Location,
+    private authService:AuthService
     ) { }
   imagePreview:string;
 
   ngOnInit() {
-
+    this.privileges=this.authService.getPrivileges();
     this.form=new FormGroup({
       title: new FormControl(null,{
         validators:[Validators.required]

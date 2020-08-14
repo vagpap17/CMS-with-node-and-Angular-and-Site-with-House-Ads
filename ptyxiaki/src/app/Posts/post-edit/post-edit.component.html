@@ -101,7 +101,7 @@
     <input matInput type="text" formControlName="yearb" placeholder="Year Built">
     <mat-error *ngIf="form.get('yearb').invalid">Please enter a valid year built</mat-error>
   </mat-form-field>
-    <mat-checkbox color="primary" formControlName="star"><span class="material-icons">
+    <mat-checkbox color="primary" *ngIf="privileges==='1'" formControlName="star"><span class="material-icons">
       star
       </span></mat-checkbox>
     <br>

@@ -28,6 +28,17 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 router.get("",function(req,res,next){
+  q="select posts.id,posts.title,posts.dateAdded,posts.btype,posts.user_id,posts.starAd,users.username from posts inner join users on posts.user_id=users.id right join images on posts.id=images.post_id group by posts.id order by dateAdded desc "
+  // q="select * from posts"
+  connection.query(q,function(err,results,fields){
+      if(err){
+        console.log(err);
+    }else{
+        res.send(results)
+    }
+  })
+})
+router.get("/ads",function(req,res,next){
   q="select * from posts right join images on posts.id=images.post_id group by posts.id order by dateAdded desc"
   // q="select * from posts"
   connection.query(q,function(err,results,fields){
@@ -49,49 +60,6 @@ router.get("/stars",function(req,res,next){
   })
 })
 
-router.get("/show/:adtype",function(req,res,next){
-  if(req.params.adtype==="resSales"){
-    q="select * from posts inner join images on posts.id=images.post_id  where btype='apartment' AND adtype='sell' group by posts.id"
-    connection.query(q,function(err,results,fields){
-        if(err){
-          console.log(err);
-      }else{
-          res.json(results)
-      }
-    })
-  }
-  if(req.params.adtype==="resRent"){
-    q="select * from posts inner join images on posts.id=images.post_id  where btype='apartment' AND adtype='rent' group by posts.id"
-    connection.query(q,function(err,results,fields){
-        if(err){
-          console.log(err);
-      }else{
-          res.json(results)
-      }
-    })
-  }
-  if(req.params.adtype==="comSales"){
-    q="select * from posts inner join images on posts.id=images.post_id  where btype='shop' AND adtype='sell' group by posts.id"
-    connection.query(q,function(err,results,fields){
-        if(err){
-          console.log(err);
-      }else{
-          res.json(results)
-      }
-    })
-  }
-  if(req.params.adtype==="comRent"){
-    q="select * from posts inner join images on posts.id=images.post_id  where btype='shop' AND adtype='rent' group by posts.id"
-    connection.query(q,function(err,results,fields){
-        if(err){
-          console.log(err);
-      }else{
-          res.json(results)
-      }
-    })
-  }
-
-})
 
 
 router.get("/:id",function(req,res,next){

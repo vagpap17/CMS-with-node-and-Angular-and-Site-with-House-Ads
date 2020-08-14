@@ -4,28 +4,29 @@ h1{
 }
 /* 1d1f5e */
 #content{
-  background-color: #0f1031;
-  color:#F26335;
+  background-color: #010a1c;
+  color:#E63946;
   margin-top:50px;
   min-height: 400px;
   padding-bottom:20px;
+  margin-bottom:100px;
 }
 h3{
   font-size:25px;
 }
 .question{
-  background-color: #1d1f5e;
+  background-color: #011338;
   margin-bottom: 50px;
   padding:20px;
   font-size: 15px;
 
 }
 #submit{
-  background-color:#F26335;
+  background-color:#E63946;
   color:white;
 }
 #submit:hover{
-  background-color:#050742;
+  background-color:#010a1c;
   color:white;
 }
 #submit:disabled{

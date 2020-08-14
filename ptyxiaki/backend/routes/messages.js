@@ -52,6 +52,7 @@ router.post("",function(req,res){
       }else{
         var result1=JSON.parse(JSON.stringify(results[2]))
         feedbackEmail=result1[0].cusEmail
+        feedbackCustomer=result1[0].cusName
         var link="http://localhost:4300/feedback/"+formId
           async function main() {
                const transporter = nodemailer.createTransport({
@@ -70,7 +71,7 @@ router.post("",function(req,res){
                   to: feedbackEmail, // list of receivers
                   subject: "Hello ✔", // Subject line
                   text: "Hello world?", // plain text body
-                  html: 'Hello please give us feedback<a href="'+ link +'">Give us feedback</a>' // html body
+                  html: '<h1>Hello '+feedbackCustomer+'!</h1> <br><p>Thank you for using Vagpap to find your next Property.<br>In order to improve our services we need your feedback!</p><a href="'+ link +'">Review our services</a><br>' // html body
                 });
 
                 console.log("Message sent: %s", info.messageId);
