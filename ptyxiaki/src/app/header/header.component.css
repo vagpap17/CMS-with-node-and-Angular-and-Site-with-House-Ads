@@ -5,7 +5,7 @@
 #current{
   padding:15px;
   font-size:20px;
-  border-bottom:1px solid #cfcfcf;
+
 
 }
 
@@ -42,7 +42,7 @@ mat-toolbar{
   display: inline-block;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  width: 200px;
   height:100%
 }
 .mat-expansion-panel-body{
@@ -68,3 +68,41 @@ mat-expansion-panel-header{
   padding:0;
   margin-left:0;
 }
+mat-sidenav{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-nav-list>a{
+  color:#c2c2c2;
+}
+mat-nav-list>div>a{
+  color:#c2c2c2;
+}
+mat-nav-list>div>a:hover{
+  color:white;
+  transition:0.5s
+}
+mat-expansion-panel{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-expansion-panel>mat-expansion-panel-header{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-expansion-panel>mat-expansion-panel-header:hover{
+  transition:0.5s;
+  color:white;
+}
+mat-nav-list>mat-expansion-panel>mat-nav-list>a:link{
+
+  color:#d1d1d1;
+}
+
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+  color: #d1d1d1;
+}
+::ng-deep .specific-class > .mat-expansion-indicator:hover {
+  color: white;
+}
+

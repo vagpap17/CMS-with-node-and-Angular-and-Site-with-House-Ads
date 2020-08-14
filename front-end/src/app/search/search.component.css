@@ -1,11 +1,7 @@
 #content{
   margin-bottom:50px;
 }
-#stitle{
-  background-color: #003049;
-  margin-bottom: 0;
-  color:#E63946;
-}
+
 #status{
   margin-top:10px;
   margin-left:25%
@@ -39,18 +35,18 @@
 }
 form{
   padding:20px;
-  background-color: #003049;
+  background-color: #011338;
 }
 .custom-select{
   background-color:white;
-  color:#003049;
-  border-color: #003049;
+  color:#011338;
+  border-color: #011338;
 }
 
 .color{
   background-color:white;
-  color:#003049;
-  border-color: #003049;
+  color:#011338;
+  border-color: #011338;
 }
 .need{
   color:#E63946;
@@ -61,7 +57,7 @@ form{
   background-color:#E63946
 }
 #submit:hover{
-  background-color:#F77F00;
+  background-color:#010a1c;
 }
 img{
   width:100%;
@@ -76,7 +72,7 @@ h4{
   color:#555;
 }
 .card{
-  background-color: #003049;
+  background-color: #011338;
   color:white;
   box-shadow: 0 3px 6px rgba(0,0,0,1);
   border-radius: 30px;

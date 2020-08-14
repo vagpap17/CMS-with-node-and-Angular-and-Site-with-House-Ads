@@ -56,15 +56,15 @@
                   preview
                   </span>Dashboard</a>
 
-                <mat-expansion-panel color="primary"[class.mat-elevation-z0]="true" dense>
-                    <mat-expansion-panel-header>
+                <mat-expansion-panel [class.mat-elevation-z0]="true" dense >
+                    <mat-expansion-panel-header class="specific-class">
                       <span class="material-icons">
                         work
                         </span><span class="pt-1">Ads</span>
                     </mat-expansion-panel-header>
                     <mat-nav-list class="menu-items" dense>
-                        <a mat-list-item routerLink="/show">Manage</a>
-                        <a mat-list-item routerLink="/create">Add new</a>
+                        <a mat-list-item class="list-item"routerLink="/show">Manage</a>
+                        <a mat-list-item class="list-item"routerLink="/create">Add new</a>
                     </mat-nav-list>
                 </mat-expansion-panel>
                 <a class="links" mat-list-item routerLink="/messages" routerLinkActive="active-list-item"><span class="material-icons">
@@ -72,7 +72,7 @@
                   </span>Messages </a>
 
                 <mat-expansion-panel *ngIf="isAdmin==='1'" [class.mat-elevation-z0]="true" dense>
-                    <mat-expansion-panel-header>
+                    <mat-expansion-panel-header class="specific-class">
                       <span class="material-icons">
                         supervised_user_circle
                         </span> <span class="pt-1">Agents</span>

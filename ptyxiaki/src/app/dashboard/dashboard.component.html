@@ -3,154 +3,267 @@
 <h1 *ngIf="!userIsAuthenticated">Welcome to Papp!Please Login</h1>
 <div *ngIf="userIsAuthenticated">
   <div class="row" id="content">
+    <div class="col-md-3 col-sm-6">
+        <div class="card">
+          <div class="card-body">
+              <div class="row">
+                <div class="col-md-5">
+                  <span class="material-icons" id="acount">
+                    account_box
+                    </span>
+                </div>
+                <div class="col-md-7">
+                  <div>
+                    <p>Welcome user</p>
+                    <span id="user">{{currentUser}}!</span>
+                  </div>
+                </div>
 
-
-
-    <div class="col-md-6">
-      <mat-card id="cardformat">
-        <ul class="list-group">
-          <li id="head"class="list-group-item"><h2>Welcome user  <span id="user">{{currentUser}}!</span> </h2></li>
-          <li class="list-group-item"><h3>Your posts: <a id="custSum"[routerLink]="['/show']">{{myPosts}}</a> </h3></li>
-          <li class="list-group-item"><h3>Potential Customers: <a id="custSum"[routerLink]="['/messages']">{{custSum}}</a> </h3></li>
-      </ul>
-      </mat-card>
-    </div>
-    <div class="col-md-6">
-      <mat-card id="cardformat1">
-        <ul class="list-group">
-          <li id="head"class="list-group-item"><h2>Your Rating <span id="user">{{currentUser}}</span> is </h2></li>
-          <li id="rating" class="list-group-item"> <p><b>{{userRating}}</b>/5.00 with <b>{{reviews}}</b> reviews
-            <span id="mood_bad"class="material-icons" *ngIf="satisfy=='bad'">
-              mood_bad
-              </span>
-
-              <span id="mood_mid"class="material-icons" *ngIf="satisfy=='mid'">
-                sentiment_dissatisfied
-                </span>
-            <span id="mood_good"class="material-icons" *ngIf="satisfy=='good'">
-              mood
-              </span>
-
-          </p>
-
-          </li>
-
-      </ul>
-
-
-      </mat-card>
+              </div>
+          </div>
+        </div>
 
     </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <span class="material-icons" id="post">
+                  article
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Posts</p>
+
+                  <a id="custSum"[routerLink]="['/show']">{{myPosts}}</a>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <span class="material-icons" id="messages">
+                  chat
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Messages </p>
+                  <a id="custSum"[routerLink]="['/messages']">{{custSum}}</a>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <span id="mood_bad"class="material-icons" *ngIf="satisfy=='bad'">
+                  mood_bad
+                  </span>
+
+                  <span id="mood_mid"class="material-icons" *ngIf="satisfy=='mid'">
+                    sentiment_dissatisfied
+                    </span>
+                <span id="mood_good"class="material-icons" *ngIf="satisfy=='good'">
+                  mood
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Rating</p>
+                  <span><b>{{userRating}}</b>/5
+                  </span>
+                  <p class="card-text"><small class="text-muted">with {{reviews}} reviews</small></p>
+                </div>
+
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+
 
     <div class="col-md-12" id="mapContainer">
-      <mat-card id="cardformat">
-      <ul class="list-group">
-        <li id="head" class="list-group-item"><h2 id="mapHead"> Check your map </h2></li>
-        <li id="" class="list-group-item">
+      <div class="card">
+          <p><span class="material-icons">
+            room
+            </span>Your map </p>
           <div id="map"></div>
-      </li>
-      </ul>
-    </mat-card>
+    </div>
 
     </div>
 
+    <div class="col-md-3" id="adsRating">
+      <div class="card">
+        <div class="card-body">
+            <div class="row" *ngFor="let statistic of statistics">
+              <div class="col-md-5" >
+                <span id="mood_bad"class="material-icons" *ngIf="statistic.aRating>0.01&&statistic.aRating<1.60">
+                  mood_bad
+                  </span>
 
-    <div *ngIf="pre=='1'"class="col-md-6 ">
-      <mat-card  id="cardformat">
-        <ul class="list-group" *ngFor="let statistic of statistics">
-          <li class="list-group-item" id="head"><h2>Statistics</h2></li>
-          <li class="row">
-
-            <span id="mood_bad"class="material-icons col-md-1" *ngIf="statistic.aRating>0.01&&statistic.aRating<1.60">
-            bad
-            </span>
-            <span id="mood_mid"*ngIf="statistic.aRating>1.61&&statistic.aRating<3.20" class="material-icons col-md-1 ">
-              sentiment_dissatisfied
-            </span>
-            <span id="mood_good"*ngIf="statistic.aRating>3.21&&statistic.aRating<5.00" class="material-icons col-md-1 ">
-              mood
-            </span><span class="statTitle">Ads Rating<span class="material-icons">
-              arrow_right_alt
-              </span>{{statistic.aRating}}/5</span></li>
-
-            <li class="row ">
-              <span id="mood_bad"class="material-icons col-md-1" *ngIf="statistic.likeAdNum>0.01&&statistic.likeAdNum<1.60">
-              bad
-              </span>
-              <span id="mood_mid"*ngIf="statistic.likeAdNum>1.61&&statistic.likeAdNum<3.20" class="material-icons col-md-1  ">
-                sentiment_dissatisfied
-              </span>
-              <span id="mood_good"*ngIf="statistic.likeAdNum>3.21&&statistic.likeAdNum<5.00" class="material-icons col-md-1 ">
-                mood
-              </span><span class="statTitle">Customers Like the Site<span class="material-icons">
-                arrow_right_alt
-                </span>{{statistic.likeAdNum}}/5</span></li>
-
-              <li class="row">
-                <span id="mood_bad" class="material-icons col-md-1" *ngIf="statistic.likeSiteNum>0.1&&statistic.likeSiteNum<2.99">
-                bad
-                </span>
-                <span id="mood_mid"*ngIf="statistic.likeSiteNum>1.61&&statistic.likeSiteNum<3.20" class="material-icons col-md-1">
-                  sentiment_dissatisfied
-                </span>
-                <span id="mood_good"*ngIf="statistic.likeSiteNum>3.21&&statistic.likeSiteNum<5.00" class="material-icons col-md-1">
+                  <span id="mood_mid"class="material-icons" *ngIf="statistic.aRating>1.61&&statistic.aRating<3.20">
+                    sentiment_dissatisfied
+                    </span>
+                <span id="mood_good"class="material-icons" *ngIf="statistic.aRating>3.21&&statistic.aRating<5.00">
                   mood
-                </span><span class="statTitle">Customers Like Ad<span class="material-icons">
-                  arrow_right_alt
-                  </span>{{statistic.likeSiteNum}}/5</span></li>
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Ads Rating</p>
+                  <span><b>{{statistic.aRating}}</b>/5
+                  </span>
+                </div>
+              </div>
 
-          <li class="row p-0 pr-3 pt-2">
-            <div class="col-md-12">
-
-            <p class="">
-              Use our site again(<span style="color:#28a745">Yes</span>/<span style="color:#dc3545 ">No</span>):  </p>
             </div>
-          <div class="progress mt-2 p-0 mb-3 col-md-12">
-            <div [ngStyle]="{'width':statistic.useAgainY+'%'}" [attr.aria-valuenow]="statistic.useAgainY"class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span id="yes">{{statistic.useAgainY}}%</span></div>
-            <div class="progress-bar bg-danger " [ngStyle]="{'width':statistic.useAgainN+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.useAgainN" aria-valuemin="0" aria-valuemax="100">{{statistic.useAgainN}}%</div>
-          </div>
-        </li>
-
-        <li class="row p-0 pr-3 pt-2">
-          <div class="col-md-12 ">
-
-          <p class="">
-            Ad seen at (<span style="color:#007bff">Social Media</span>/<span style="color:#ffc107 ">ads</span>/<span style="color:#17a2b8">other</span>): </p>
-          </div>
-
-        <div class="progress mt-2 p-0 mb-3 col-md-12">
-          <div [ngStyle]="{'width':statistic.social+'%'}" [attr.aria-valuenow]="statistic.social"class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span id="yes">{{statistic.social}}%</span></div>
-          <div class="progress-bar bg-warning " [ngStyle]="{'width':statistic.ads+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.ads" aria-valuemin="0" aria-valuemax="100">{{statistic.ads}}%</div>
-          <div class="progress-bar bg-info " [ngStyle]="{'width':statistic.other+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.other" aria-valuemin="0" aria-valuemax="100">{{statistic.other}}%</div>
         </div>
-      </li>
-        </ul>
-
-      </mat-card>
-
+      </div>
     </div>
-    <div *ngIf="pre=='1'"class="col-md-6">
-      <mat-card id="cardformat2">
-        <ul class="list-group">
-          <li class="list-group-item" id="head"><h2>Styling</h2></li>
-          <li class="list-group-item" id="styling">
-              <form [formGroup]="form" (submit)="onSaveMenu()" enctype="multipart/form-data">
-                <mat-form-field>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+            <div class="row" *ngFor="let statistic of statistics">
+              <div class="col-md-5" >
+                <span id="mood_bad"class="material-icons" *ngIf="statistic.likeAdNum>0.01&&statistic.likeAdNum<1.60">
+                  mood_bad
+                  </span>
 
-                  <mat-label>Menu Position</mat-label>
-                  <mat-select formControlName="menup">
-                    <mat-option value="0">top-menu</mat-option>
-                    <mat-option value="1">Sidenav</mat-option>
+                  <span id="mood_mid"class="material-icons" *ngIf="statistic.likeAdNum>1.61&&statistic.likeAdNum<3.20">
+                    sentiment_dissatisfied
+                    </span>
+                <span id="mood_good"class="material-icons" *ngIf="statistic.likeAdNum>3.21&&statistic.likeAdNum<5.00">
+                  mood
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Customers Like the Site</p>
+                  <span><b>{{statistic.likeAdNum}}</b>/5
+                  </span>
+                </div>
+              </div>
 
-                  </mat-select>
-                </mat-form-field>
-                <button mat-raised-button type="submit" color="primary">Save</button>
-            </form>
-          </li>
-        </ul>
-
-      </mat-card>
+            </div>
+        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+            <div class="row" *ngFor="let statistic of statistics">
+              <div class="col-md-5" >
+                <span id="mood_bad"class="material-icons" *ngIf="statistic.likeSiteNum>0.01&&statistic.likeSiteNum<1.60">
+                  mood_bad
+                  </span>
+
+                  <span id="mood_mid"class="material-icons" *ngIf="statistic.likeSiteNum>1.61&&statistic.likeSiteNum<3.20">
+                    sentiment_dissatisfied
+                    </span>
+                <span id="mood_good"class="material-icons" *ngIf="statistic.likeSiteNum>3.21&&statistic.likeSiteNum<5.00">
+                  mood
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <div>
+                  <p>Customers Like Ad</p>
+                  <span><b>{{statistic.likeSiteNum}}</b>/5
+                  </span>
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+            <div class="row" *ngFor="let statistic of statistics">
+              <div class="col-md-12" >
+                <p>Use our site again (<span style="color:#28a745">Yes</span>/<span style="color:#dc3545 ">No</span>):  </p>
+              </div>
+              <div class="col-md-12 pl-0 ">
+                <div class="progress p-0 col-md-12">
+                      <div [ngStyle]="{'width':statistic.useAgainY+'%'}" [attr.aria-valuenow]="statistic.useAgainY"class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100">{{statistic.useAgainY}}%<br></div>
+                      <div class="progress-bar bg-danger " [ngStyle]="{'width':statistic.useAgainN+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.useAgainN" aria-valuemin="0" aria-valuemax="100">{{statistic.useAgainN}}%</div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+            <div class="row" *ngFor="let statistic of statistics">
+              <div class="col-md-12" >
+                <p class="">
+                  Ad seen at (<span style="color:#007bff">Social Media</span>/<span style="color:#ffc107 ">ads</span>/<span style="color:#17a2b8">other</span>): </p>
+              </div>
+              <div class="col-md-12">
+                  <div class="progress p-0  col-md-12">
+                    <div [ngStyle]="{'width':statistic.social+'%'}" [attr.aria-valuenow]="statistic.social"class="progress-bar bg-primary" role="progressbar" aria-valuemin="0" aria-valuemax="100">{{statistic.social}}%</div>
+                    <div class="progress-bar bg-warning " [ngStyle]="{'width':statistic.ads+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.ads" aria-valuemin="0" aria-valuemax="100">{{statistic.ads}}%</div>
+                    <div class="progress-bar bg-info " [ngStyle]="{'width':statistic.other+'%'}" role="progressbar" [attr.aria-valuenow]="statistic.other" aria-valuemin="0" aria-valuemax="100">{{statistic.other}}%</div>
+                  </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+
+                <span class="material-icons">
+                  brush
+                  </span>
+              </div>
+              <div class="col-md-7">
+                <p>Styling</p>
+                <div>
+
+                    <form [formGroup]="form" (submit)="onSaveMenu()" enctype="multipart/form-data">
+                      <mat-form-field>
+
+                        <mat-label>Menu Position</mat-label>
+                        <mat-select formControlName="menup">
+                          <mat-option value="0">top-menu</mat-option>
+                          <mat-option value="1">Sidenav</mat-option>
+
+                        </mat-select>
+                      </mat-form-field>
+                      <button mat-raised-button type="submit" color="primary">Save</button>
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
+
+  </div>
   </div>
 
 </div>

@@ -48,8 +48,8 @@ form{
   padding-top:20px;
   font-family:Arial, Helvetica, sans-serif;
   font-weight:600;
-  background: rgba(0, 48, 73,0.75);
-  box-shadow: 0 3px 6px #003049;
+  background: rgba(1, 10, 28,0.75);
+  box-shadow: 0 3px 6px #011338;
   border-radius: 30px;
 }
 .custom-select{
@@ -60,8 +60,8 @@ form{
 
 .color{
   background-color:white;
-  color:#003049;
-  border-color: #003049;
+  color:#011338;
+  border-color: #011338;
 }
 
 #submit{
@@ -69,7 +69,7 @@ form{
   color:white;
 }
 #submit:hover{
-  background-color:#003049;
+  background-color:#010a1c;
   color:white;
 }
 #submit:disabled{
@@ -121,7 +121,7 @@ font-size:150px;
 
 }
 .card{
-  background-color: #003049;
+  background-color: #011338;
   color:white;
   box-shadow: 0 3px 6px rgba(0,0,0,1);
   border-radius: 30px;
@@ -134,7 +134,7 @@ img,.card{
   border-top-left-radius: 30px;
 }
 .card:hover{
-  background-color: #02537d;
+  background-color: #002061;
 
 }
 .card-body{
@@ -152,7 +152,7 @@ img,.card{
     background-color:#E63946
   }
   #CardSubmit:hover{
-    background-color:#050742;
+    background-color:#010a1c;
 }
 
 /*  */
@@ -166,16 +166,13 @@ img,.card{
   height: 500px;
   width: 100%;
  }
-#content{
-  background-color:red;
-  color:red;
-}
+
 /* suggested */
 #suggested{
   padding-top:70px;
   padding-left:13%;
   padding-bottom:70px;
-  background-color: #003e5e;
+  background-color: #011338;
 }
 #checkout{
   padding-left: 35%;

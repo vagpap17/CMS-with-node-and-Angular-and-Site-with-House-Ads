@@ -2,41 +2,33 @@
   margin-left:40px;
   padding-bottom:50px;
 }
-
-#cardformat{
-  width:100%;
+.col-md-3{
+  height:130px;
+}
+.card{
   height:100%;
-  padding:0.5px;
+  border-radius:6px;
+  box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
 }
-.col-md-6>li{
-  padding:0;
+.col-md-3>.card>.card-body>.row>.col-md-5>.material-icons{
+
+  font-size:90px;
+}
+.col-md-3>.card>.card-body>.row>.col-md-7>div{
+  text-align: right;
+  padding-top:10px;
 
 }
-#cardformat>ul>#head{
-  background-color: #212121;
-  color:white;
-}
-#cardformat>ul>li>h3{
+.col-md-3>.card>.card-body>.row>.col-md-7>div>p{
+
   font-size:20px;
 }
-#cardformat1{
-  width:100%;
-  height:71%;
-  padding:0.5px;
+.col-md-3>.card>.card-body>.row>.col-md-7>div>a,span{
+
+  font-size:30px;
 }
-#cardformat1>ul>#head{
-  background-color: #212121;
-  color:white;
-}
-#cardformat2{
-  width:100%;
-  height:40%;
-  padding:0.5px;
-}
-#cardformat2>ul>#head{
-  background-color: #212121;
-  color:white;
-}
+
+
 #statistics{
   width:100%;
 }
@@ -68,47 +60,60 @@ button{
   color:#6c706d
 }
 
-#rating{
-  padding-top:25px;
-  font-size:20px;
-
-}
 #map{
   width:100%;
   height: 500px;
+  margin-top:10px;
 }
 #mapContainer{
   margin-top:50px;
   margin-bottom:50px;
+
 }
-#mapHead{
-  padding-top:10px;
-  font-size:30px;
+#mapContainer>.card{
+  padding:20px;
+}
+#mapContainer>.card>p>span{
+  color:#f44336;
+  font-size:50px;
 }
 
+
+#mapContainer>.card>p{
+  font-size:30px;
+}
+.col-md-6{
+  margin-top:50px;
+}
+.col-md-6>.card>.card-body>.row>.col-md-12>p{
+  padding-left:25%;
+  font-size:20px;
+}
+.col-md-6>.card>.card-body>.row>.col-md-12>p>span{
+
+  font-size:20px;
+}
+
+
 #mood_bad{
-  color:red;
+  color:#f44336;
 }
 #mood_mid{
-  color:orange;
+  color:#e29b31;
 }
 #mood_good{
-  color:green
+  color:#65ab69;
+}
+#acount{
+  color:#235ec4;
+}
+#messages{
+  color:#c4a123
 }
 .material-icons{
   vertical-align: middle;
 }
-.list-group-item{
-  width:100%;
-}
-div>#cardformat>ul>.row{
-  padding:10px;
-  font-size:20px;
-  margin:0;
-  width:100%;
 
-  border:1px solid rgba(0, 0, 0, 0.125);
-}
 .statTitle{
   margin-left:20px;
 
@@ -117,3 +122,25 @@ div>#cardformat>ul>.row{
   padding-bottom:40px;
   margin-top:20px;
 }
+#adsRating{
+  margin-left:13%;
+}
+.col-md-4{
+  height:170px;
+  margin-top:50px;
+}
+.col-md-4>.card>.card-body>.row>.col-md-5>.material-icons{
+
+  font-size:100px;
+}
+
+
+.col-md-4>.card>.card-body>.row>.col-md-7>p{
+  text-align: right;
+  font-size:25px;
+}
+.col-md-4>.card>.card-body>.row>.col-md-7>div{
+
+  font-size:15px;
+}
+

@@ -129,7 +129,7 @@
                   <p class="card-text"><b>{{stars[i].title}}</b><span id="star_icon" class="material-icons">
                     stars
                     </span></p>
-                  <p class="card-text">{{stars[i].price}}€ | {{stars[i].area}}sqm | {{stars[i].bednum}} bedrooms</p>
+                  <p class="card-text">{{stars[i].price}}€ | {{stars[i].area}}sqm <span *ngIf="stars[i].btype=='apartment'"> | {{stars[i].bednum}} bedrooms</span> </p>
                   <button id="CardSubmit" class="card-link" type="button"[routerLink]="['/ads/show',stars[i].post_id]" class="btn-dark btn">See More</button>
                 </div>
               </div>
