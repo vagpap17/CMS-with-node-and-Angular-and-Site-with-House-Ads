@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
       });
 
 
-      console.log(userData)
+      //console.log(userData)
       this.isLoading=false;
       this.dataSource=new MatTableDataSource(userData);
       this.dataSource.paginator=this.paginator

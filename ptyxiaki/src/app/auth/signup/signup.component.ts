@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit{
       if(paramMap.has("userId")){
         this.mode="edit";
         this.userId=paramMap.get("userId")
-        console.log(this.userId)
+        //console.log(this.userId)
         this.isLoading=true;
         this.authService.getUserEdit(this.userId)
         this.authService.getUserEditListener().subscribe(user=>{

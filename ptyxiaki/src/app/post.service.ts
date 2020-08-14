@@ -48,6 +48,15 @@ export class PostsService{
         this.postsUpdated.next(this.posts);
       });
   }
+  getPostsForMap() {
+    return this.http
+      .get<any>("http://localhost:3000/api/posts/ads")
+      .subscribe(posts => {
+
+        this.posts = posts;
+        this.postsUpdated.next(this.posts);
+      });
+  }
 
   getPost(id:string){
     return this.http.
@@ -235,7 +244,7 @@ export class PostsService{
     this.ads=0;
     this.http.get<any>("http://localhost:3000/api/messages/").
     subscribe(data=>{
-      console.log(data)
+      // console.log(data)
     for(let i=0;i<data.length;i++){
         for(let key in data[i]){
           // console.log(data[i][key])

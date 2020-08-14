@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   usersSum;
   customers=[];
   custSum;
-  reviewSub:Subscription;
+
   ratingSub:Subscription;
   custSub:Subscription;
   usersSub:Subscription;
@@ -75,9 +75,6 @@ this.form=new FormGroup({
     })
 
 
-    this.reviewSub=this.authService.getCurrentUserListner().subscribe(data=>{
-      console.log(data)
-    })
 
     this.pre=this.authService.getPrivileges()
     this.messagesService.getMessages(this.id,this.pre)
@@ -104,7 +101,7 @@ this.form=new FormGroup({
     this.postService.calculateStatistics();
     this.statisticsSub=this.postService.getStatisticsUpdated().subscribe(data=>{
       this.statistics=[data]
-      console.log(this.statistics)
+      //console.log(this.statistics)
     });
 
     this.usersSub=this.authService
@@ -113,11 +110,11 @@ this.form=new FormGroup({
       this.isLoading=false;
       this.usersSum=userData.length
     })
-    this.postService.getPosts()
+    this.postService.getPostsForMap()
     this.postsSub=this.postService
     .getPostUpdateListener()
     .subscribe(postData=>{
-      console.log(postData)
+      //console.log(postData)
       for(let i=0;i<postData.length;i++){
         var contentString = '<b>'+postData[i].title+'</b>';
 
@@ -134,8 +131,15 @@ this.form=new FormGroup({
               map: this.map,
               title: 'Uluru (Ayers Rock)',
               icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png"
-              }
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#E63946',
+                fillOpacity: 1,
+                strokeColor: '#E63946',
+                strokeOpacity: 0.9,
+                strokeWeight: 1,
+                scale: 5
+            },
+
               });
               google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent('<p style="font-weight:700">' + postData[i].title +'|' +postData[i].adtype+ '</p><br><p style="font-weight:500">'+postData[i].location+'</p><p>'+postData[i].btype+'|'+postData[i].area+'m²|'+postData[i].price+'€</p><a href="http://localhost:4200/edit/'+postData[i].post_id+'">Edit</a><br>');
@@ -156,8 +160,16 @@ this.form=new FormGroup({
               map: this.map,
               title: 'Uluru (Ayers Rock)',
               icon: {
-                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-              }
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: '#03369e',
+                fillOpacity: 1,
+                strokeColor: '#03369e',
+                strokeOpacity: 0.9,
+                strokeWeight: 1,
+                scale: 5
+            },
+            optimized: false,
+            zIndex:99999999
               });
               google.maps.event.addListener(marker, 'click', function () {
                 infowindow.setContent('<p style="font-weight:700">' + postData[i].title +'|' +postData[i].adtype+ '</p><br><p style="font-weight:500">'+postData[i].location+'</p><p>'+postData[i].btype+'|'+postData[i].area+'m²|'+postData[i].price+'€</p><a href="http://localhost:4200/edit/'+postData[i].post_id+'">Edit</a><br>');

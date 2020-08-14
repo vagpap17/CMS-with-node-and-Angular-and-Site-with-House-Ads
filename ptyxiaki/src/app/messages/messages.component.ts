@@ -38,7 +38,7 @@ export class MessagesComponent implements OnInit {
     this.messagesService.getMessages(id,pre)
     this.messagesSub=this.messagesService.getMessagesUpdated()
     .subscribe(data=>{
-      console.log(data)
+      //console.log(data)
       if(data.length>0){
         this.size=true;
         this.dataSource = new MatTableDataSource(data);
@@ -54,7 +54,7 @@ export class MessagesComponent implements OnInit {
   }
   clicked(id:number,clicked:boolean){
     this.bclicked=true;
-    console.log(id)
+    //console.log(id)
     const seenArray=<FormArray>this.form.controls.seen;
     if (clicked) {
       this.arraySeen.push(id)
@@ -62,7 +62,7 @@ export class MessagesComponent implements OnInit {
       let index = this.arraySeen.indexOf(id)
       this.arraySeen.splice(index,1);
     }
-    console.log(this.arraySeen)
+    //console.log(this.arraySeen)
   }
   onSave(){
     this.messagesService.saveSeen(this.arraySeen)

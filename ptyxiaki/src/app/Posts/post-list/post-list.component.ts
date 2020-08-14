@@ -36,21 +36,21 @@ export class PostListComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.currentUser=this.authService.getCurrentUser()
-    console.log(this.currentUser)
+    //console.log(this.currentUser)
     this.privileges=this.authService.getPrivileges();
-    console.log(this.privileges)
+    //console.log(this.privileges)
     // this.isLoading=true;
     this.postsService.getPosts();
 
     this.userId = parseInt(this.authService.getUserId());
-    console.log(this.userId)
+    //console.log(this.userId)
     this.postsSub=this.postsService
     .getPostUpdateListener()
     .subscribe(postData=>{
-      console.log(postData)
-      console.log(this.privileges)
+      //console.log(postData)
+      //console.log(this.privileges)
       if(this.privileges==="1"){
-        console.log("mphke admin")
+        //console.log("mphke admin")
         for(let i=0;i<postData.length;i++){
 
           var splited=postData[i].dateAdded.split("T")
@@ -68,7 +68,7 @@ export class PostListComponent implements OnInit,OnDestroy {
           // if(postData.posts[i].)
 
           if(parseInt(postData[i].user_id)===this.userId){
-            console.log("mphke")
+            //console.log("mphke")
             var splited=postData[i].dateAdded.split("T")
             postData[i].dateAdded=splited[0]
             var time=splited[1].split(".")
@@ -79,11 +79,11 @@ export class PostListComponent implements OnInit,OnDestroy {
 
         }
         if(this.postList.length===0){
-          console.log(this.empty)
+          //console.log(this.empty)
           this.empty=true;
-          console.log(this.empty)
+          //console.log(this.empty)
         }
-        console.log(this.postList)
+        //console.log(this.postList)
         this.dataSource = new MatTableDataSource(this.postList);
         this.dataSource.paginator=this.paginator
         this.dataSource.sort = this.sort;

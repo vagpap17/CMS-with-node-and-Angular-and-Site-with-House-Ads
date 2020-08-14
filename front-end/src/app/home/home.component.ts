@@ -80,7 +80,7 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
   for(let i=0;i<ads.length;i++){
     let lat=parseFloat(ads[i].lat)
     let lng=parseFloat(ads[i].lon)
-    console.log(ads)
+    //console.log(ads)
   var contentString = '<b>'+ads[i].title+'</b>';
 
       var infowindow = new google.maps.InfoWindow({
@@ -88,15 +88,21 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
       });
 
       if(ads[i].btype=="apartment"){
-        console.log("bike apartment")
+        //console.log("bike apartment")
         var marker = new google.maps.Marker({
           position: {lat:lat,
           lng: lng},
           map: map,
           title: 'Uluru (Ayers Rock)',
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
-          }
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#03369e',
+            fillOpacity: 1,
+            strokeColor: '#03369e',
+            strokeOpacity: 0.9,
+            strokeWeight: 1,
+            scale: 5
+        }
           });
       }else{
         var marker = new google.maps.Marker({
@@ -105,8 +111,14 @@ this.adService.getAdsUpdateListener().subscribe(ads=>{
           map: map,
           title: 'Uluru (Ayers Rock)',
           icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-          }
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#E63946',
+            fillOpacity: 1,
+            strokeColor: '#E63946',
+            strokeOpacity: 0.8,
+            strokeWeight: 1,
+            scale: 5
+        }
           });
       }
 

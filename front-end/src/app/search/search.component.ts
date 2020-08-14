@@ -67,7 +67,7 @@ export class SearchComponent implements OnInit {
     this.adService.getAllAds().then(()=>{
       this.route.queryParams
       .subscribe(params => {
-        console.log("Params",params);
+        //console.log("Params",params);
         if(params.btype==="apartment"){
           this.mode="apartment"
         }else{
@@ -86,11 +86,11 @@ export class SearchComponent implements OnInit {
         }
 
         Object.keys(params).forEach(key => {
-          console.log(key,params[key])
+          //console.log(key,params[key])
           this.form.patchValue({[key]: params[key]});
           // this.form.get(key).patchValue(params[key])
           this.form.get(key).updateValueAndValidity();
-          console.log(this.form.value)
+          //console.log(this.form.value)
         });
 
 
@@ -101,7 +101,7 @@ export class SearchComponent implements OnInit {
 
 
   searchHouse(filters: any): void {
-    console.log(filters)
+    //console.log(filters)
     this.adService.searchFiltersHouse(filters)
   }
   citiesSelect(templocation){
@@ -120,7 +120,7 @@ export class SearchComponent implements OnInit {
     }
   }
   locationSelect(templocation){
-    console.log(templocation)
+    //console.log(templocation)
     let foundlocationLid;
     for(let i=0;i<this.locations.length;i++){
       if(templocation===this.locations[i].location){
@@ -135,7 +135,7 @@ export class SearchComponent implements OnInit {
         delete filters[key];
       }
     });
-    console.log("FILTERS",filters)
+    //console.log("FILTERS",filters)
 
     this.router.navigate(['search'], { queryParams: filters});
   }
