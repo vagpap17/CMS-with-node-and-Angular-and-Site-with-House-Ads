@@ -5,12 +5,7 @@ const middleware=require("../middleware")
 const nodemailer = require("nodemailer");
 
 var connection=mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"19967890",
-  insecureAuth:true,
-  database:"ptyxiaki",
-  multipleStatements:true
+your base info
 })
 router.get("",function(req,res){
   q="select * from feedback where agentRating is not null"
@@ -60,8 +55,8 @@ router.post("",function(req,res){
                   port: 465,
                   secure: true,
                   auth: {
-                      user: 'pappasvag@gmail.com',
-                      pass: '199678901731996VaGoS'
+                      user: 'yourInfo',
+                      pass: 'yourInfo'
                   }
               });
 
