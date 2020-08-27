@@ -75,6 +75,9 @@ mat-sidenav{
 mat-nav-list>a{
   color:#c2c2c2;
 }
+mat-nav-list>a:hover{
+  color:white;
+}
 mat-nav-list>div>a{
   color:#c2c2c2;
 }

@@ -1,7 +1,11 @@
-<div class="login">
-<h2>Login</h2>
-<p>{{error}}</p>
-  <mat-card>
+<div class="login" *ngIf="!userIsAuthenticated">
+ <mat-card id="title">
+  <h1>Welcome to Papp!</h1>
+  <h2>Login</h2>
+ </mat-card>
+
+<h3 id="error">{{error}}</h3>
+  <mat-card id="form">
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 
     <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">

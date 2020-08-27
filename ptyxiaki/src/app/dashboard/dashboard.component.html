@@ -1,6 +1,5 @@
 
 
-<h1 *ngIf="!userIsAuthenticated">Welcome to Papp!Please Login</h1>
 <div *ngIf="userIsAuthenticated">
   <div class="row" id="content">
     <div class="col-md-3 col-sm-6">
@@ -35,7 +34,7 @@
               </div>
               <div class="col-md-7">
                 <div>
-                  <p>Posts</p>
+                  <p>Ads</p>
 
                   <a id="custSum"[routerLink]="['/show']">{{myPosts}}</a>
                 </div>
@@ -108,7 +107,7 @@
 
     </div>
 
-    <div class="col-md-3" id="adsRating">
+    <div class="col-md-3" id="adsRating" *ngIf="pre==='1'">
       <div class="card">
         <div class="card-body">
             <div class="row" *ngFor="let statistic of statistics">
@@ -136,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="pre==='1'">
       <div class="card">
         <div class="card-body">
             <div class="row" *ngFor="let statistic of statistics">
@@ -164,7 +163,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="pre==='1'">
       <div class="card">
         <div class="card-body">
             <div class="row" *ngFor="let statistic of statistics">
@@ -192,7 +191,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="pre==='1'">
       <div class="card">
         <div class="card-body">
             <div class="row" *ngFor="let statistic of statistics">
@@ -209,7 +208,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" *ngIf="pre==='1'">
       <div class="card">
         <div class="card-body">
             <div class="row" *ngFor="let statistic of statistics">
@@ -229,7 +228,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" *ngIf="pre==='1'" >
       <div class="card">
         <div class="card-body">
             <div class="row">

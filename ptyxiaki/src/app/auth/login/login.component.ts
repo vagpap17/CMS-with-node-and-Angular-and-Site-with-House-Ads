@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   isLoading = false;
+  userIsAuthenticated=false;
   error:string;
+  private authListenerSubs:Subscription;
   private errorListener:Subscription
   constructor(public authService: AuthService,private router: Router) {}
 
@@ -19,6 +21,12 @@ export class LoginComponent {
     if (form.invalid) {
       return;
     }
+    this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      });
     this.isLoading = true;
     this.authService.login(form.value.username, form.value.password);
     this.error=this.authService.getError()

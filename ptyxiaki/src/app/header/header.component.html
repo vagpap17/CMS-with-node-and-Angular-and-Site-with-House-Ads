@@ -1,14 +1,16 @@
+<div *ngIf="userIsAuthenticated">
 <mat-toolbar class="mat-primary" *ngIf="menu==0">
   <mat-toolbar-row >
     <span>
       <a routerLink="/">Papp</a>
+
 
     </span>
 
   <button  *ngIf="userIsAuthenticated"  id="menu"  mat-button [matMenuTriggerFor]="selections">Menu</button>
   <mat-menu  #selections="matMenu">
     <button mat-menu-item  [matMenuTriggerFor]="Aggelies">Ads</button>
-    <button mat-menu-item routerLink="/messages" >Messages</button>
+    <button mat-menu-item routerLink="/messages" >Messages </button>
     <button mat-menu-item *ngIf="isAdmin==='1'" [matMenuTriggerFor]="Users">Agents</button>
   </mat-menu>
 
@@ -52,7 +54,7 @@
                 account_circle
                 </span><span id="username">{{currentUser}}</span>
               </div>
-                <a class="links" mat-list-item routerLink="/" routerLinkActive="active-list-item"><span class="material-icons">
+                <a class="links" mat-list-item routerLink="/dashboard" routerLinkActive="active-list-item"><span class="material-icons">
                   preview
                   </span>Dashboard</a>
 
@@ -90,4 +92,5 @@
 
   </mat-sidenav>
 
+  </div>
 </div>

@@ -13,16 +13,17 @@ import { MessagesComponent } from './messages/messages.component';
 import { FeedbackComponent } from './messages/feedback/feedback.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 const routes:Routes=[
-  {path:'',component:DashboardComponent},
+  {path:'',component:LoginComponent},
   {path:'show',component:PostListComponent,canActivate:[AuthGuard]},
   {path:'create',component:PostCreateComponent,canActivate:[AuthGuard]},
   {path:'edit/:postId',component:PostEditComponent,canActivate:[AuthGuard]},
-  {path:'login',component:LoginComponent},
+  {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard]},
+  {path:'login',component:LoginComponent,canActivate:[AuthGuard]},
   {path:'signup',component:SignupComponent,canActivate:[AuthGuard]},
   {path:'users',component:UserListComponent,canActivate:[AuthGuard]},
   {path:'users/:userId',component:SignupComponent,canActivate:[AuthGuard]},
   {path:'messages',component:MessagesComponent,canActivate:[AuthGuard]},
-  {path:'messages/:id',component:FeedbackComponent},
+  {path:'messages/:id',component:FeedbackComponent,canActivate:[AuthGuard]},
   {path:'404',component:NotFoundComponent},
   {path:'**',redirectTo:'404'}
 

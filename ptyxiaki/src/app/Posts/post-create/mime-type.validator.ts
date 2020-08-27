@@ -19,11 +19,11 @@ export const mimeType = (
           header += arr[i].toString(16);
         }
         switch (header) {
-          case "89504e47":
+          case "89504e47"://png
             isValid = true;
             break;
-          case "ffd8ffe0":
-          case "ffd8ffe1":
+          case "ffd8ffe0"://jpg,jpeg
+          case "ffd8ffe1"://jpg,jpeg
           case "ffd8ffe2":
           case "ffd8ffe3":
           case "ffd8ffe8":
