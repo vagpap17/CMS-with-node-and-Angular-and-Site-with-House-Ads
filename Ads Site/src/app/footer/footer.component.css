@@ -1,0 +1,22 @@
+footer{
+  padding-top:20px;
+  clear: both;
+  position: relative;
+  bottom:0;
+  height: 200px;
+  color:white;
+  background-color: #010a1c;
+  padding-bottom:300px;
+}
+h1{
+  padding-top:10px;
+  font-size:50px;
+  padding-left:30%;
+  color:#E63946;
+}
+.material-icons{
+  vertical-align: middle;
+}
+#info{
+  padding-left:40%;
+}

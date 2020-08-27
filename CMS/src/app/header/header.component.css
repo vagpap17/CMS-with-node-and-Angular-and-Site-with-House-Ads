@@ -1,0 +1,111 @@
+#wraper{
+  height:100%;
+  display: inline-block;
+}
+#current{
+  padding:15px;
+  font-size:20px;
+
+
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul {
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a{
+  text-decoration:none;
+  color:white;
+}
+/*
+mat-toolbar{
+  background-color: black;
+}
+#menu{
+  color:white;
+}
+#user{
+  color:white;
+} */
+.example-sidenav {
+  margin-right: 50px;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height:100%
+}
+.mat-expansion-panel-body{
+  padding:0;
+}
+mat-card{
+  margin-left:0;
+  margin-top:0;
+  width:100%;
+}
+/* mat-toolbar{
+  background-color: #212121;
+  color:white;
+} */
+.menu1{
+  position: fixed;
+  height:100%;
+}
+mat-expansion-panel-header{
+  padding-left:15px;
+}
+.links{
+  padding:0;
+  margin-left:0;
+}
+mat-sidenav{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-nav-list>a{
+  color:#c2c2c2;
+}
+mat-nav-list>a:hover{
+  color:white;
+}
+mat-nav-list>div>a{
+  color:#c2c2c2;
+}
+mat-nav-list>div>a:hover{
+  color:white;
+  transition:0.5s
+}
+mat-expansion-panel{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-expansion-panel>mat-expansion-panel-header{
+  background-color: #212121;
+  color:#c2c2c2;
+}
+mat-expansion-panel>mat-expansion-panel-header:hover{
+  transition:0.5s;
+  color:white;
+}
+mat-nav-list>mat-expansion-panel>mat-nav-list>a:link{
+
+  color:#d1d1d1;
+}
+
+::ng-deep .specific-class > .mat-expansion-indicator:after {
+  color: #d1d1d1;
+}
+::ng-deep .specific-class > .mat-expansion-indicator:hover {
+  color: white;
+}
+

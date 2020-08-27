@@ -1,0 +1,139 @@
+
+<h2>Edit ad #{{postId}}</h2>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-tab-group *ngIf="!isLoading">
+  <mat-tab label="Edit Info">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form id="firstTab" [formGroup]="form" (submit)="onEditPost()" enctype="multipart/form-data">
+      <mat-form-field >
+        <input matInput type="text" formControlName="title" placeholder="Post Title">
+        <mat-error *ngIf="form.get('title').invalid">Please enter a post title</mat-error>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state" [(value)]="selected" (selectionChange)="citiesSelect(selected)">
+          <mat-option *ngFor="let item of states" [value]="item.state"  >
+            {{item.state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <mat-select formControlName="location" [(value)]="selectedL" (selectionChange)="locationSelect(selectedL)" >
+          <mat-option  *ngFor="let item of flocations" [value]="item.location" >
+            {{item.location}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('state').invalid">Please enter a state first</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Postal</mat-label>
+        <mat-select formControlName="postal" >
+          <mat-option  *ngFor="let item of fpostals; let i=index" [value]="item" >
+            {{item}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('location').invalid">Please enter a location first</mat-error>
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput type="text" formControlName="address" placeholder="Address">
+        <mat-error *ngIf="form.get('address').invalid">Please enter an Address</mat-error>
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput type="text" formControlName="addressnum" placeholder="Address Number">
+        <mat-error *ngIf="form.get('addressnum').invalid">Please enter Address number</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field  id="desc">
+        <textarea  #desc matInput formControlName="description" placeholder="Post Description"></textarea>
+        <mat-error *ngIf="form.get('description').invalid">Please enter a description</mat-error>
+        <mat-hint align="end">{{desc.value.length}} / 500</mat-hint>
+      </mat-form-field>
+      <br>
+      <mat-form-field id="area">
+        <input matInput type="text" formControlName="area" placeholder="Square Meters">
+        <mat-error *ngIf="form.get('area').invalid">Please enter square meters</mat-error>
+        <mat-icon matSuffix>border_all</mat-icon>
+      </mat-form-field>
+      <mat-form-field id="price">
+        <input matInput type="text" formControlName="price" placeholder="Price">
+        <mat-error *ngIf="form.get('price').invalid">Please enter a price</mat-error>
+        <mat-icon matSuffix>euro_symbol</mat-icon>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Ad Type</mat-label>
+        <mat-select formControlName="adtype">
+          <mat-option value="sell">Sell</mat-option>
+          <mat-option value="rent">Rent</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" (ngModelChange)="adtype($event)">
+          <mat-option value="apartment">Apartment</mat-option>
+          <mat-option value="shop">Commercial</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field *ngIf="adtypes==='apartment'">
+        <mat-label>Bed rooms</mat-label>
+      <mat-select formControlName="bedrooms">
+        <mat-option value="1">1</mat-option>
+        <mat-option value="2">2</mat-option>
+        <mat-option value="3">3</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="adtypes==='apartment'">
+      <mat-label>Bath rooms</mat-label>
+    <mat-select formControlName="bathrooms">
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" formControlName="floor" placeholder="Floor">
+    <mat-error *ngIf="form.get('floor').invalid">Please enter a valid floor number</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" formControlName="yearb" placeholder="Year Built">
+    <mat-error *ngIf="form.get('yearb').invalid">Please enter a valid year built</mat-error>
+  </mat-form-field>
+    <mat-checkbox color="primary" *ngIf="privileges==='1'" formControlName="star"><span class="material-icons">
+      star
+      </span></mat-checkbox>
+    <br>
+    <button (click)="backClicked()" mat-raised-button color="primary" type="button">Back</button>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!form.dirty">Save</button>
+
+    </form>
+  </mat-tab>
+
+  <mat-tab label="Edit Post Images">
+
+    <form [formGroup]="imagesF" (submit)="onSaveImages()" enctype="multipart/form-data">
+      <mat-card id="toolbar">
+      <button id="add" mat-raised-button (click)="filePicker.click()" color="primary" type="button"  >Add Images</button>
+      <button  *ngIf="!deleteMode && imageTrue " color="warn" mat-raised-button type="button" (click)="enableDelete()">Enable Delete</button>
+      <button  *ngIf="deleteMode" color="accent" mat-raised-button type="button" (click)="enableDelete()">Disable Delete</button>
+
+      <button *ngIf="imagePicked" id="save" mat-raised-button type="submit">Save Images</button>
+
+
+    </mat-card>
+    <p *ngIf="deleteMode && imageTrue">Click on a photo to delete and then press save.</p>
+      <mat-card id="images">
+        <img *ngFor='let url of images'[src]="url" height="150px" width="200px" style="margin: 3px;" (click)="onSelectImage(url)">
+
+      </mat-card>
+
+      </form>
+  </mat-tab>
+  <input type="file" #filePicker (change)="onImagePicked($event)" name="files" multiple="">
+</mat-tab-group>
+
+
+
+

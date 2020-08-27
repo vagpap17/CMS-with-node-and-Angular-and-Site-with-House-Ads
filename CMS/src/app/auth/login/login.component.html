@@ -1,0 +1,25 @@
+<div class="login" *ngIf="!userIsAuthenticated">
+ <mat-card id="title">
+  <h1>Welcome to Papp!</h1>
+  <h2>Login</h2>
+ </mat-card>
+
+<h3 id="error">{{error}}</h3>
+  <mat-card id="form">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+    <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+      <mat-form-field>
+        <input matInput name="username" ngModel placeholder="Username" #usernameInput="ngModel" required>
+        <mat-error *ngIf="usernameInput.invalid">Please enter username.</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="password" name="password" ngModel matInput placeholder="Password" #passwordInput="ngModel" required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Login</button>
+    </form>
+  </mat-card>
+</div>

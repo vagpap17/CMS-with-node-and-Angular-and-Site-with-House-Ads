@@ -1,0 +1,72 @@
+<!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+
+  <button id="create"  mat-stroked-button routerLink="/create" type="button" >Add new Post</button>
+  <br>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. shop" #input>
+  </mat-form-field>
+
+
+<table mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef class="small"> Edit </th>
+  <td mat-cell *matCellDef="let element" ><span class="material-icons"><a id="edit"*ngIf="privileges==='1'||element.user_id===userId"  [routerLink]="['/edit',element.id]">edit</a> </span><br>
+</td>
+
+  </ng-container>
+  <ng-container matColumnDef="post_id" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header > id. </th>
+    <td mat-cell *matCellDef="let element" class="small"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="title" >
+    <th mat-header-cell *matHeaderCellDef >  Title </th>
+    <td mat-cell *matCellDef="let element" class="large"> {{element.title}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="user_id" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header >  addedBy </th>
+    <td mat-cell *matCellDef="let element" class="small"> {{element.username}}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="btype">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="type"> Type</th>
+    <td mat-cell *matCellDef="let element"> {{element.btype}}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="dateAdded" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateadded"> DateAdded </th>
+    <td mat-cell *matCellDef="let element" class="medium" > {{element.dateAdded}} </td>
+  </ng-container>
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header class="dateadded"> Time</th>
+    <td mat-cell *matCellDef="let element" class="medium"> {{element.time}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Actions">
+    <th mat-header-cell *matHeaderCellDef class="edit"> Actions </th>
+    <td mat-cell *matCellDef="let element"> <span class="material-icons" *ngIf="privileges==='1'||element.user_id===userId"mat-button color='primary' >
+      <a id="edit" (click)="openDialog(element.id)"> delete</a>
+       </span> </td>
+  </ng-container>
+  <ng-container matColumnDef="starAd">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header class="edit"> StarAd </th>
+    <td mat-cell *matCellDef="let element"> <span *ngIf="element.starAd=='1'"class="material-icons" mat-button color='primary' >
+      star
+       </span> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<!-- </div> -->
+
+
+
+
