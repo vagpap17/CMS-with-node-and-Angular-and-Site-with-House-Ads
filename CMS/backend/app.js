@@ -35,11 +35,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 // app.use(bodyParser.urlencoded({limit: '50mb',extended:true, parameterLimit: 50000 }));
 
 var connection=mysql.createConnection({
-  host:"localhost",
-  user:"root",
-  password:"19967890",
-  insecureAuth:true,
-  database:"ptyxiaki"
+ your database"
 })
 
 
